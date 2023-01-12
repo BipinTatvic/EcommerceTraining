@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 public class PaymentMethod extends AppCompatActivity {
 
@@ -48,14 +49,13 @@ public class PaymentMethod extends AppCompatActivity {
                 cred_password = "Tatvic@12345";
 
                 final AlertDialog.Builder dialog = new AlertDialog.Builder(PaymentMethod.this);
-                View mView = getLayoutInflater().inflate(R.layout.custom_dialog, null);
+                View mView = PaymentMethod.this.getLayoutInflater().inflate(R.layout.custom_dialog, null);
                 dialog.setView(mView);
 
                 EditText cred_et_email = (EditText) mView.findViewById(R.id.cred_email);
                 EditText cred_et_pass = (EditText) mView.findViewById(R.id.cred_pass);
                 Button btn_pay_now = (Button) mView.findViewById(R.id.btn_pay_now);
-                user_entered_email = cred_et_email.getText().toString();
-                user_entered_pass = cred_et_pass.getText().toString();
+
 
 
                 final AlertDialog alertDialog = dialog.create();
@@ -64,9 +64,15 @@ public class PaymentMethod extends AppCompatActivity {
                 btn_pay_now.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if(cred_email == user_entered_email &&  cred_password == user_entered_pass){
+                        user_entered_email = cred_et_email.getText().toString();
+                        user_entered_pass = cred_et_pass.getText().toString();
+                        Toast.makeText(PaymentMethod.this, "Text is"+ user_entered_email, Toast.LENGTH_SHORT).show();
+                        if(cred_email.equals(user_entered_email) &&  cred_password.equals(user_entered_pass)){
                             Intent intent = new Intent(PaymentMethod.this, Thankyou.class);
                             startActivity(intent);
+                        }
+                        else{
+                            startActivity(new Intent(PaymentMethod.this, Sorry.class));
                         }
                     }
                 });
