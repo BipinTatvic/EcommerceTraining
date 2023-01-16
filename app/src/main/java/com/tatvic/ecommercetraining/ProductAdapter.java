@@ -38,4 +38,6 @@ public class ProductAdapter extends ArrayAdapter<ItemModel> {
         item_img.setImageResource(itemModel.getImgid());
         return listitemView;
     }
+
+
 }

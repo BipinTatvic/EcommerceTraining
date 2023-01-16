@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -51,6 +52,14 @@ public class MainActivity extends AppCompatActivity {
         ProductAdapter adapter = new ProductAdapter(this, item_list);
         grid_view.setAdapter(adapter);
 
+        grid_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                startActivity(new Intent(MainActivity.this, ProductDetail.class));
+            }
+        });
+
+
         ArrayList<SlideModel> arrayList = new ArrayList<>();
         arrayList.add(new SlideModel(R.drawable.promotion, ScaleTypes.CENTER_INSIDE));
         arrayList.add(new SlideModel(R.drawable.promo2, ScaleTypes.CENTER_INSIDE));
@@ -67,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) { switch(item.getItemId()) {
         case R.id.search:
+            startActivity(new Intent(MainActivity.this, Search.class));
             Toast.makeText(this, "Search selected", Toast.LENGTH_SHORT).show();
             return(true);
         case R.id.cart:

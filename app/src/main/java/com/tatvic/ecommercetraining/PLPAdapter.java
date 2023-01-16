@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,11 +19,13 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class PLPAdapter extends RecyclerView.Adapter<PLPAdapter.ViewHolder> {
+public class PLPAdapter extends RecyclerView.Adapter<PLPAdapter.ViewHolder> implements Filterable {
 
     Context context;
     ArrayList<ItemModel> product_list;
+    ArrayList<ItemModel> exampleList;
 
     public PLPAdapter(Context context, ArrayList<ItemModel> product_list) {
         this.context = context;
@@ -58,6 +62,36 @@ public class PLPAdapter extends RecyclerView.Adapter<PLPAdapter.ViewHolder> {
     public int getItemCount() {
         return product_list.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return exampleFilter;
+    }
+    private Filter exampleFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<ItemModel> filteredList = new ArrayList<>();
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(filteredList);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+//                for (product_list item : exampleList) {
+//                    if (item.item_name.toLowerCase().contains(filterPattern)) {
+//                        filteredList.add(item);
+//                    }
+//                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            exampleList.clear();
+            exampleList.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
 
     public class ViewHolder  extends RecyclerView.ViewHolder{
 
