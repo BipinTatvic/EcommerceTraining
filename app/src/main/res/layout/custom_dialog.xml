@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="15dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Payment Gateway"
+        android:textSize="22sp"
+        android:textAlignment="center" />
+
+    <EditText
+        android:id="@+id/cred_email"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:hint="  Enter Email"
+        android:textSize="16sp" />
+    <EditText
+        android:id="@+id/cred_pass"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:hint="  Enter Password"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/btn_pay_now"
+        android:padding="5dp"
+        android:background="@drawable/bkg_shape"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:text="PAY NOW"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:layout_weight="1"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"/>
+</LinearLayout>
