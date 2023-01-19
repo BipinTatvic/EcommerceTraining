@@ -13,6 +13,9 @@ android {
         versionCode 1
         versionName "1.0"
 
+        multiDexEnabled true
+
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -47,5 +50,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     // Material Components for Android
      implementation 'com.github.denzcoskun:ImageSlideshow:0.1.0'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
+    implementation 'com.android.support:multidex:2.0.1'
+
 
 }

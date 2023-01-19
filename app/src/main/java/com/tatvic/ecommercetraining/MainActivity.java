@@ -5,8 +5,10 @@ import androidx.cardview.widget.CardView;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.interfaces.ItemClickListener;
 import com.denzcoskun.imageslider.models.SlideModel;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageSlider imageSlider;
     private CardView cardView;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +68,13 @@ public class MainActivity extends AppCompatActivity {
         arrayList.add(new SlideModel(R.drawable.promo2, ScaleTypes.CENTER_INSIDE));
         arrayList.add(new SlideModel(R.drawable.promo3, ScaleTypes.CENTER_INSIDE));
         imageSlider.setImageList(arrayList);
+
+        imageSlider.setItemClickListener(new ItemClickListener() {
+            @Override
+            public void onItemSelected(int i) {
+                startActivity(new Intent(MainActivity.this, ProductListing.class));
+            }
+        });
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -77,10 +87,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) { switch(item.getItemId()) {
         case R.id.search:
             startActivity(new Intent(MainActivity.this, Search.class));
-            Toast.makeText(this, "Search selected", Toast.LENGTH_SHORT).show();
             return(true);
         case R.id.cart:
-            Toast.makeText(this, "Cart selected", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(MainActivity.this, Cart.class));
             return(true);
         case R.id.profile:
             Toast.makeText(this, "Profile selected", Toast.LENGTH_SHORT).show();

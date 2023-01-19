@@ -9,4 +9,5 @@
     <string name="UPI">UPI: <small>GooglePay, PhonePe, PayTM, JioPay, AmazonPay &amp; more</small></string>
     <string name="payment_description">Clicking on <b>Pay</b> will take you to a secure payment gateway where you can make your payment. \n \n Your order will not be completed without this action</string>
     <string name="payment_consent"> I agree to the <a href="https://www.reliancedigital.in/content/terms-of-use" target="_blank">Terms &amp; Conditions</a></string>
+    <string name="delivery">  Expected Delivery: 20 Jan 2023</string>
 </resources>

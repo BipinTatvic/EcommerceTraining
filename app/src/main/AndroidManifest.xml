@@ -16,29 +16,41 @@
         android:theme="@style/Theme.AppCompat.Light"
         tools:targetApi="31">
         <activity
-            android:name=".Search"
+            android:name=".Cart"
+            android:label="Shopping Cart"
             android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Search"
+            android:exported="false"
+            android:label="Search">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".ProductDetail"
-            android:exported="false">
+            android:exported="false"
+            android:label="Product Details">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".Sorry"
-            android:exported="false">
+            android:exported="false"
+            android:label="Payment Failed">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".Thankyou"
-            android:exported="false">
+            android:exported="false"
+            android:label="Order Confirmed">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

@@ -27,14 +27,14 @@ public class SearchAdapter  extends RecyclerView.Adapter<SearchAdapter.ExampleVi
         TextView item_name;
         TextView item_price;
         Button addToCart;
-        CardView plp_card;
+        CardView singleCardClick;
         ExampleViewHolder(View itemView) {
             super(itemView);
             product_image = itemView.findViewById(R.id.product_image);
             item_name = itemView.findViewById(R.id.item_name);
             item_price = itemView.findViewById(R.id.item_price);
             addToCart = itemView.findViewById(R.id.addToCart);
-            plp_card = itemView.findViewById(R.id.plp_card);
+            singleCardClick = itemView.findViewById(R.id.singleCardClick);
         }
     }
     SearchAdapter(Context context, List<ItemModel> exampleList) {
@@ -55,7 +55,7 @@ public class SearchAdapter  extends RecyclerView.Adapter<SearchAdapter.ExampleVi
         holder.item_name.setText(currentItem.getItem_name());
         holder.item_price.setText(currentItem.getItem_price());
         holder.addToCart.setVisibility(View.GONE);
-        holder.plp_card.setOnClickListener(new View.OnClickListener() {
+        holder.singleCardClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, ProductDetail.class);

@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.interfaces.ItemClickListener;
 import com.denzcoskun.imageslider.models.SlideModel;
 
 import java.util.ArrayList;
@@ -34,6 +36,12 @@ public class ProductListing extends AppCompatActivity {
         arrayList.add(new SlideModel(R.drawable.promo3, ScaleTypes.CENTER_INSIDE));
         imageSlider.setImageList(arrayList);
 
+        imageSlider.setItemClickListener(new ItemClickListener() {
+            @Override
+            public void onItemSelected(int i) {
+                startActivity(new Intent(ProductListing.this, MainActivity.class));
+            }
+        });
 
         item_list = new ArrayList<>();
         item_list.add(new ItemModel("Mobile", "$ 299", R.drawable.iphone));

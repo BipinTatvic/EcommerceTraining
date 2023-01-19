@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,7 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PLPAdapter extends RecyclerView.Adapter<PLPAdapter.ViewHolder> implements Filterable {
+public class PLPAdapter extends RecyclerView.Adapter<PLPAdapter.ViewHolder> {
 
     Context context;
     ArrayList<ItemModel> product_list;
@@ -52,8 +53,14 @@ public class PLPAdapter extends RecyclerView.Adapter<PLPAdapter.ViewHolder> impl
             public void onClick(View view) {
                 holder.addToCart.setText("View Cart");
                 holder.addToCart.setBackgroundColor(0x20676470);
-                Intent intent = new Intent(context, PaymentMethod.class);
+                Intent intent = new Intent(context, Cart.class);
                 context.startActivity(intent);
+            }
+        });
+        holder.singleCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                context.startActivity(new Intent(context, ProductDetail.class));
             }
         });
     }
@@ -63,35 +70,35 @@ public class PLPAdapter extends RecyclerView.Adapter<PLPAdapter.ViewHolder> impl
         return product_list.size();
     }
 
-    @Override
-    public Filter getFilter() {
-        return exampleFilter;
-    }
-    private Filter exampleFilter = new Filter() {
-        @Override
-        protected FilterResults performFiltering(CharSequence constraint) {
-            List<ItemModel> filteredList = new ArrayList<>();
-            if (constraint == null || constraint.length() == 0) {
-                filteredList.addAll(filteredList);
-            } else {
-                String filterPattern = constraint.toString().toLowerCase().trim();
-//                for (product_list item : exampleList) {
-//                    if (item.item_name.toLowerCase().contains(filterPattern)) {
-//                        filteredList.add(item);
-//                    }
-//                }
-            }
-            FilterResults results = new FilterResults();
-            results.values = filteredList;
-            return results;
-        }
-        @Override
-        protected void publishResults(CharSequence constraint, FilterResults results) {
-            exampleList.clear();
-            exampleList.addAll((List) results.values);
-            notifyDataSetChanged();
-        }
-    };
+//    @Override
+//    public Filter getFilter() {
+//        return exampleFilter;
+//    }
+//    private Filter exampleFilter = new Filter() {
+//        @Override
+//        protected FilterResults performFiltering(CharSequence constraint) {
+//            List<ItemModel> filteredList = new ArrayList<>();
+//            if (constraint == null || constraint.length() == 0) {
+//                filteredList.addAll(filteredList);
+//            } else {
+//                String filterPattern = constraint.toString().toLowerCase().trim();
+////                for (product_list item : exampleList) {
+////                    if (item.item_name.toLowerCase().contains(filterPattern)) {
+////                        filteredList.add(item);
+////                    }
+////                }
+//            }
+//            FilterResults results = new FilterResults();
+//            results.values = filteredList;
+//            return results;
+////        }
+//        @Override
+//        protected void publishResults(CharSequence constraint, FilterResults results) {
+//            exampleList.clear();
+//            exampleList.addAll((List) results.values);
+//            notifyDataSetChanged();
+//        }
+//    };
 
     public class ViewHolder  extends RecyclerView.ViewHolder{
 
@@ -99,6 +106,7 @@ public class PLPAdapter extends RecyclerView.Adapter<PLPAdapter.ViewHolder> impl
         public TextView item_price;
         public ImageView item_img;
         public Button addToCart;
+        public CardView singleCard;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -107,6 +115,8 @@ public class PLPAdapter extends RecyclerView.Adapter<PLPAdapter.ViewHolder> impl
             item_price = itemView.findViewById(R.id.item_price);
             item_img = itemView.findViewById(R.id.product_image);
             addToCart = itemView.findViewById(R.id.addToCart);
+            singleCard = itemView.findViewById(R.id.singleCardClick);
+
         }
     }
 }
