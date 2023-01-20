@@ -12,7 +12,10 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 public class PaymentMethod extends AppCompatActivity {
 
@@ -20,9 +23,9 @@ public class PaymentMethod extends AppCompatActivity {
     private LinearLayout consentLL;
     private Button btn_pay;
     private CheckBox checkBox;
+    private TextView shipping_address;
     private AlertDialog.Builder dialog;
     private String cred_email, cred_password, user_entered_email, user_entered_pass;
-
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -34,7 +37,18 @@ public class PaymentMethod extends AppCompatActivity {
         consentLL = findViewById(R.id.consentLL);
         btn_pay = findViewById(R.id.btn_pay);
         checkBox = findViewById(R.id.checkbox);
+        shipping_address = findViewById(R.id.shipping_address);
 
+        Intent intent = getIntent();
+
+        String name = intent.getStringExtra("name");
+        String address = intent.getStringExtra("address");
+        String city = intent.getStringExtra("city");
+        String state = intent.getStringExtra("state");
+        String zip = intent.getStringExtra("zip");
+
+        String final_address = name + "\n" + address + "\n" + city +", " + state + ", " + zip;
+        shipping_address.setText(final_address);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
