@@ -30,6 +30,7 @@
                 android:textStyle="bold"/>
 
             <TextView
+                android:id="@+id/shipping_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/shipping_address"
@@ -162,9 +163,7 @@
             android:id="@+id/btn_pay"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_margin="10dp"
             android:background="@drawable/bkg_shape"
             android:text="Pay $2000"
             android:textColor="#FFFFFF"
