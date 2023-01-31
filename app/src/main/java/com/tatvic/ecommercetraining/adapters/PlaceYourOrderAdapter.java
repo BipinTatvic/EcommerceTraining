@@ -12,7 +12,9 @@ import com.bumptech.glide.Glide;
 import com.tatvic.ecommercetraining.R;
 import com.tatvic.ecommercetraining.model.Product;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class PlaceYourOrderAdapter extends RecyclerView.Adapter<PlaceYourOrderAdapter.MyViewHolder> {
 
@@ -37,7 +39,7 @@ public class PlaceYourOrderAdapter extends RecyclerView.Adapter<PlaceYourOrderAd
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.menuName.setText(menuList.get(position).getName());
-        holder.menuPrice.setText("Price: ₹"+String.format("%.2f", menuList.get(position).getPrice()*menuList.get(position).getTotalInCart()));
+        holder.menuPrice.setText("Price: " + String.format(String.valueOf(NumberFormat.getCurrencyInstance(new Locale("en", "IN")).format(menuList.get(position).getPrice()*menuList.get(position).getTotalInCart()))));
         holder.menuQty.setText("Qty: " + menuList.get(position).getTotalInCart());
         Glide.with(holder.thumbImage)
                 .load(menuList.get(position).getUrl())

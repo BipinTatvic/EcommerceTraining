@@ -38,10 +38,10 @@ public class ProductListing extends AppCompatActivity implements MenuListAdapter
     static List<Product> itemsInCartList;
     private int totalItemInCart = 0;
 
-    /*static
+    static
     {
         itemsInCartList = new ArrayList<>();
-    }*/
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,7 +102,7 @@ public class ProductListing extends AppCompatActivity implements MenuListAdapter
     @Override
     public void onAddToCartClick(Product product) {
         if(itemsInCartList == null) {
-            itemsInCartList = new ArrayList<>();
+//            itemsInCartList = new ArrayList<>();
         }
         itemsInCartList.add(product);
         totalItemInCart = 0;

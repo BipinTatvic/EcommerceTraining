@@ -98,7 +98,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:lineSpacingExtra="2dp"
-        android:text="Nasi Padang is a Padang steamed rice served with various choices of pre-cooked dishes originated from West Sumatra, Indonesia. It is known across Indonesia as Nasi Padang, after the city of Padang the capital of West Sumatra province."
+        android:text="@string/item_desc"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/pdp_item_price"

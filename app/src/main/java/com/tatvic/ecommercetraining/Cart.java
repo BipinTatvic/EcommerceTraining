@@ -23,8 +23,10 @@ import com.tatvic.ecommercetraining.model.ItemModel;
 import com.tatvic.ecommercetraining.model.Product;
 import com.tatvic.ecommercetraining.model.RestaurantModel;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class Cart extends AppCompatActivity {
     private RecyclerView recyclerView_cart;
@@ -87,10 +89,10 @@ public class Cart extends AppCompatActivity {
             subTotalAmount += m.getPrice() * m.getTotalInCart();
         }
 
-        tvSubtotalAmount.setText("₹" + String.format("%.2f", subTotalAmount));
+        tvSubtotalAmount.setText(String.valueOf(NumberFormat.getCurrencyInstance(new Locale("en", "IN")).format(subTotalAmount)));
         tvDeliveryChargeAmount.setText("₹" + String.format("%.2f", restaurantModel.getDelivery_charge()));
         subTotalAmount += restaurantModel.getDelivery_charge();
-        tvTotalAmount.setText("₹" + String.format("%.2f", subTotalAmount));
+        tvTotalAmount.setText(String.valueOf(NumberFormat.getCurrencyInstance(new Locale("en", "IN")).format(subTotalAmount)));
     }
 
     @Override

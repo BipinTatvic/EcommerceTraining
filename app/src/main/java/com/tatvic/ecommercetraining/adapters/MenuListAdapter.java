@@ -49,7 +49,7 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyView
     @Override
     public void onBindViewHolder(@NonNull MenuListAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.menuName.setText(menuList.get(position).getName());
-        holder.menuPrice.setText("Price: ₹"+menuList.get(position).getPrice());
+        holder.menuPrice.setText("Price: "+String.valueOf(NumberFormat.getCurrencyInstance(new Locale("en", "IN")).format(menuList.get(position).getPrice())));
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
