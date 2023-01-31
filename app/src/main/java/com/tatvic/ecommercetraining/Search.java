@@ -7,21 +7,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.widget.SearchView;
-import android.widget.Toast;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.SearchView;
+import com.tatvic.ecommercetraining.adapters.SearchAdapter;
+import com.tatvic.ecommercetraining.model.ItemModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,11 +36,11 @@ public class Search extends AppCompatActivity {
     private void fillExampleList() {
         item_list = new ArrayList<>();
 
-        item_list.add(new ItemModel("Mobile", "$ 299", R.drawable.iphone));
+        //item_list.add(new ItemModel("Mobile", "$ 299", R.drawable.iphone));
         item_list.add(new ItemModel("TV", "$ 1099", R.drawable.tv));
-        item_list.add(new ItemModel("AC", "$ 299", R.drawable.ac));
-        item_list.add(new ItemModel("Fridge", "$ 299", R.drawable.fridge));
-        item_list.add(new ItemModel("Washing Machine", "$ 299", R.drawable.kindpng_2085518));
+        item_list.add(new ItemModel("AC", "$ 539", R.drawable.ac));
+        item_list.add(new ItemModel("Fridge", "$ 4089", R.drawable.fridge));
+        item_list.add(new ItemModel("Washing Machine", "$ 2249", R.drawable.kindpng_2085518));
 
        // searchAdapter = new SearchAdapter(this, item_list);
     }

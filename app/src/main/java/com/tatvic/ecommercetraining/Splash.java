@@ -3,9 +3,11 @@ package com.tatvic.ecommercetraining;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
+import android.widget.ProgressBar;
 
 public class Splash extends AppCompatActivity {
 
@@ -20,6 +22,9 @@ public class Splash extends AppCompatActivity {
 
         setContentView(R.layout.activity_splash);
 
+        ProgressBar progressBar = findViewById(R.id.progressBar);
+        progressBar.setIndeterminate(true);
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -27,7 +32,7 @@ public class Splash extends AppCompatActivity {
                 startActivity(i);
                 finish();
             }
-        }, 2000);
+        }, 1000);
 
     }
 }

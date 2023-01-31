@@ -1,4 +1,4 @@
-package com.tatvic.ecommercetraining;
+package com.tatvic.ecommercetraining.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,11 +9,15 @@ import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.tatvic.ecommercetraining.ProductDetail;
+import com.tatvic.ecommercetraining.R;
+import com.tatvic.ecommercetraining.model.ItemModel;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +41,7 @@ public class SearchAdapter  extends RecyclerView.Adapter<SearchAdapter.ExampleVi
             singleCardClick = itemView.findViewById(R.id.singleCardClick);
         }
     }
-    SearchAdapter(Context context, List<ItemModel> exampleList) {
+    public SearchAdapter(Context context, List<ItemModel> exampleList) {
         this.context = context;
         this.exampleList = exampleList;
         exampleListFull = new ArrayList<>(exampleList);

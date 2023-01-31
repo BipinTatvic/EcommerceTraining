@@ -1,26 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:padding="5dp"
     tools:context=".ProductListing">
 
-    <com.denzcoskun.imageslider.ImageSlider
-        android:id="@+id/image_PLP_slider"
-        android:layout_width="wrap_content"
-        android:layout_height="120dp"
-        android:padding="10dp"
-        app:iss_error_image="@drawable/error"
-        app:iss_auto_cycle="true"
-        app:iss_period="2000"
-        app:iss_delay="0"/>
+<!--    <com.denzcoskun.imageslider.ImageSlider-->
+<!--        android:id="@+id/image_PLP_slider"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="120dp"-->
+<!--        android:padding="10dp"-->
+<!--        app:iss_error_image="@drawable/error"-->
+<!--        app:iss_auto_cycle="true"-->
+<!--        app:iss_period="2000"-->
+<!--        app:iss_delay="0"/>-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_PLP"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp"/>
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonCheckout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</LinearLayout>
+    <Button
+        android:id="@+id/buttonCheckout"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="@drawable/bkg_shape"
+        android:gravity="center"
+        android:text="Add Items"
+        android:layout_margin="10dp"
+        android:textColor="#FFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/rv_PLP"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
