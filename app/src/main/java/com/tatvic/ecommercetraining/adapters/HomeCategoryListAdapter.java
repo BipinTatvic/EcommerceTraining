@@ -12,53 +12,53 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.tatvic.ecommercetraining.R;
-import com.tatvic.ecommercetraining.model.RestaurantModel;
+import com.tatvic.ecommercetraining.model.CategoryModel;
 
 import java.util.List;
 
-public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAdapter.MyViewHolder> {
+public class HomeCategoryListAdapter extends RecyclerView.Adapter<HomeCategoryListAdapter.MyViewHolder> {
 
-    private List<RestaurantModel> restaurantModelList;
+    private List<CategoryModel> categoryModelList;
     private RestaurantListClickListener clickListener;
 
-    public RestaurantListAdapter(List<RestaurantModel> restaurantModelList, RestaurantListClickListener clickListener) {
-        this.restaurantModelList = restaurantModelList;
+    public HomeCategoryListAdapter(List<CategoryModel> categoryModelList, RestaurantListClickListener clickListener) {
+        this.categoryModelList = categoryModelList;
         this.clickListener = clickListener;
     }
 
-    public void updateData(List<RestaurantModel> restaurantModelList) {
-        this.restaurantModelList = restaurantModelList;
+    public void updateData(List<CategoryModel> categoryModelList) {
+        this.categoryModelList = categoryModelList;
         notifyDataSetChanged();
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view  = LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_item, parent, false);
+        View view  = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_category_single_item, parent, false);
         return  new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        holder.item_name.setText(restaurantModelList.get(position).getName());
+        holder.item_name.setText(categoryModelList.get(position).getName());
 //        holder.restaurantAddress.setText("Address: "+restaurantModelList.get(position).getAddress());
 //        holder.restaurantHours.setText("Today's hours: " + restaurantModelList.get(position).getHours().getTodaysHours());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickListener.onItemClick(restaurantModelList.get(position));
+                clickListener.onItemClick(categoryModelList.get(position));
             }
         });
         Glide.with(holder.item_img)
-                .load(restaurantModelList.get(position).getImage())
+                .load(categoryModelList.get(position).getImage())
                 .into(holder.item_img);
 
     }
 
     @Override
     public int getItemCount() {
-        return restaurantModelList.size();
+        return categoryModelList.size();
     }
 
     static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -78,6 +78,6 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
     }
 
     public interface RestaurantListClickListener {
-        public void onItemClick(RestaurantModel restaurantModel);
+        public void onItemClick(CategoryModel categoryModel);
     }
 }

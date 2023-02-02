@@ -9,8 +9,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.widget.SearchView;
 
-import com.tatvic.ecommercetraining.adapters.SearchAdapter;
-import com.tatvic.ecommercetraining.model.ItemModel;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +18,8 @@ public class Search extends AppCompatActivity {
 
 
 
-    private SearchAdapter searchAdapter;
-    private List<ItemModel> item_list;
+//    private SearchAdapter searchAdapter;
+//    private List<ItemModel> item_list;
 
 
     @Override
@@ -28,31 +27,31 @@ public class Search extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        fillExampleList();
-        setUpRecyclerView();
+//        fillExampleList();
+//        setUpRecyclerView();
 
     }
-
-    private void fillExampleList() {
-        item_list = new ArrayList<>();
-
-        //item_list.add(new ItemModel("Mobile", "$ 299", R.drawable.iphone));
-        item_list.add(new ItemModel("TV", "$ 1099", R.drawable.tv));
-        item_list.add(new ItemModel("AC", "$ 539", R.drawable.ac));
-        item_list.add(new ItemModel("Fridge", "$ 4089", R.drawable.fridge));
-        item_list.add(new ItemModel("Washing Machine", "$ 2249", R.drawable.kindpng_2085518));
-
-       // searchAdapter = new SearchAdapter(this, item_list);
-    }
-
-    private void setUpRecyclerView() {
-        RecyclerView recyclerView = findViewById(R.id.search_recyclerView);
-        recyclerView.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        searchAdapter = new SearchAdapter(this, item_list);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(searchAdapter);
-    }
+//
+//    private void fillExampleList() {
+//        item_list = new ArrayList<>();
+//
+//        //item_list.add(new ItemModel("Mobile", "$ 299", R.drawable.iphone));
+//        item_list.add(new ItemModel("TV", "$ 1099", R.drawable.tv));
+//        item_list.add(new ItemModel("AC", "$ 539", R.drawable.ac));
+//        item_list.add(new ItemModel("Fridge", "$ 4089", R.drawable.fridge));
+//        item_list.add(new ItemModel("Washing Machine", "$ 2249", R.drawable.kindpng_2085518));
+//
+//       // searchAdapter = new SearchAdapter(this, item_list);
+//    }
+//
+//    private void setUpRecyclerView() {
+//        RecyclerView recyclerView = findViewById(R.id.search_recyclerView);
+//        recyclerView.setHasFixedSize(true);
+//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+//        searchAdapter = new SearchAdapter(this, item_list);
+//        recyclerView.setLayoutManager(layoutManager);
+//        recyclerView.setAdapter(searchAdapter);
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -68,7 +67,7 @@ public class Search extends AppCompatActivity {
             }
             @Override
             public boolean onQueryTextChange(String newText) {
-               searchAdapter.getFilter().filter(newText);
+//               searchAdapter.getFilter().filter(newText);
                 return false;
             }
         });

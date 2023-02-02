@@ -2,7 +2,6 @@ package com.tatvic.ecommercetraining;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,28 +13,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.denzcoskun.imageslider.ImageSlider;
-import com.denzcoskun.imageslider.constants.ScaleTypes;
-import com.denzcoskun.imageslider.interfaces.ItemClickListener;
-import com.denzcoskun.imageslider.models.SlideModel;
-import com.tatvic.ecommercetraining.adapters.MenuListAdapter;
-import com.tatvic.ecommercetraining.adapters.PLPAdapter;
-import com.tatvic.ecommercetraining.model.ItemModel;
-import com.tatvic.ecommercetraining.model.Product;
-import com.tatvic.ecommercetraining.model.RestaurantModel;
+import com.tatvic.ecommercetraining.adapters.PLPListAdapter;
+import com.tatvic.ecommercetraining.model.ProductModel;
+import com.tatvic.ecommercetraining.model.CategoryModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductListing extends AppCompatActivity implements MenuListAdapter.MenuListClickListener{
+public class ProductListing extends AppCompatActivity implements PLPListAdapter.MenuListClickListener{
 
     private RecyclerView rv_PLP;
-    private PLPAdapter plpAdapter;
     private Button buttonCheckout;
-    private ArrayList<ItemModel> item_list;
-    private List<Product> menuList = null;
-    private MenuListAdapter menuListAdapter;
-    static List<Product> itemsInCartList;
+    private List<ProductModel> menuList = null;
+    private PLPListAdapter PLPListAdapter;
+    static List<ProductModel> itemsInCartList;
     private int totalItemInCart = 0;
 
     static
@@ -47,10 +38,10 @@ public class ProductListing extends AppCompatActivity implements MenuListAdapter
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_listing);
-        RestaurantModel restaurantModel = getIntent().getParcelableExtra("RestaurantModel");
+        CategoryModel categoryModel = getIntent().getParcelableExtra("RestaurantModel");
         rv_PLP = findViewById(R.id.rv_PLP);
 
-        menuList = restaurantModel.getMenus();
+        menuList = categoryModel.getMenus();
 
         initRecyclerView();
 
@@ -62,9 +53,9 @@ public class ProductListing extends AppCompatActivity implements MenuListAdapter
                     Toast.makeText(ProductListing.this, "Please add some items in cart.", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                restaurantModel.setMenus(itemsInCartList);
+                categoryModel.setMenus(itemsInCartList);
                 Intent i = new Intent(ProductListing.this, Cart.class);
-                i.putExtra("RestaurantModel", restaurantModel);
+                i.putExtra("RestaurantModel", categoryModel);
                 startActivityForResult(i, 1000);
             }
         });
@@ -87,8 +78,8 @@ public class ProductListing extends AppCompatActivity implements MenuListAdapter
     private void initRecyclerView() {
         RecyclerView recyclerView =  findViewById(R.id.rv_PLP);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        menuListAdapter = new MenuListAdapter(this, menuList, this);
-        recyclerView.setAdapter(menuListAdapter);
+        PLPListAdapter = new PLPListAdapter(this, menuList, this);
+        recyclerView.setAdapter(PLPListAdapter);
     }
 
     @Override
@@ -100,29 +91,29 @@ public class ProductListing extends AppCompatActivity implements MenuListAdapter
 
 
     @Override
-    public void onAddToCartClick(Product product) {
+    public void onAddToCartClick(ProductModel productModel) {
         if(itemsInCartList == null) {
 //            itemsInCartList = new ArrayList<>();
         }
-        itemsInCartList.add(product);
+        itemsInCartList.add(productModel);
         totalItemInCart = 0;
 
-        for(Product m : itemsInCartList) {
+        for(ProductModel m : itemsInCartList) {
             totalItemInCart = totalItemInCart + m.getTotalInCart();
         }
         buttonCheckout.setText("Checkout (" +totalItemInCart +") items");
     }
 
     @Override
-    public void onUpdateCartClick(Product product) {
-        if(itemsInCartList.contains(product)) {
-            int index = itemsInCartList.indexOf(product);
+    public void onUpdateCartClick(ProductModel productModel) {
+        if(itemsInCartList.contains(productModel)) {
+            int index = itemsInCartList.indexOf(productModel);
             itemsInCartList.remove(index);
-            itemsInCartList.add(index, product);
+            itemsInCartList.add(index, productModel);
 
             totalItemInCart = 0;
 
-            for(Product m : itemsInCartList) {
+            for(ProductModel m : itemsInCartList) {
                 totalItemInCart = totalItemInCart + m.getTotalInCart();
             }
             buttonCheckout.setText("Checkout (" +totalItemInCart +") items");
@@ -130,12 +121,12 @@ public class ProductListing extends AppCompatActivity implements MenuListAdapter
     }
 
     @Override
-    public void onRemoveFromCartClick(Product product) {
-        if(itemsInCartList.contains(product)) {
-            itemsInCartList.remove(product);
+    public void onRemoveFromCartClick(ProductModel productModel) {
+        if(itemsInCartList.contains(productModel)) {
+            itemsInCartList.remove(productModel);
             totalItemInCart = 0;
 
-            for(Product m : itemsInCartList) {
+            for(ProductModel m : itemsInCartList) {
                 totalItemInCart = totalItemInCart + m.getTotalInCart();
             }
             buttonCheckout.setText("Checkout (" +totalItemInCart +") items");

@@ -10,21 +10,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.tatvic.ecommercetraining.R;
-import com.tatvic.ecommercetraining.model.Product;
+import com.tatvic.ecommercetraining.model.ProductModel;
 
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 
-public class PlaceYourOrderAdapter extends RecyclerView.Adapter<PlaceYourOrderAdapter.MyViewHolder> {
+public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.MyViewHolder> {
 
-    private List<Product> menuList;
+    private List<ProductModel> menuList;
 
-    public PlaceYourOrderAdapter(List<Product> menuList) {
+    public CartListAdapter(List<ProductModel> menuList) {
         this.menuList = menuList;
     }
 
-    public void updateData(List<Product> menuList) {
+    public void updateData(List<ProductModel> menuList) {
         this.menuList = menuList;
         notifyDataSetChanged();
     }
@@ -32,7 +32,7 @@ public class PlaceYourOrderAdapter extends RecyclerView.Adapter<PlaceYourOrderAd
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view  = LayoutInflater.from(parent.getContext()).inflate(R.layout.place_order_recycler_row, parent, false);
+        View view  = LayoutInflater.from(parent.getContext()).inflate(R.layout.cart_single_item, parent, false);
         return  new MyViewHolder(view);
     }
 

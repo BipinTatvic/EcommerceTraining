@@ -16,17 +16,4 @@
         android:title="Cart"
         app:showAsAction="always|withText" />
 
-    <group>
-        <item
-            android:id="@+id/profile"
-            android:icon="@drawable/ic_baseline_person_outline_24"
-            app:showAsAction="never"
-            android:title="Profile"/>
-
-        <item
-            android:id="@+id/about_us"
-            android:icon="@drawable/ic_baseline_local_phone_24"
-            android:title="Contanct Us"
-            app:showAsAction="never"/>
-    </group>
 </menu>

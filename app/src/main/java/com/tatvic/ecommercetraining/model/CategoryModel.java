@@ -5,14 +5,13 @@ import android.os.Parcelable;
 
 import java.util.List;
 
-public class RestaurantModel implements Parcelable {
+public class CategoryModel implements Parcelable {
 
     private String name;
     private String address;
     private String image;
     private float delivery_charge;
-    private Hours hours;
-    private List<Product> menus;
+    private List<ProductModel> menus;
 
     public String getName() {
         return name;
@@ -46,39 +45,31 @@ public class RestaurantModel implements Parcelable {
         this.delivery_charge = delivery_charge;
     }
 
-    public Hours getHours() {
-        return hours;
-    }
-
-    public void setHours(Hours hours) {
-        this.hours = hours;
-    }
-
-    public List<Product> getMenus() {
+    public List<ProductModel> getMenus() {
         return menus;
     }
 
-    public void setMenus(List<Product> menus) {
+    public void setMenus(List<ProductModel> menus) {
         this.menus = menus;
     }
 
-    protected RestaurantModel(Parcel in) {
+    protected CategoryModel(Parcel in) {
         name = in.readString();
         address = in.readString();
         image = in.readString();
         delivery_charge = in.readFloat();
-        menus = in.createTypedArrayList(Product.CREATOR);
+        menus = in.createTypedArrayList(ProductModel.CREATOR);
     }
 
-    public static final Creator<RestaurantModel> CREATOR = new Creator<RestaurantModel>() {
+    public static final Creator<CategoryModel> CREATOR = new Creator<CategoryModel>() {
         @Override
-        public RestaurantModel createFromParcel(Parcel in) {
-            return new RestaurantModel(in);
+        public CategoryModel createFromParcel(Parcel in) {
+            return new CategoryModel(in);
         }
 
         @Override
-        public RestaurantModel[] newArray(int size) {
-            return new RestaurantModel[size];
+        public CategoryModel[] newArray(int size) {
+            return new CategoryModel[size];
         }
     };
 
