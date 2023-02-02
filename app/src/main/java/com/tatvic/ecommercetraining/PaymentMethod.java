@@ -15,13 +15,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.tatvic.ecommercetraining.model.Product;
-import com.tatvic.ecommercetraining.model.RestaurantModel;
-
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.tatvic.ecommercetraining.model.CategoryModel;
 
 public class PaymentMethod extends AppCompatActivity {
 
@@ -39,7 +33,7 @@ public class PaymentMethod extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_method);
 
-        RestaurantModel restaurantModel = getIntent().getParcelableExtra("RestaurantModel");
+        CategoryModel categoryModel = getIntent().getParcelableExtra("RestaurantModel");
         radioGroup = findViewById(R.id.radioGroup);
         consentLL = findViewById(R.id.consentLL);
         btn_pay = findViewById(R.id.btn_pay);
@@ -97,7 +91,7 @@ public class PaymentMethod extends AppCompatActivity {
                     cred_password = "Tatvic@12345";
 
                     dialog = new AlertDialog.Builder(PaymentMethod.this);
-                    View mView = PaymentMethod.this.getLayoutInflater().inflate(R.layout.custom_dialog, null);
+                    View mView = PaymentMethod.this.getLayoutInflater().inflate(R.layout.payment_custom_dialog, null);
                     dialog.setView(mView);
 
                     EditText cred_et_email = (EditText) mView.findViewById(R.id.cred_email);

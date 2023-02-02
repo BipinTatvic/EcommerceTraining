@@ -1,10 +1,8 @@
 package com.tatvic.ecommercetraining;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.denzcoskun.imageslider.ImageSlider;
@@ -12,26 +10,16 @@ import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.interfaces.ItemClickListener;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.google.gson.Gson;
-import com.tatvic.ecommercetraining.adapters.MenuListAdapter;
-import com.tatvic.ecommercetraining.adapters.ProductAdapter;
-import com.tatvic.ecommercetraining.adapters.RestaurantListAdapter;
-import com.tatvic.ecommercetraining.model.ItemModel;
-import com.tatvic.ecommercetraining.model.Product;
-import com.tatvic.ecommercetraining.model.RestaurantModel;
+import com.tatvic.ecommercetraining.adapters.HomeCategoryListAdapter;
+import com.tatvic.ecommercetraining.model.CategoryModel;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -44,10 +32,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements RestaurantListAdapter.RestaurantListClickListener{
+public class MainActivity extends AppCompatActivity implements HomeCategoryListAdapter.RestaurantListClickListener{
 
     private RecyclerView recyclerView;
-    private ArrayList<ItemModel> item_list;
     private ImageSlider imageSlider;
     private CardView cardView;
 
@@ -61,8 +48,8 @@ public class MainActivity extends AppCompatActivity implements RestaurantListAda
         imageSlider = findViewById(R.id.image_slider);
         cardView = findViewById(R.id.card_promotion);
 
-        List<RestaurantModel> restaurantModelList =  getRestaurantData();
-        initRecyclerView(restaurantModelList);
+        List<CategoryModel> categoryModelList =  getRestaurantData();
+        initRecyclerView(categoryModelList);
 
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,17 +90,17 @@ public class MainActivity extends AppCompatActivity implements RestaurantListAda
         });
     }
 
-    private void initRecyclerView(List<RestaurantModel> restaurantModelList ) {
+    private void initRecyclerView(List<CategoryModel> categoryModelList) {
         RecyclerView recyclerView =  findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        RestaurantListAdapter adapter = new RestaurantListAdapter(restaurantModelList, this);
+        HomeCategoryListAdapter adapter = new HomeCategoryListAdapter(categoryModelList, this);
         recyclerView.setAdapter(adapter);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_menu, menu);
+        getMenuInflater().inflate(R.menu.home_menu, menu);
         return true;
     }
 
@@ -126,19 +113,19 @@ public class MainActivity extends AppCompatActivity implements RestaurantListAda
             case R.id.cart:
                 startActivity(new Intent(MainActivity.this, Cart.class));
                 return (true);
-            case R.id.profile:
-                Toast.makeText(this, "Profile selected", Toast.LENGTH_SHORT).show();
-                return (true);
-            case R.id.about_us:
-                Toast.makeText(this, "Contact Us selected", Toast.LENGTH_SHORT).show();
-                return (true);
+//            case R.id.profile:
+//                Toast.makeText(this, "Profile selected", Toast.LENGTH_SHORT).show();
+//                return (true);
+//            case R.id.about_us:
+//                Toast.makeText(this, "Contact Us selected", Toast.LENGTH_SHORT).show();
+//                return (true);
         }
         return (super.onOptionsItemSelected(item));
     }
 
 
-    private List<RestaurantModel> getRestaurantData() {
-        InputStream is = getResources().openRawResource(R.raw.restaurent);
+    private List<CategoryModel> getRestaurantData() {
+        InputStream is = getResources().openRawResource(R.raw.ecommerce_data);
         Writer writer = new StringWriter();
         char[] buffer = new char[1024];
         try{
@@ -153,17 +140,17 @@ public class MainActivity extends AppCompatActivity implements RestaurantListAda
 
         String jsonStr = writer.toString();
         Gson gson = new Gson();
-        RestaurantModel[] restaurantModels =  gson.fromJson(jsonStr, RestaurantModel[].class);
-        List<RestaurantModel> restList = Arrays.asList(restaurantModels);
+        CategoryModel[] categoryModels =  gson.fromJson(jsonStr, CategoryModel[].class);
+        List<CategoryModel> restList = Arrays.asList(categoryModels);
 
         return  restList;
 
     }
 
     @Override
-    public void onItemClick(RestaurantModel restaurantModel) {
+    public void onItemClick(CategoryModel categoryModel) {
         Intent intent = new Intent(MainActivity.this, ProductListing.class);
-        intent.putExtra("RestaurantModel", restaurantModel);
+        intent.putExtra("RestaurantModel", categoryModel);
         startActivity(intent);
 
     }

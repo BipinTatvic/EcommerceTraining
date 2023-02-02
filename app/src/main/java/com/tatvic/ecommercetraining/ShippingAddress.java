@@ -1,8 +1,6 @@
 package com.tatvic.ecommercetraining;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,22 +8,14 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.tatvic.ecommercetraining.adapters.PlaceYourOrderAdapter;
-import com.tatvic.ecommercetraining.adapters.SearchAdapter;
-import com.tatvic.ecommercetraining.model.ItemModel;
-import com.tatvic.ecommercetraining.model.Product;
-import com.tatvic.ecommercetraining.model.RestaurantModel;
-
-import java.util.ArrayList;
+//import com.tatvic.ecommercetraining.adapters.SearchAdapter;
 
 public class ShippingAddress extends AppCompatActivity {
 
     private Button buttonPlaceYourOrder;
     private EditText inputName, inputAddress, inputCity, inputState, inputZip;
-    private SearchAdapter searchAdapter;
+//    private SearchAdapter searchAdapter;
     Intent i = getIntent();
 
 

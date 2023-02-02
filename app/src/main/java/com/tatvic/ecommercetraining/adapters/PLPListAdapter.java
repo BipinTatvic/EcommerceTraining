@@ -17,37 +17,37 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.tatvic.ecommercetraining.ProductDetail;
 import com.tatvic.ecommercetraining.R;
-import com.tatvic.ecommercetraining.model.Product;
+import com.tatvic.ecommercetraining.model.ProductModel;
 
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 
-public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyViewHolder> {
+public class PLPListAdapter extends RecyclerView.Adapter<PLPListAdapter.MyViewHolder> {
 
-    private List<Product> menuList;
+    private List<ProductModel> menuList;
     private final MenuListClickListener clickListener;
     private Context context;
 
-    public MenuListAdapter(Context context, List<Product> menuList, MenuListClickListener clickListener) {
+    public PLPListAdapter(Context context, List<ProductModel> menuList, MenuListClickListener clickListener) {
         this.menuList = menuList;
         this.clickListener = clickListener;
         this.context = context;
     }
-    public void updateData(List<Product> menuList) {
+    public void updateData(List<ProductModel> menuList) {
         this.menuList = menuList;
         notifyDataSetChanged();
     }
 
     @NonNull
     @Override
-    public MenuListAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view  = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_row, parent, false);
+    public PLPListAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view  = LayoutInflater.from(parent.getContext()).inflate(R.layout.plp_single_item, parent, false);
         return  new MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MenuListAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull PLPListAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.menuName.setText(menuList.get(position).getName());
         holder.menuPrice.setText("Price: "+String.valueOf(NumberFormat.getCurrencyInstance(new Locale("en", "IN")).format(menuList.get(position).getPrice())));
         holder.cardView.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +63,7 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyView
         holder.addToCartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Product menu  = menuList.get(position);
+                ProductModel menu  = menuList.get(position);
                 menu.setTotalInCart(1);
                 clickListener.onAddToCartClick(menu);
                 holder.addMoreLayout.setVisibility(View.VISIBLE);
@@ -74,7 +74,7 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyView
         holder.imageMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Product menu  = menuList.get(position);
+                ProductModel menu  = menuList.get(position);
                 int total = menu.getTotalInCart();
                 total--;
                 if(total > 0 ) {
@@ -93,7 +93,7 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyView
         holder.imageAddOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Product menu  = menuList.get(position);
+                ProductModel menu  = menuList.get(position);
                 int total = menu.getTotalInCart();
                 total++;
                 if(total <= 10 ) {
@@ -144,9 +144,9 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyView
     }
 
     public interface MenuListClickListener {
-        public void onAddToCartClick(Product menu);
-        public void onUpdateCartClick(Product menu);
-        public void onRemoveFromCartClick(Product menu);
+        public void onAddToCartClick(ProductModel menu);
+        public void onUpdateCartClick(ProductModel menu);
+        public void onRemoveFromCartClick(ProductModel menu);
     }
 }
 
