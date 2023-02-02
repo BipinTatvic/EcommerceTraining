@@ -63,6 +63,7 @@
                 android:textStyle="bold"/>
 
             <TextView
+                android:id="@+id/tvCartItems"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/order_details"

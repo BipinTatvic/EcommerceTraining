@@ -1,4 +1,4 @@
-package com.tatvic.ecommercetraining;
+package com.tatvic.ecommercetraining.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -12,6 +12,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.tatvic.ecommercetraining.R;
+import com.tatvic.ecommercetraining.model.ItemModel;
 
 import java.util.ArrayList;
 

@@ -1,26 +1,25 @@
-package com.tatvic.ecommercetraining;
+package com.tatvic.ecommercetraining.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.tatvic.ecommercetraining.Cart;
+import com.tatvic.ecommercetraining.ProductDetail;
+import com.tatvic.ecommercetraining.R;
+import com.tatvic.ecommercetraining.model.ItemModel;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class PLPAdapter extends RecyclerView.Adapter<PLPAdapter.ViewHolder> {
 

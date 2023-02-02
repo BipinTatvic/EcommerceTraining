@@ -15,7 +15,13 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.tatvic.ecommercetraining.model.Product;
+import com.tatvic.ecommercetraining.model.RestaurantModel;
+
 import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PaymentMethod extends AppCompatActivity {
 
@@ -23,7 +29,7 @@ public class PaymentMethod extends AppCompatActivity {
     private LinearLayout consentLL;
     private Button btn_pay;
     private CheckBox checkBox;
-    private TextView shipping_address;
+    private TextView shipping_address, tvCartItems;
     private AlertDialog.Builder dialog;
     private String cred_email, cred_password, user_entered_email, user_entered_pass;
 
@@ -33,11 +39,13 @@ public class PaymentMethod extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_method);
 
+        RestaurantModel restaurantModel = getIntent().getParcelableExtra("RestaurantModel");
         radioGroup = findViewById(R.id.radioGroup);
         consentLL = findViewById(R.id.consentLL);
         btn_pay = findViewById(R.id.btn_pay);
         checkBox = findViewById(R.id.checkbox);
         shipping_address = findViewById(R.id.shipping_address);
+        tvCartItems = findViewById(R.id.tvCartItems);
 
         Intent intent = getIntent();
 
@@ -47,8 +55,14 @@ public class PaymentMethod extends AppCompatActivity {
         String state = intent.getStringExtra("state");
         String zip = intent.getStringExtra("zip");
 
+//        List<Product> list = new ArrayList<>();
+//        list = restaurantModel.getMenus();
+
         String final_address = name + "\n" + address + "\n" + city +", " + state + ", " + zip;
+//        String final_items = restaurantModel.getName() + "\n" + restaurantModel.getAddress() + "\n" + restaurantModel.getName();
         shipping_address.setText(final_address);
+        //tvCartItems.setText(final_items);
+        btn_pay.setText(intent.getStringExtra("Total"));
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {

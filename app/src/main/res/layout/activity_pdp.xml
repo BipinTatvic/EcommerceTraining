@@ -35,7 +35,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:srcCompat="@drawable/iphone" />
+         />
 
     <TextView
         android:id="@+id/pdp_item_name"
@@ -69,15 +69,15 @@
         app:layout_constraintStart_toEndOf="@+id/ratingBar"
         app:layout_constraintTop_toTopOf="@+id/ratingBar" />
 
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/pdp_item_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/pdp_item_name"
-        app:srcCompat="@drawable/ic_baseline_thumb_up_24" />
+<!--    <ImageView-->
+<!--        android:id="@+id/imageView7"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/pdp_item_name"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/pdp_item_name"-->
+<!--        app:srcCompat="@drawable/ic_baseline_thumb_up_24" />-->
 
     <TextView
         android:id="@+id/pdp_item_price"
@@ -86,7 +86,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="$ 199"
-        android:textColor="#3F9785"
+        android:textColor="#003380"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
@@ -98,7 +98,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:lineSpacingExtra="2dp"
-        android:text="Nasi Padang is a Padang steamed rice served with various choices of pre-cooked dishes originated from West Sumatra, Indonesia. It is known across Indonesia as Nasi Padang, after the city of Padang the capital of West Sumatra province."
+        android:text="@string/item_desc"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/pdp_item_price"

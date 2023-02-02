@@ -1,4 +1,4 @@
-package com.tatvic.ecommercetraining;
+package com.tatvic.ecommercetraining.model;
 
 import androidx.annotation.DrawableRes;
 
