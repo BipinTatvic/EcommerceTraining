@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -19,33 +20,6 @@
         android:textSize="18sp"
         android:textStyle="bold"/>
 
-<!--    <TextView android:id="@+id/tvPickup"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/switchDelivery"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/tvCustomerDetails"-->
-<!--        android:text="Pickup"-->
-<!--        android:textSize="18sp"-->
-<!--        android:textStyle="bold"/>-->
-
-<!--    <androidx.appcompat.widget.SwitchCompat android:id="@+id/switchDelivery"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/tvCustomerDetails"-->
-<!--        android:layout_marginStart="10dp"-->
-<!--        android:layout_marginEnd="10dp"-->
-<!--        android:layout_marginBottom="10dp"/>-->
-
-<!--    <TextView android:id="@+id/tvDelivery"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/switchDelivery"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/tvCustomerDetails"-->
-<!--        android:text="Delivery"-->
-<!--        android:textSize="18sp"-->
-<!--        android:textStyle="bold"/>-->
 
     <EditText
         android:id="@+id/inputName"
@@ -113,48 +87,6 @@
         android:hint="Enter your zip"
         android:inputType="number"
         android:maxLength="6"/>
-
-<!--    <TextView android:id="@+id/tvCardDetails"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/inputZip"-->
-<!--        android:layout_margin="10dp"-->
-<!--        android:text="Card Details"-->
-<!--        android:textSize="18sp"-->
-<!--        android:textStyle="bold"/>-->
-
-<!--    <EditText android:id="@+id/inputCardNumber"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/tvCardDetails"-->
-<!--        android:layout_marginStart="10dp"-->
-<!--        android:layout_marginEnd="10dp"-->
-<!--        android:layout_marginTop="05dp"-->
-<!--        android:layout_marginBottom="05dp"-->
-<!--        android:hint="Enter Card Number"-->
-<!--        android:inputType="number"-->
-<!--        android:maxLength="16"/>-->
-
-<!--    <EditText android:id="@+id/inputCardExpiry"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/inputCardNumber"-->
-<!--        android:layout_marginStart="10dp"-->
-<!--        android:layout_marginEnd="10dp"-->
-<!--        android:layout_marginTop="05dp"-->
-<!--        android:layout_marginBottom="05dp"-->
-<!--        android:hint="Enter Card expiry(mm/yyyy)"-->
-<!--        android:inputType="number"-->
-<!--        android:maxLength="6"/>-->
-
-
-
 
     <Button
         android:id="@+id/buttonPlaceYourOrder"

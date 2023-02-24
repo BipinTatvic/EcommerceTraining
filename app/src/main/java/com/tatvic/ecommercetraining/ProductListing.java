@@ -1,24 +1,35 @@
 package com.tatvic.ecommercetraining;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+import static java.lang.reflect.Array.set;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.Gson;
 import com.tatvic.ecommercetraining.adapters.PLPListAdapter;
 import com.tatvic.ecommercetraining.model.ProductModel;
 import com.tatvic.ecommercetraining.model.CategoryModel;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ProductListing extends AppCompatActivity implements PLPListAdapter.MenuListClickListener{
 
@@ -44,13 +55,17 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
         menuList = categoryModel.getMenus();
 
         initRecyclerView();
-
         buttonCheckout = findViewById(R.id.buttonCheckout);
         buttonCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(itemsInCartList != null && itemsInCartList.size() <= 0) {
-                    Toast.makeText(ProductListing.this, "Please add some items in cart.", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(v, "Please add some items in cart", Snackbar.LENGTH_LONG)
+                            .setAction("OK", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                }
+                            }).show();
                     return;
                 }
                 categoryModel.setMenus(itemsInCartList);
@@ -61,18 +76,6 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
         });
 
 
-//        item_list = new ArrayList<>();
-//        item_list.add(new ItemModel("Mobile", "$ 299", R.drawable.iphone));
-//        item_list.add(new ItemModel("TV", "$ 1099", R.drawable.tv));
-//        item_list.add(new ItemModel("AC", "$ 539", R.drawable.ac));
-//        item_list.add(new ItemModel("Fridge", "$ 4089", R.drawable.fridge));
-//        item_list.add(new ItemModel("Washing Machine", "$ 2249", R.drawable.kindpng_2085518));
-
-//        plpAdapter = new PLPAdapter(this, item_list);
-//        rv_PLP.setHasFixedSize(true);
-//        rv_PLP.setLayoutManager(new LinearLayoutManager(getApplicationContext(),
-//                LinearLayoutManager.VERTICAL, false));
-//        rv_PLP.setAdapter(plpAdapter);
     }
 
     private void initRecyclerView() {
@@ -141,5 +144,11 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
             //
             finish();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

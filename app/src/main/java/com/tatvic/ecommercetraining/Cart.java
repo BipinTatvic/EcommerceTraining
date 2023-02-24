@@ -7,11 +7,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.tatvic.ecommercetraining.adapters.CartListAdapter;
@@ -19,14 +22,17 @@ import com.tatvic.ecommercetraining.model.ProductModel;
 import com.tatvic.ecommercetraining.model.CategoryModel;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class Cart extends AppCompatActivity {
     private RecyclerView recyclerView_cart;
     private CartListAdapter cartListAdapter;
-    private TextView tvSubtotalAmount, tvDeliveryChargeAmount, tvTotalAmount;
+    private TextView tvSubtotalAmount, tvDeliveryChargeAmount, tvTotalAmount, tvTotalItems;
     private Button begin_checkout;
     float subTotalAmount = 0f;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
 
     @Override
@@ -40,6 +46,7 @@ public class Cart extends AppCompatActivity {
         tvSubtotalAmount = findViewById(R.id.tvSubtotalAmount);
         tvDeliveryChargeAmount = findViewById(R.id.tvDeliveryChargeAmount);
         tvTotalAmount = findViewById(R.id.tvTotalAmount);
+        tvTotalItems = findViewById(R.id.tvTotalItems);
 //        item_list = new ArrayList<>();
 //        item_list.add(new ItemModel("Mobile", "$ 299", R.drawable.iphone));
 //        item_list.add(new ItemModel("TV", "$ 1099", R.drawable.tv));
@@ -54,6 +61,8 @@ public class Cart extends AppCompatActivity {
 //                LinearLayoutManager.VERTICAL, false));
 //        recyclerView_cart.setAdapter(cartAdapter);
 
+        sharedPreferences = getSharedPreferences("TotalPrice", Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
         initRecyclerView(categoryModel);
         calculateTotalAmount(categoryModel);
 
@@ -70,6 +79,9 @@ public class Cart extends AppCompatActivity {
     }
 
     private void initRecyclerView(CategoryModel categoryModel) {
+        if(categoryModel.getMenus() == null){
+            tvTotalItems.setText("Please add some items in cart");
+        }
         recyclerView_cart.setLayoutManager(new LinearLayoutManager(this));
         cartListAdapter = new CartListAdapter(categoryModel.getMenus());
         recyclerView_cart.setAdapter(cartListAdapter);
@@ -86,6 +98,8 @@ public class Cart extends AppCompatActivity {
         tvDeliveryChargeAmount.setText("₹" + String.format("%.2f", categoryModel.getDelivery_charge()));
         subTotalAmount += categoryModel.getDelivery_charge();
         tvTotalAmount.setText(String.valueOf(NumberFormat.getCurrencyInstance(new Locale("en", "IN")).format(subTotalAmount)));
+        editor.putString("TotalPrice", String.valueOf(NumberFormat.getCurrencyInstance(new Locale("en", "IN")).format(subTotalAmount)));
+        editor.commit();
     }
 
     @Override
@@ -112,7 +126,6 @@ public class Cart extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        setResult(Activity.RESULT_CANCELED);
         finish();
     }
 

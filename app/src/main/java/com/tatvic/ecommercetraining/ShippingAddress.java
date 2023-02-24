@@ -2,6 +2,8 @@ package com.tatvic.ecommercetraining;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -9,13 +11,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-//import com.tatvic.ecommercetraining.adapters.SearchAdapter;
+import com.google.android.material.snackbar.Snackbar;
 
 public class ShippingAddress extends AppCompatActivity {
 
     private Button buttonPlaceYourOrder;
+    Context context;
     private EditText inputName, inputAddress, inputCity, inputState, inputZip;
-//    private SearchAdapter searchAdapter;
     Intent i = getIntent();
 
 
@@ -31,7 +33,7 @@ public class ShippingAddress extends AppCompatActivity {
         buttonPlaceYourOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onPlaceOrderButtonClick();
+                onPlaceOrderButtonClick(view);
             }
         });
     }
@@ -70,21 +72,46 @@ public class ShippingAddress extends AppCompatActivity {
 //        cartItemsRecyclerView.setAdapter(placeYourOrderAdapter);
 //    }
 
-    private void onPlaceOrderButtonClick() {
+    private void onPlaceOrderButtonClick(View view) {
         if(TextUtils.isEmpty(inputName.getText().toString())) {
-            inputName.setError("Please enter name ");
+            Snackbar.make(view, "Please enter name", Snackbar.LENGTH_LONG)
+                    .setAction("OK", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                        }
+                    }).show();
             return;
         } else if(TextUtils.isEmpty(inputAddress.getText().toString())) {
-            inputAddress.setError("Please enter address ");
+            Snackbar.make(view, "Please enter address", Snackbar.LENGTH_LONG)
+                    .setAction("OK", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                        }
+                    }).show();
             return;
         }else if(TextUtils.isEmpty(inputCity.getText().toString())) {
-            inputCity.setError("Please enter city ");
+            Snackbar.make(view, "Please enter city", Snackbar.LENGTH_LONG)
+                    .setAction("OK", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                        }
+                    }).show();
             return;
         }else if(TextUtils.isEmpty(inputState.getText().toString())) {
-            inputState.setError("Please enter state ");
+            Snackbar.make(view, "Please enter state", Snackbar.LENGTH_LONG)
+                    .setAction("OK", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                        }
+                    }).show();
             return;
         }else if(TextUtils.isEmpty(inputZip.getText().toString())) {
-            inputState.setError("Please enter zip ");
+            Snackbar.make(view, "Please enter zip", Snackbar.LENGTH_LONG)
+                    .setAction("OK", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                        }
+                    }).show();
             return;
         }
         Intent intent = new Intent(ShippingAddress.this, PaymentMethod.class);
@@ -96,6 +123,8 @@ public class ShippingAddress extends AppCompatActivity {
         intent.putExtra("zip", inputZip.getText().toString());
         //intent.putExtra("Total", i.getStringExtra("Total"));
         startActivity(intent);
+
+        return;
     }
 
     private void findViewById() {
@@ -110,4 +139,10 @@ public class ShippingAddress extends AppCompatActivity {
 //        tvDeliveryChargeAmount = findViewById(R.id.tvDeliveryChargeAmount);
 //        tvTotalAmount = findViewById(R.id.tvTotalAmount);
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
 }

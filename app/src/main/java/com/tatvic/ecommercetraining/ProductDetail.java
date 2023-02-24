@@ -1,7 +1,10 @@
 package com.tatvic.ecommercetraining;
 
+import static com.tatvic.ecommercetraining.ProductListing.itemsInCartList;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,16 +12,28 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.snackbar.Snackbar;
+import com.tatvic.ecommercetraining.adapters.PLPListAdapter;
+import com.tatvic.ecommercetraining.model.CategoryModel;
+import com.tatvic.ecommercetraining.model.ProductModel;
 
 import java.util.Formatter;
+import java.util.List;
 
 public class ProductDetail extends AppCompatActivity {
 
     private ImageView backImage, imageView4, item_image;
     private TextView pdp_item_name, pdp_item_price;
     private Button add_to_cart, buy_now;
+    private List<ProductModel> menuList = null;
+    private PLPListAdapter.MenuListClickListener clickListener;
+    private int totalItemInCart = 0;
+    CategoryModel categoryModel;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +72,34 @@ public class ProductDetail extends AppCompatActivity {
         add_to_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ProductDetail.this, Cart.class));
+                categoryModel = getIntent().getParcelableExtra("RestaurantModel");
+                menuList = categoryModel.getMenus();
+                ProductModel menu  = menuList.get(0);
+                if(itemsInCartList == null) {
+//            itemsInCartList = new ArrayList<>();
+                }
+                itemsInCartList.add(menu);
+                totalItemInCart = 0;
+
+                for(ProductModel m : itemsInCartList) {
+                    totalItemInCart = totalItemInCart + m.getTotalInCart();
+                }
+
+                menu.setTotalInCart(1);
+                clickListener.onAddToCartClick(menu);
+                if(itemsInCartList != null && itemsInCartList.size() <= 0) {
+                    Snackbar.make(view, "Please add some items in cart", Snackbar.LENGTH_LONG)
+                            .setAction("OK", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                }
+                            }).show();
+                    return;
+                }
+                categoryModel.setMenus(itemsInCartList);
+                Intent i = new Intent(ProductDetail.this, Cart.class);
+                i.putExtra("RestaurantModel", categoryModel);
+                startActivityForResult(i, 1000);;
             }
         });
 
@@ -75,4 +117,11 @@ public class ProductDetail extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
 }

@@ -1,5 +1,8 @@
 package com.tatvic.ecommercetraining;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+import static com.tatvic.ecommercetraining.ProductListing.itemsInCartList;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -10,13 +13,19 @@ import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.interfaces.ItemClickListener;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.tatvic.ecommercetraining.adapters.HomeCategoryListAdapter;
 import com.tatvic.ecommercetraining.model.CategoryModel;
+import com.tatvic.ecommercetraining.model.ProductModel;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,15 +37,24 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements HomeCategoryListAdapter.RestaurantListClickListener{
+public class MainActivity extends AppCompatActivity implements HomeCategoryListAdapter.RestaurantListClickListener {
 
+    private static final String STORE_FILE_NAME = "CartItem";
+    private static final String PRODUCT_TAG = "CartList";
     private RecyclerView recyclerView;
     private ImageSlider imageSlider;
+    List<ProductModel> productFromShared;
+    CategoryModel categoryModel;
     private CardView cardView;
+    static
+    {
+        itemsInCartList = new ArrayList<>();
+    }
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -44,54 +62,45 @@ public class MainActivity extends AppCompatActivity implements HomeCategoryListA
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        categoryModel = getIntent().getParcelableExtra("RestaurantModel");
+
         recyclerView = findViewById(R.id.recycler_view);
         imageSlider = findViewById(R.id.image_slider);
         cardView = findViewById(R.id.card_promotion);
 
-        List<CategoryModel> categoryModelList =  getRestaurantData();
+        List<CategoryModel> categoryModelList = getRestaurantData();
         initRecyclerView(categoryModelList);
 
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, ProductListing.class);
+                intent.putExtra("RestaurantModel", categoryModelList.get(4));
                 startActivity(intent);
             }
         });
 
-//        item_list = new ArrayList<>();
-//        item_list.add(new ItemModel("Mobile", "$ 299", R.drawable.iphone));
-//        item_list.add(new ItemModel("TV", "$ 1099", R.drawable.tv));
-//        item_list.add(new ItemModel("AC", "$ 539", R.drawable.ac));
-//        item_list.add(new ItemModel("Fridge", "$ 4089", R.drawable.fridge));
-//        item_list.add(new ItemModel("Washing Machine", "$ 2249", R.drawable.kindpng_2085518));
-
-//        ProductAdapter adapter = new ProductAdapter(this, item_list);
-//        grid_view.setAdapter(adapter);
-//
-//        grid_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                startActivity(new Intent(MainActivity.this, ProductDetail.class));
-//            }
-//        });
 
         ArrayList<SlideModel> arrayList = new ArrayList<>();
         arrayList.add(new SlideModel(R.drawable.promotion, ScaleTypes.CENTER_INSIDE));
         arrayList.add(new SlideModel(R.drawable.promo2, ScaleTypes.CENTER_INSIDE));
         arrayList.add(new SlideModel(R.drawable.promo3, ScaleTypes.CENTER_INSIDE));
+        arrayList.add(new SlideModel(R.drawable.banner2, ScaleTypes.CENTER_INSIDE));
         imageSlider.setImageList(arrayList);
 
         imageSlider.setItemClickListener(new ItemClickListener() {
             @Override
             public void onItemSelected(int i) {
-                startActivity(new Intent(MainActivity.this, ProductListing.class));
+                Intent intent = new Intent(MainActivity.this, ProductListing.class);
+                intent.putExtra("RestaurantModel", categoryModelList.get(i));
+                startActivity(intent);
             }
         });
     }
 
+
     private void initRecyclerView(List<CategoryModel> categoryModelList) {
-        RecyclerView recyclerView =  findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         HomeCategoryListAdapter adapter = new HomeCategoryListAdapter(categoryModelList, this);
         recyclerView.setAdapter(adapter);
@@ -111,14 +120,9 @@ public class MainActivity extends AppCompatActivity implements HomeCategoryListA
                 startActivity(new Intent(MainActivity.this, Search.class));
                 return (true);
             case R.id.cart:
-                startActivity(new Intent(MainActivity.this, Cart.class));
+                Intent i = new Intent(MainActivity.this, Cart.class);
+                startActivity(i);
                 return (true);
-//            case R.id.profile:
-//                Toast.makeText(this, "Profile selected", Toast.LENGTH_SHORT).show();
-//                return (true);
-//            case R.id.about_us:
-//                Toast.makeText(this, "Contact Us selected", Toast.LENGTH_SHORT).show();
-//                return (true);
         }
         return (super.onOptionsItemSelected(item));
     }
@@ -128,22 +132,22 @@ public class MainActivity extends AppCompatActivity implements HomeCategoryListA
         InputStream is = getResources().openRawResource(R.raw.ecommerce_data);
         Writer writer = new StringWriter();
         char[] buffer = new char[1024];
-        try{
+        try {
             Reader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
             int n;
-            while(( n = reader.read(buffer)) != -1) {
-                writer.write(buffer, 0,n);
+            while ((n = reader.read(buffer)) != -1) {
+                writer.write(buffer, 0, n);
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
 
         }
 
         String jsonStr = writer.toString();
         Gson gson = new Gson();
-        CategoryModel[] categoryModels =  gson.fromJson(jsonStr, CategoryModel[].class);
+        CategoryModel[] categoryModels = gson.fromJson(jsonStr, CategoryModel[].class);
         List<CategoryModel> restList = Arrays.asList(categoryModels);
 
-        return  restList;
+        return restList;
 
     }
 
@@ -159,7 +163,6 @@ public class MainActivity extends AppCompatActivity implements HomeCategoryListA
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        setResult(Activity.RESULT_CANCELED);
         finish();
     }
 

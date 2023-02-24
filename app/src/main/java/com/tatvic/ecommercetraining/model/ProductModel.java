@@ -17,7 +17,7 @@ public class ProductModel implements Parcelable {
         this.totalInCart = totalInCart;
     }
 
-    protected ProductModel(Parcel in) {
+    public ProductModel(Parcel in) {
         name = in.readString();
         price = in.readFloat();
         url = in.readString();

@@ -20,7 +20,7 @@
         <activity
             android:name=".ShippingAddress"
             android:label="Shipping Address"
-            android:exported="false">
+            android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -102,5 +102,7 @@
                 android:value="" />
         </activity>
     </application>
+
+
 
 </manifest>

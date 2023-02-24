@@ -4,7 +4,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +18,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.tatvic.ecommercetraining.model.CategoryModel;
 
 public class PaymentMethod extends AppCompatActivity {
@@ -26,6 +30,7 @@ public class PaymentMethod extends AppCompatActivity {
     private TextView shipping_address, tvCartItems;
     private AlertDialog.Builder dialog;
     private String cred_email, cred_password, user_entered_email, user_entered_pass;
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -41,6 +46,7 @@ public class PaymentMethod extends AppCompatActivity {
         shipping_address = findViewById(R.id.shipping_address);
         tvCartItems = findViewById(R.id.tvCartItems);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("TotalPrice", Context.MODE_PRIVATE);
         Intent intent = getIntent();
 
         String name = intent.getStringExtra("name");
@@ -56,7 +62,7 @@ public class PaymentMethod extends AppCompatActivity {
 //        String final_items = restaurantModel.getName() + "\n" + restaurantModel.getAddress() + "\n" + restaurantModel.getName();
         shipping_address.setText(final_address);
         //tvCartItems.setText(final_items);
-        btn_pay.setText(intent.getStringExtra("Total"));
+        btn_pay.setText(String.valueOf(sharedPreferences.getString("TotalPrice", null)));
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -82,7 +88,12 @@ public class PaymentMethod extends AppCompatActivity {
             public void onClick(View view) {
 
                 if((radioGroup.getCheckedRadioButtonId() == -1)){
-                    Toast.makeText(PaymentMethod.this, "Please select any payment method", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(view, "Please select any payment method", Snackbar.LENGTH_LONG)
+                            .setAction("OK", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                }
+                            }).show();
                 }
 
                 if (checkBox.isChecked()) {
@@ -113,7 +124,12 @@ public class PaymentMethod extends AppCompatActivity {
                                 startActivity(intent);
                             } else {
                                 if (user_entered_email.isEmpty() || user_entered_pass.isEmpty()){
-                                    Toast.makeText(PaymentMethod.this, "Please enter valid credentials", Toast.LENGTH_SHORT).show();
+                                    Snackbar.make(view, "Please enter valid credentials", Snackbar.LENGTH_LONG)
+                                            .setAction("OK", new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View view) {
+                                                }
+                                            }).show();
                                 }else {
                                     startActivity(new Intent(PaymentMethod.this, Sorry.class));
                                 }
@@ -124,9 +140,21 @@ public class PaymentMethod extends AppCompatActivity {
                     dialog.show();
                 }
                 else if(!(radioGroup.getCheckedRadioButtonId() == -1) && !checkBox.isChecked()){
-                    Toast.makeText(PaymentMethod.this, "Please check the T & C", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(view, "Please check the T & C", Snackbar.LENGTH_LONG)
+                            .setAction("OK", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                }
+                            }).show();
                 }
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 }
+
