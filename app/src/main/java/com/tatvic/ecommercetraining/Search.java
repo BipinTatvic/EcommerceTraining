@@ -15,6 +15,7 @@ import android.view.inputmethod.EditorInfo;
 import androidx.appcompat.widget.SearchView;
 
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.gson.Gson;
 import com.tatvic.ecommercetraining.adapters.SearchAdapter;
 import com.tatvic.ecommercetraining.model.CategoryModel;
@@ -35,13 +36,17 @@ import java.util.List;
 
 public class Search extends AppCompatActivity {
 
+    private static final String screen_name = "Search Screen";
     private SearchAdapter searchAdapter;
     private List<CategoryModel> menuList;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
 //        CategoryModel categoryModel = getIntent().getParcelableExtra("RestaurantModel");
 //        menuList = categoryModel.getMenus();
         menuList = getProductData();
@@ -97,6 +102,7 @@ public class Search extends AppCompatActivity {
             public boolean onQueryTextSubmit(String query) {
                 return false;
             }
+
             @Override
             public boolean onQueryTextChange(String newText) {
                 searchAdapter.getFilter().filter(newText);
@@ -105,10 +111,12 @@ public class Search extends AppCompatActivity {
         });
         return true;
     }
-
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
+    protected void onResume() {
+        super.onResume();
+        Bundle screen_view = new Bundle();
+        screen_view.putString(FirebaseAnalytics.Param.SCREEN_NAME, screen_name); //e.g. Screen Name
+        screen_view.putString(FirebaseAnalytics.Param.SCREEN_CLASS, this.getLocalClassName()); // You can pass the value as specific activity name over here and if not then you can ignore this line and it will take the value automtically
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, screen_view);
     }
 }

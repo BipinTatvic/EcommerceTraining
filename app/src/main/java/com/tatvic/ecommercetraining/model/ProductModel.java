@@ -9,12 +9,21 @@ public class ProductModel implements Parcelable {
     private int totalInCart;
     private String url;
 
+
+
     public int getTotalInCart() {
         return totalInCart;
     }
 
     public void setTotalInCart(int totalInCart) {
         this.totalInCart = totalInCart;
+    }
+
+    public ProductModel(String name, float price, int totalInCart, String url) {
+        this.name = name;
+        this.price = price;
+        this.totalInCart = totalInCart;
+        this.url = url;
     }
 
     public ProductModel(Parcel in) {

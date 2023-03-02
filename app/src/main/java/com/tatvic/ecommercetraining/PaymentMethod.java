@@ -19,10 +19,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.tatvic.ecommercetraining.model.CategoryModel;
 
 public class PaymentMethod extends AppCompatActivity {
 
+    private static final String screen_name = "Payment Method Screen";
+    private static final String screen_name_popup = "Payment Creds Popup";
     private RadioGroup radioGroup;
     private LinearLayout consentLL;
     private Button btn_pay;
@@ -30,6 +33,7 @@ public class PaymentMethod extends AppCompatActivity {
     private TextView shipping_address, tvCartItems;
     private AlertDialog.Builder dialog;
     private String cred_email, cred_password, user_entered_email, user_entered_pass;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
 
     @SuppressLint("MissingInflatedId")
@@ -39,6 +43,8 @@ public class PaymentMethod extends AppCompatActivity {
         setContentView(R.layout.activity_payment_method);
 
         CategoryModel categoryModel = getIntent().getParcelableExtra("RestaurantModel");
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
         radioGroup = findViewById(R.id.radioGroup);
         consentLL = findViewById(R.id.consentLL);
         btn_pay = findViewById(R.id.btn_pay);
@@ -138,6 +144,10 @@ public class PaymentMethod extends AppCompatActivity {
                         }
                     });
                     dialog.show();
+                    Bundle screen_view = new Bundle();
+                    screen_view.putString(FirebaseAnalytics.Param.SCREEN_NAME, screen_name_popup); //e.g. Screen Name
+                    screen_view.putString(FirebaseAnalytics.Param.SCREEN_CLASS, "Payment Popup"); // You can pass the value as specific activity name over here and if not then you can ignore this line and it will take the value automtically
+                    mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, screen_view);
                 }
                 else if(!(radioGroup.getCheckedRadioButtonId() == -1) && !checkBox.isChecked()){
                     Snackbar.make(view, "Please check the T & C", Snackbar.LENGTH_LONG)
@@ -156,5 +166,15 @@ public class PaymentMethod extends AppCompatActivity {
         super.onBackPressed();
         finish();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Bundle screen_view = new Bundle();
+        screen_view.putString(FirebaseAnalytics.Param.SCREEN_NAME, screen_name); //e.g. Screen Name
+        screen_view.putString(FirebaseAnalytics.Param.SCREEN_CLASS, this.getLocalClassName()); // You can pass the value as specific activity name over here and if not then you can ignore this line and it will take the value automtically
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, screen_view);
+    }
+
 }
 

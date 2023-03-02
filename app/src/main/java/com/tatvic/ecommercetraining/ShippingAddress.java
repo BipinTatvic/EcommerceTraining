@@ -7,18 +7,27 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.tatvic.ecommercetraining.model.CategoryModel;
 
 public class ShippingAddress extends AppCompatActivity {
 
+    private static final String screen_name = "Shipping Address Screen";
     private Button buttonPlaceYourOrder;
     Context context;
     private EditText inputName, inputAddress, inputCity, inputState, inputZip;
-    Intent i = getIntent();
+    Intent i;
+
+    String isCart;
+    CategoryModel categoryModel;
+    Float cartValue;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
 
     @Override
@@ -26,10 +35,14 @@ public class ShippingAddress extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shipping_address);
         findViewById();
-        //cartItemsRecyclerView();
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
+        i = getIntent();
+        isCart = i.getStringExtra("from_cart");
+        categoryModel = i.getParcelableExtra("RestaurantModel");
+        cartValue = i.getFloatExtra("Total",0);
+        Log.d("JBKADF", "onCreate: "+isCart);
 
-        ;
         buttonPlaceYourOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -139,10 +152,28 @@ public class ShippingAddress extends AppCompatActivity {
 //        tvDeliveryChargeAmount = findViewById(R.id.tvDeliveryChargeAmount);
 //        tvTotalAmount = findViewById(R.id.tvTotalAmount);
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        finish();
+
+        if(isCart.equals("yes")){
+//            startActivity(new Intent(this, Cart.class));
+            Intent i = new Intent(this, Cart.class);
+            i.putExtra("RestaurantModel", categoryModel);
+            i.putExtra("Total", cartValue);
+            i.putExtra("from_cart","yes");
+            startActivity(i);
+        }
+
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Bundle screen_view = new Bundle();
+        screen_view.putString(FirebaseAnalytics.Param.SCREEN_NAME, screen_name); //e.g. Screen Name
+        screen_view.putString(FirebaseAnalytics.Param.SCREEN_CLASS, this.getLocalClassName()); // You can pass the value as specific activity name over here and if not then you can ignore this line and it will take the value automtically
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, screen_view);
+    }
 }

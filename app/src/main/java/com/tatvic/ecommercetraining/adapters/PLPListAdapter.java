@@ -17,17 +17,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.tatvic.ecommercetraining.ProductDetail;
 import com.tatvic.ecommercetraining.R;
+import com.tatvic.ecommercetraining.model.CategoryModel;
 import com.tatvic.ecommercetraining.model.ProductModel;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 public class PLPListAdapter extends RecyclerView.Adapter<PLPListAdapter.MyViewHolder> {
 
     private List<ProductModel> menuList;
+    private List<ProductModel> customMenuList = new ArrayList<>();
     private final MenuListClickListener clickListener;
     private Context context;
+    static ProductModel menu;
 
     public PLPListAdapter(Context context, List<ProductModel> menuList, MenuListClickListener clickListener) {
         this.menuList = menuList;
@@ -63,7 +67,11 @@ public class PLPListAdapter extends RecyclerView.Adapter<PLPListAdapter.MyViewHo
         holder.addToCartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProductModel menu  = menuList.get(position);
+                menu  = menuList.get(position);
+                customMenuList.add(menu);
+                CategoryModel categoryModel = new CategoryModel();
+                categoryModel.setMenus(customMenuList);
+
                 menu.setTotalInCart(1);
                 clickListener.onAddToCartClick(menu);
                 holder.addMoreLayout.setVisibility(View.VISIBLE);

@@ -13,6 +13,9 @@ public class CategoryModel implements Parcelable {
     private float delivery_charge;
     private List<ProductModel> menus;
 
+    public CategoryModel() {
+    }
+
     public String getName() {
         return name;
     }

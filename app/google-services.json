@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "313773640340",
+    "project_id": "ecommerce-demo-app-58f26",
+    "storage_bucket": "ecommerce-demo-app-58f26.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:313773640340:android:a3f5d699ee516ebade4281",
+        "android_client_info": {
+          "package_name": "com.tatvic.ecommercetraining"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "313773640340-rott0d6tougf3k47a0i1pj4m0cfa5r20.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTI2eCUBjhgmCmvACv0_z3bL8e8Hk3olE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "313773640340-rott0d6tougf3k47a0i1pj4m0cfa5r20.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

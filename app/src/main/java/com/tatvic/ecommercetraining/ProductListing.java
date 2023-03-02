@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.gson.Gson;
 import com.tatvic.ecommercetraining.adapters.PLPListAdapter;
 import com.tatvic.ecommercetraining.model.ProductModel;
@@ -33,12 +34,14 @@ import java.util.Set;
 
 public class ProductListing extends AppCompatActivity implements PLPListAdapter.MenuListClickListener{
 
+    private static final String screen_name = "Product Listing Screen";
     private RecyclerView rv_PLP;
     private Button buttonCheckout;
     private List<ProductModel> menuList = null;
     private PLPListAdapter PLPListAdapter;
     static List<ProductModel> itemsInCartList;
     private int totalItemInCart = 0;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     static
     {
@@ -51,6 +54,7 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
         setContentView(R.layout.activity_product_listing);
         CategoryModel categoryModel = getIntent().getParcelableExtra("RestaurantModel");
         rv_PLP = findViewById(R.id.rv_PLP);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         menuList = categoryModel.getMenus();
 
@@ -104,7 +108,7 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
         for(ProductModel m : itemsInCartList) {
             totalItemInCart = totalItemInCart + m.getTotalInCart();
         }
-        buttonCheckout.setText("Checkout (" +totalItemInCart +") items");
+        //buttonCheckout.setText("Checkout (" +totalItemInCart +") items");
     }
 
     @Override
@@ -119,7 +123,7 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
             for(ProductModel m : itemsInCartList) {
                 totalItemInCart = totalItemInCart + m.getTotalInCart();
             }
-            buttonCheckout.setText("Checkout (" +totalItemInCart +") items");
+            //buttonCheckout.setText("Checkout (" +totalItemInCart +") items");
         }
     }
 
@@ -132,7 +136,7 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
             for(ProductModel m : itemsInCartList) {
                 totalItemInCart = totalItemInCart + m.getTotalInCart();
             }
-            buttonCheckout.setText("Checkout (" +totalItemInCart +") items");
+            //buttonCheckout.setText("Checkout (" +totalItemInCart +") items");
         }
     }
 
@@ -147,8 +151,11 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
     }
 
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
+    protected void onResume() {
+        super.onResume();
+        Bundle screen_view = new Bundle();
+        screen_view.putString(FirebaseAnalytics.Param.SCREEN_NAME, screen_name); //e.g. Screen Name
+        screen_view.putString(FirebaseAnalytics.Param.SCREEN_CLASS, this.getLocalClassName()); // You can pass the value as specific activity name over here and if not then you can ignore this line and it will take the value automtically
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, screen_view);
     }
 }

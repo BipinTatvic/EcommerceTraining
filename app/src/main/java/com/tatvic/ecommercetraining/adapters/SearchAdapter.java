@@ -115,7 +115,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ExampleVie
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
 
-            Log.d("YOUR_SEARCH", String.valueOf(constraint) +"\n"+results);
+            Log.d("YOUR_SEARCH", String.valueOf(constraint) +"\n"+results.values);
 
 //            exampleList.removeAll();
 //            exampleList.addAll((List) results.values);
