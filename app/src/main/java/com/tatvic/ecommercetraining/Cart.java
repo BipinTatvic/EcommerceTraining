@@ -59,12 +59,12 @@ public class Cart extends AppCompatActivity {
 
         Gson gson = new Gson();
         String json = sharedPreferences.getString("YOUR_MODEL", "");
-        CategoryModel cm= gson.fromJson(json, CategoryModel.class);
-
-        name = cm.getName();
-//        price = cm.get
-//        totalInCart = cm.get
-        url = cm.getImage();
+//        CategoryModel cm= gson.fromJson(json, CategoryModel.class);
+//
+//        name = cm.getName();
+////        price = cm.get
+////        totalInCart = cm.get
+//        url = cm.getImage();
 
       /*  ProductModel p = new ProductModel(name,0,1,url);
         plist.add(p);
@@ -72,7 +72,7 @@ public class Cart extends AppCompatActivity {
         categoryModel.setMenus(plist);*/
 
 
-        Log.d("HEYFLDJF", "onCreate: "+cm);
+        //Log.d("HEYFLDJF", "onCreate: "+cm);
 
         categoryModel = getIntent().getParcelableExtra("RestaurantModel");
         recyclerView_cart = findViewById(R.id.cartItemsRecyclerView);
@@ -97,21 +97,21 @@ public class Cart extends AppCompatActivity {
 
 
 
-        if (categoryModel == null ) {
-            ProductModel p = new ProductModel(name,0,1,url);
-            plist.add(p);
-
-            categoryModel.setMenus(plist);
-        } else {
-           /* ProductModel p = new ProductModel(name,0,1,url);
-            plist.add(p);
-
-            categoryModel.setMenus(plist);*/
-
+//        if (categoryModel == null ) {
+//            ProductModel p = new ProductModel(name,0,1,url);
+//            plist.add(p);
+//
+//            categoryModel.setMenus(plist);
+//        } else {
+//           /* ProductModel p = new ProductModel(name,0,1,url);
+//            plist.add(p);
+//
+//            categoryModel.setMenus(plist);*/
+//
             initRecyclerView(categoryModel);
             calculateTotalAmount(categoryModel);
-
-        }
+//
+//        }
 
 
         begin_checkout.setOnClickListener(new View.OnClickListener() {
