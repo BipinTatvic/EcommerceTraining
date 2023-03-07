@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements HomeCategoryListA
             iphone_bundle, tv_bundle, audio_bundle, fridge_bundle, ac_bundle;
     ArrayList<SlideModel> arrayList;
     private ImageSlider imageSlider;
-    List<ProductModel> productFromShared;
+    static List<CategoryModel> categoryModelList;
     CategoryModel categoryModel;
     private CardView cardView;
     private FirebaseAnalytics mFirebaseAnalytics;
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements HomeCategoryListA
         imageSlider = findViewById(R.id.image_slider);
         cardView = findViewById(R.id.card_promotion);
 
-        List<CategoryModel> categoryModelList = getRestaurantData();
+        categoryModelList = getRestaurantData();
         initRecyclerView(categoryModelList);
 
         Analytics();
@@ -243,12 +243,16 @@ public class MainActivity extends AppCompatActivity implements HomeCategoryListA
                 startActivity(new Intent(MainActivity.this, Search.class));
                 return (true);
             case R.id.cart:
-                Snackbar.make(findViewById(android.R.id.content), "Please add some items in cart", Snackbar.LENGTH_LONG)
+              /*  Snackbar.make(findViewById(android.R.id.content), "Please add some items in cart", Snackbar.LENGTH_LONG)
                         .setAction("OK", new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                             }
-                        }).show();
+                        }).show();*/
+
+                Intent i1 = new Intent(this,Cart.class);
+                startActivity(i1);
+
                 Bundle custom_event1 = new Bundle();
                 custom_event1.putString("menu_name", itemName);
                 custom_event1.putString("screen_name", screen_name);
@@ -259,7 +263,7 @@ public class MainActivity extends AppCompatActivity implements HomeCategoryListA
     }
 
 
-    private List<CategoryModel> getRestaurantData() {
+    public List<CategoryModel> getRestaurantData() {
         InputStream is = getResources().openRawResource(R.raw.ecommerce_data);
         Writer writer = new StringWriter();
         char[] buffer = new char[1024];

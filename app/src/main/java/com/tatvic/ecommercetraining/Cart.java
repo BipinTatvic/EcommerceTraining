@@ -41,6 +41,7 @@ public class Cart extends AppCompatActivity {
 //    SharedPreferences.Editor editor;
     CategoryModel categoryModel;
     private FirebaseAnalytics mFirebaseAnalytics;
+    private ProductModel productModel;
 //    SharedPreferences sh;
 
     private String name;
@@ -56,6 +57,9 @@ public class Cart extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         plist = new ArrayList<>();
+
+        categoryModel = new CategoryModel();
+
 
         Gson gson = new Gson();
         String json = sharedPreferences.getString("YOUR_MODEL", "");
@@ -74,7 +78,7 @@ public class Cart extends AppCompatActivity {
 
         //Log.d("HEYFLDJF", "onCreate: "+cm);
 
-        categoryModel = getIntent().getParcelableExtra("RestaurantModel");
+//        categoryModel = getIntent().getParcelableExtra("RestaurantModel");
         recyclerView_cart = findViewById(R.id.cartItemsRecyclerView);
         begin_checkout = findViewById(R.id.begin_checkout);
         tvSubtotalAmount = findViewById(R.id.tvSubtotalAmount);
@@ -108,6 +112,10 @@ public class Cart extends AppCompatActivity {
 //
 //            categoryModel.setMenus(plist);*/
 //
+
+
+            categoryModel.setMenus(ProductListing.itemsInCartList);
+
             initRecyclerView(categoryModel);
             calculateTotalAmount(categoryModel);
 //

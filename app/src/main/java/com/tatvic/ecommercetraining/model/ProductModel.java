@@ -8,8 +8,22 @@ public class ProductModel implements Parcelable {
     private float price;
     private int totalInCart;
     private String url;
+    private String item_id;
+    private String brand;
+    private String variant;
 
+    public ProductModel() {
+    }
 
+    public ProductModel(String name, float price, int totalInCart, String url, String item_id, String brand, String variant) {
+        this.name = name;
+        this.price = price;
+        this.totalInCart = totalInCart;
+        this.url = url;
+        this.item_id = item_id;
+        this.brand = brand;
+        this.variant = variant;
+    }
 
     public int getTotalInCart() {
         return totalInCart;
@@ -30,6 +44,9 @@ public class ProductModel implements Parcelable {
         name = in.readString();
         price = in.readFloat();
         url = in.readString();
+        item_id = in.readString();
+        brand = in.readString();
+        variant = in.readString();
         totalInCart = in.readInt();
     }
 
@@ -69,6 +86,30 @@ public class ProductModel implements Parcelable {
         this.url = url;
     }
 
+    public String getItem_id() {
+        return item_id;
+    }
+
+    public void setItem_id(String item_id) {
+        this.item_id = item_id;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getVariant() {
+        return variant;
+    }
+
+    public void setVariant(String variant) {
+        this.variant = variant;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -79,6 +120,9 @@ public class ProductModel implements Parcelable {
         dest.writeString(name);
         dest.writeFloat(price);
         dest.writeString(url);
+        dest.writeString(item_id);
+        dest.writeString(brand);
+        dest.writeString(variant);
         dest.writeInt(totalInCart);
     }
 }

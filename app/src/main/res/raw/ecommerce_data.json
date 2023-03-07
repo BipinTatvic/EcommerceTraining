@@ -16,52 +16,82 @@
     },
     "menus": [
       {
-        "name": "Iphone 14 128 gb",
+        "name": "Iphone 14 128 GB",
+        "item_id":"iphone_14_128",
+        "brand": "Apple",
+        "variant": "Blue",
         "price": 74000,
         "url": "https://d2xamzlzrdbdbn.cloudfront.net/products/cba3931e-2326-43e2-88ce-296d45a6632e22081150_182x182.jpg"
       },
       {
-        "name": "Iphone 13 128 gba",
+        "name": "Iphone 13 128 GB",
+        "item_id":"iphone_13_128",
+        "brand": "Apple",
+        "variant": "Green",
         "price": 68000,
         "url": "https://d2xamzlzrdbdbn.cloudfront.net/products/dd6cabec-a0f9-4b30-89fc-9a2ee48301f622111157_182x182.jpg"
       },
       {
         "name": "Apple iPhone 14 Pro Max (256 GB, Gold)",
+        "item_id":"iphone_14_pro_max_256",
+        "brand": "Apple",
+        "variant": "Gold",
         "price": 149900,
         "url": "https://d2xamzlzrdbdbn.cloudfront.net/products/3ec5a4d7-4396-48e3-9c0e-f333e8b9b34322090633_182x182.jpg"
       },
       {
         "name": "Apple iPhone 14 Pro (128 GB Storage, Space Black)",
+        "item_id":"iphone_14_pro_128",
+        "brand": "Apple",
+        "variant": "Space Black",
         "price": 129000,
         "url": "https://d2xamzlzrdbdbn.cloudfront.net/products/4a7c5b91-2fc2-4d37-9b19-c6b2ca87fa4922081155_182x182.jpg"
       },
       {
         "name": "Apple iPhone 12 (128 GB, White)",
+        "item_id":"iphone_12_128",
+        "brand": "Apple",
+        "variant": "White",
         "price": 59000,
         "url": "https://d2xamzlzrdbdbn.cloudfront.net/products/900c65b0-63fc-4b7d-9007-813e3df186f0_182x182.jpg"
       },
       {
         "name": "Apple iPhone 13 (128GB, Pink)",
+        "item_id":"iphone_13_128",
+        "brand": "Apple",
+        "variant": "Pink",
         "price": 65000,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1664009482/Croma%20Assets/Communication/Mobiles/Images/243461_0_tzq0y4.png/mxw_1440,f_auto"
       },
       {
         "name": "Apple iPhone 14 Pro (256 GB, Silver)",
+        "item_id":"iphone_14_pro_256",
+        "brand": "Apple",
+        "variant": "Silver",
         "price": 139000,
         "url": "https://d2xamzlzrdbdbn.cloudfront.net/products/85bbe2d0-3c31-444f-8a7d-67417411e0ac22090518_182x182.jpg"
       },
       {
         "name": "Apple iPhone 13 (256 GB Storage, (Product) Red)",
+        "item_id":"iphone_13_256",
+        "brand": "Apple",
+        "variant": "Red",
         "price": 74900,
         "url": "https://d2xamzlzrdbdbn.cloudfront.net/products/217333b1-d0f9-4abe-b5e7-8889a79ba90921170556_182x182.jpg"
       },
       {
         "name": "Apple iPhone SE (64GB, Red) ",
+        "item_id":"iphone_SE_64",
+        "brand": "Apple",
+        "variant": "Red",
         "price": 43000,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1664009844/Croma%20Assets/Communication/Mobiles/Images/249852_0_eff8j8.png/mxw_1440,f_auto"
       },
       {
         "name": "Apple iPhone 14 Pro (128 GB Storage, Space)",
+        "item_id":"iphone_14_pro_128",
+        "brand": "Apple",
+        "variant": "Space Black",
         "price": 124000,
         "url": "https://d2xamzlzrdbdbn.cloudfront.net/products/4a7c5b91-2fc2-4d37-9b19-c6b2ca87fa4922081155_182x182.jpg"
       }
@@ -85,51 +115,81 @@
     "menus": [
       {
         "name": "Acer I Series 108 cm (43 inch) 4K Ultra HD LED Android TV with Google Assistant (2022 model)",
+        "item_id":"acer_tv_4k",
+        "brand": "Acer",
+        "variant": "43 inch",
         "price": 34000,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1665474074/Croma%20Assets/Entertainment/Television/Images/255843_wck8as.png/mxw_1440,f_auto"
       },
       {
         "name": "Mi 5X 108 cm (43 inch) 4K Ultra HD LED Android TV with Alexa Compatibility (2021 model)",
+        "item_id":"mi_tv_4k",
+        "brand": "Xiaomi",
+        "variant": "43 inch",
         "price": 32000,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1664410651/Croma%20Assets/Entertainment/Television/Images/242860_0_hnin65.png/mxw_1440,f_auto"
       },
       {
         "name": "OnePlus Y Series 80 cm (32 inch) HD Ready LED Smart Android TV with Built-in Google Assistant",
+        "item_id":"oneplus_tv_hd",
+        "brand": "OnePlus",
+        "variant": "32 inch",
         "price": 19000,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1664415354/Croma%20Assets/Entertainment/Television/Images/244466_0_rfm8mk.png/mxw_1440,f_auto"
       },
       {
         "name": "SONY Bravia XR 163.9 cm (65 inch) 4K Ultra HD OLED Android TVk)",
+        "item_id":"sony_bravia_tv_4k",
+        "brand": "SONY",
+        "variant": "65 inch",
         "price": 29000,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1664427895/Croma%20Assets/Entertainment/Television/Images/257210_0_p8wdcm.png/mxw_1440,f_auto"
       },
       {
         "name": "LG C2X 164 cm (65 inch) 4K Ultra HD OLED WebOS TV ",
+        "item_id":"lg_c2x_tv_4k",
+        "brand": "LG",
+        "variant": "65 inch",
         "price": 21000,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1664416476/Croma%20Assets/Entertainment/Television/Images/257133_0_ueklxj.png/mxw_1440,f_auto"
       },
       {
         "name": "LG LX1 139 cm (55 inch) OLED 4K Ultra HD WebOS TV with Dolby Vision & Dolby Atmos ",
+        "item_id":"lg_lx1_tv_4k",
+        "brand": "LG",
+        "variant": "55 inch",
         "price": 20500,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1671093557/Croma%20Assets/Entertainment/Television/Images/265839_i5flon.png/mxw_1440,f_auto"
       },
       {
         "name": "SAMSUNG Series 9 163 cm (65 inch) QLED 4K Ultra HD Tizen TV with Alexa Compatibility",
+        "item_id":"samsung_tizen_alexa_tv_4k",
+        "brand": "SAMSUNG",
+        "variant": "65 inch",
         "price": 23000,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1663781000/Croma%20Assets/Entertainment/Television/Images/251991_0_wct8ld.png/mxw_1440,f_auto"
       },
       {
         "name": "SONY X80K Series 189 cm (75 inch) 4K Ultra HD LED Google Android TV",
+        "item_id":"sony_x80k_tv_4k",
+        "brand": "SONY",
+        "variant": "75 inch",
         "price": 74900,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1664412604/Croma%20Assets/Entertainment/Television/Images/256873_0_xyij5o.png/mxw_1440,f_auto"
       },
       {
         "name": "SAMSUNG 7 189 cm (75 inch) 4K Ultra HD LED Tizen TV  ",
+        "item_id":"samsung_tizen_tv_4k",
+        "brand": "SAMSUNG",
+        "variant": "75 inch",
         "price": 114300,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1667229768/Croma%20Assets/Entertainment/Television/Images/255736_0_i4jorg.png/mxw_1440,f_auto"
       },
       {
         "name": "TCL C835 Series 165 cm (65 inch) 4K Ultra HD QLED Android TV",
+        "item_id":"tcl_tv_4k",
+        "brand": "TCL",
+        "variant": "65 inch",
         "price": 124000,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1666000445/Croma%20Assets/Entertainment/Television/Images/255761_gq9vqb.png/mxw_1440,f_auto"
       }
@@ -152,51 +212,81 @@
     "menus": [
       {
         "name": "Logitech G335 981-000979 Wired Headphone with Mic",
+        "item_id":"logitech_headphone_wired",
+        "brand": "Logitech",
+        "variant": "G335",
         "price": 6000,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1674054732/Croma%20Assets/Communication/Headphones%20and%20Earphones/Images/247114_0_ws9n5k.png/mxw_1440,f_auto"
       },
       {
         "name": "JBL Quantum 300 JBLQUANTUM300BLK Wired Gaming Headset with Active Noise Cancellation",
+        "item_id":"jbl_headset_wired",
+        "brand": "JBL",
+        "variant": "Quantum 300",
         "price": 8000,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1674044062/Croma%20Assets/Communication/Headphones%20and%20Earphones/Images/226130_0_fownc7.png/mxw_1440,f_auto"
       },
       {
         "name": "Logitech G331 Gaming Headset (Black)",
+        "item_id":"logitech_headset_wired",
+        "brand": "Logitech",
+        "variant": "G331 Black",
         "price": 7900,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1605096039/Croma%20Assets/Entertainment/Headphones%20and%20Earphones/Images/8856977768478.png/mxw_1440,f_auto"
       },
       {
         "name": "Sony WH-1000XM5 Bluetooth Headset with Mic",
+        "item_id":"sony_headset_bluetooth",
+        "brand": "Sony",
+        "variant": "WH-1000XM5",
         "price": 29000,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1669124952/Croma%20Assets/Entertainment/Headphones%20and%20Earphones/Images/262566_0_emihyi.png/mxw_1440,f_auto"
       },
       {
         "name": "Bose QuietComfort 45 Bluetooth Headset with Mic",
+        "item_id":"bose_headset_bluetooth",
+        "brand": "Bose",
+        "variant": "QuietComfort 45",
         "price": 19000,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1674044768/Croma%20Assets/Communication/Headphones%20and%20Earphones/Images/250473_0_kilfds.png/mxw_1440,f_auto"
       },
       {
         "name": "Apple AirPods Pro (2nd Generation)",
+        "item_id":"apple_headset_bluetooth",
+        "brand": "Apple",
+        "variant": "AirPods Pro (2nd Gen)",
         "price": 25000,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1669124421/Croma%20Assets/Entertainment/Headphones%20and%20Earphones/Images/262015_0_hnwvzo.png/mxw_1440,f_auto"
       },
       {
         "name": "SONY WH1000XM4/SMIN Bluetooth Headset with Mic ",
+        "item_id":"sony_headset_bluetooth",
+        "brand": "SONY",
+        "variant": "WH1000XM4/SMIN",
         "price": 39000,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1674050035/Croma%20Assets/Communication/Headphones%20and%20Earphones/Images/229089_0_upqvpc.png/mxw_1440,f_auto"
       },
       {
         "name": "Apple AirPods Pro (1st Generation)",
+        "item_id":"apple_headset_bluetooth",
+        "brand": "Apple",
+        "variant": "AirPods Pro (1st Gen)",
         "price": 21000,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1674044805/Croma%20Assets/Communication/Headphones%20and%20Earphones/Images/251322_0_tpksnj.png/mxw_1440,f_auto"
       },
       {
         "name": "Sony LinkBuds S WF-LS900N/WCIN TWS Earbuds",
+        "item_id":"sony_tws_earbuds",
+        "brand": "SONY",
+        "variant": "WF-LS900N/WCIN",
         "price": 19000,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1669282599/Croma%20Assets/Entertainment/Wireless%20Earbuds/Images/265831_sizf2r.png/mxw_1440,f_auto"
       },
       {
         "name": "Sony LinkBuds S WF-LS900N/CCIN TWS Earbuds",
+        "item_id":"sony_tws_earbuds",
+        "brand": "SONY",
+        "variant": "F-LS900N/CCIN",
         "price": 16000,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1669282704/Croma%20Assets/Entertainment/Wireless%20Earbuds/Images/265832_fqcmtc.png/mxw_1440,f_auto"
       }
@@ -219,46 +309,73 @@
     "menus": [
       {
         "name": "SAMSUNG 865 Litres Frost Free French Door Smart Wi-Fi Enabled Refrigerator with Door-in-Door",
+        "item_id":"samsung_fridge_door-in-door",
+        "brand": "SAMSUNG",
+        "variant": "865 Litres",
         "price": 239000,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1673262097/Croma%20Assets/Large%20Appliances/Refrigerator/Images/244844_0_gpubgx.png/mxw_1440,f_auto"
       },
       {
         "name": "SAMSUNG 934 Litres Frost Free French Door Smart Wi-Fi Enabled Refrigerator with Family Hub",
+        "item_id":"samsung_fridge_family_hub",
+        "brand": "SAMSUNG",
+        "variant": "934 Litres",
         "price": 139000,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1673268766/Croma%20Assets/Large%20Appliances/Refrigerator/Images/245192_0_brl2h5.png/mxw_1440,f_auto"
       },
       {
         "name": "LG 889 Litres 2 Star Frost Free French Door Smart Wi-Fi Enabled Refrigerator with InstaView Door-in-Door",
+        "item_id":"lg_fridge_door-in-door",
+        "brand": "LG",
+        "variant": "889 Litres",
         "price": 199000,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1623318281/Croma%20Assets/Large%20Appliances/Refrigerator/Images/234873_u2hjgn.png/mxw_1440,f_auto"
       },
       {
         "name": "LG 674 Litres Frost Free Side by Side Door Smart Wi-Fi Enabled Refrigerator",
+        "item_id":"lg_fridge_side-by-side_door",
+        "brand": "LG",
+        "variant": "674 Litres",
         "price": 109000,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1673259721/Croma%20Assets/Large%20Appliances/Refrigerator/Images/251547_0_obey6t.png/mxw_1440,f_auto"
       },
       {
         "name": "SAMSUNG 681 Litres Frost Free Side by Side Door Smart Wi-Fi Enabled Refrigerator",
+        "item_id":"samsung_fridge_side-by-side_door",
+        "brand": "SAMSUNG",
+        "variant": "681 Litres",
         "price": 100000,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1673269643/Croma%20Assets/Large%20Appliances/Refrigerator/Images/250621_0_zgzbke.png/mxw_1440,f_auto"
       },
       {
-        "name": "AppleLG 674 Litres Frost Free Side by Side Door Smart Wi-Fi Enabled Refrigerator",
+        "name": "LG 708 Litres Frost Free Side by Side Door Smart Wi-Fi Enabled Refrigerator",
+        "item_id":"lg_fridge_side-by-side_door",
+        "brand": "LG",
+        "variant": "708 Litres",
         "price": 99000,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1673260112/Croma%20Assets/Large%20Appliances/Refrigerator/Images/251548_0_foozlw.png/mxw_1440,f_auto"
       },
       {
         "name": "Haier 712 Litres A++ Frost Free French Door Refrigerator",
+        "item_id":"haier_fridge_french_door",
+        "brand": "Haier",
+        "variant": "712 Litres",
         "price": 139000,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1673269853/Croma%20Assets/Large%20Appliances/Refrigerator/Images/224005_0_ffpnpu.png/mxw_1440,f_auto"
       },
       {
         "name": "SAMSUNG 845 Litres Frost Free Side by Side Refrigerator",
+        "item_id":"samsung_fridge_side-by-side_door",
+        "brand": "SAMSUNG",
+        "variant": "845 Litres",
         "price": 139000,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1662375652/Croma%20Assets/Large%20Appliances/Refrigerator/Images/259971_zvurwz.png/mxw_1440,f_auto"
       },
       {
-        "name": "Electrolux UltimateTaste 700 600 Litres French Door Refrigerator",
+        "name": "Electrolux UltimateTaste 700 Litres French Door Refrigerator",
+        "item_id":"electrolux_fridge_french_door",
+        "brand": "Electrolux",
+        "variant": "700 Litres",
         "price": 75000,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1666178248/Croma%20Assets/Large%20Appliances/Refrigerator/Images/263077_xegokw.png/mxw_1440,f_auto"
       }
@@ -280,37 +397,58 @@
     },
     "menus": [
       {
-        "name": "Voltas Executive 5 in 1 Convertible 1.5 Ton 5 Star Adjustable Inverter Split AC with Anti Microbial Protection (Copper Condenser, 185V EAZQ)",
+        "name": "Voltas Executive 5 in 1 Convertible 1.5 Ton 5 Star Split AC(Copper Condenser, 185V EAZQ)",
+        "item_id":"voltas_ac_EAZQ",
+        "brand": "Voltas",
+        "variant": "1.5 Ton 5 Star Split AC",
         "price": 40990,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1666377366/Croma%20Assets/Large%20Appliances/Air%20Conditioner/Images/255834_0_n23oai.png/mxw_1440,f_auto"
       },
       {
-        "name": "Carrier Ester CXI 4 in 1 Convertible 1.5 Ton 3 Star Flexicool Inverter Split AC with Auto Clean Function (2022 Model, Copper Condenser, CAI18ES3R30F1)",
+        "name": "Carrier Ester CXI 4 in 1 Convertible 1.5 Ton 3 Star Split AC (Copper Condenser, CAI18ES3R30F1)",
+        "item_id":"carrier_ac_CAI18ES3R30F1",
+        "brand": "Carrier",
+        "variant": "1.5 Ton 3 Star Split AC",
         "price": 34990,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1663872447/Croma%20Assets/Large%20Appliances/Air%20Conditioner/Images/249552_0_sp1o8u.png/mxw_1440,f_auto"
       },
       {
         "name": "Lloyd 1.5 Ton 4 Star Inverter Split AC with 4-Way Swing (Copper Condenser, GLS18I4FWCXT)",
+        "item_id":"lloyd_ac_GLS18I4FWCXT",
+        "brand": "Lloyd",
+        "variant": "1.5 Ton 4 Star Split AC",
         "price": 37990,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1664431883/Croma%20Assets/Large%20Appliances/Air%20Conditioner/Images/247490_0_ok9dof.png/mxw_1440,f_auto"
       },
       {
-        "name": "Croma 4 in 1 Convertible 1.2 Ton 3 Star Inverter Split AC with PM 2.5 Filter (2022 Model, Copper Condenser, CRLAIN0143T0253)",
+        "name": "Croma 4 in 1 Convertible 1.2 Ton 3 Star AC (Copper Condenser, CRLAIN0143T0253)",
+        "item_id":"croma_ac_CRLAIN0143T0253",
+        "brand": "Croma",
+        "variant": "1.2 Ton 3 Star AC",
         "price": 28990,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1655373449/Croma%20Assets/Large%20Appliances/Air%20Conditioner/Images/247092_rxgpiy.png/mxw_1440,f_auto"
       },
       {
-        "name": "LG 6 in 1 Convertible 1 Ton 5 Star AI Dual Inverter Split AC with Auto Clean (Copper Condenser, RS-Q14ANZE.ANLG)",
+        "name": "LG 6 in 1 Convertible 1 Ton 5 Star AI Dual AC (Copper Condenser, RS-Q14ANZE.ANLG)",
+        "item_id":"lg_ac_RS-Q14ANZE.ANLG",
+        "brand": "LG",
+        "variant": "1 Ton 5 Star AI Dual AC",
         "price": 40990,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1671799272/Croma%20Assets/Large%20Appliances/Air%20Conditioner/Images/267013_g861dd.png/mxw_1440,f_auto"
       },
       {
-        "name": "Daikin Standard Plus 1 Ton 3 Star Inverter Split AC (Copper Condenser, Air Purification Filter, ATKL35UV)",
+        "name": "Daikin Standard Plus 1 Ton 3 Star Inverter Split AC (Copper Condenser, ATKL35UV)",
+        "item_id":"daikin_ac_ATKL35UV",
+        "brand": "Daikin",
+        "variant": "1 Ton 3 Star Split AC",
         "price": 33290,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1666376925/Croma%20Assets/Large%20Appliances/Air%20Conditioner/Images/257363_0_lqsjxr.png/mxw_1440,f_auto"
       },
       {
-        "name": "Carrier Ester CXI 6 in 1 Convertible 1.5 Ton 5 Star Flexicool Inverter Split AC with Auto Clean Function (2022 Model, Copper Condenser, CAI18ES5R30F1)",
+        "name": "Carrier Ester CXI 6 in 1 Convertible 1.5 Ton 5 Star Split AC (Copper Condenser, CAI18ES5R30F1)",
+        "item_id":"carrier_ac_CAI18ES5R30F1",
+        "brand": "Carrier",
+        "variant": "1.5 Ton 5 Star Split AC",
         "price": 40990,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1663870275/Croma%20Assets/Large%20Appliances/Air%20Conditioner/Images/249564_0_e7srqw.png/mxw_1440,f_auto"
       }
