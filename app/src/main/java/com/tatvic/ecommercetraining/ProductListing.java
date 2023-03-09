@@ -62,7 +62,7 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
         menuList = categoryModel.getMenus();
 
         initRecyclerView();
-        buttonCheckout = findViewById(R.id.buttonCheckout);
+        buttonCheckout = findViewById(R.id.GoToCart);
         buttonCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
