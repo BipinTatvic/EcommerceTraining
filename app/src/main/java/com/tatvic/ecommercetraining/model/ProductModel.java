@@ -11,11 +11,12 @@ public class ProductModel implements Parcelable {
     private String item_id;
     private String brand;
     private String variant;
+    private String item_category;
 
     public ProductModel() {
     }
 
-    public ProductModel(String name, float price, int totalInCart, String url, String item_id, String brand, String variant) {
+    public ProductModel(String name, float price, int totalInCart, String url, String item_id, String brand, String variant, String item_category) {
         this.name = name;
         this.price = price;
         this.totalInCart = totalInCart;
@@ -23,6 +24,7 @@ public class ProductModel implements Parcelable {
         this.item_id = item_id;
         this.brand = brand;
         this.variant = variant;
+        this.item_category = item_category;
     }
 
     public int getTotalInCart() {
@@ -48,6 +50,7 @@ public class ProductModel implements Parcelable {
         brand = in.readString();
         variant = in.readString();
         totalInCart = in.readInt();
+        item_category = in.readString();
     }
 
     public static final Creator<ProductModel> CREATOR = new Creator<ProductModel>() {
@@ -106,8 +109,12 @@ public class ProductModel implements Parcelable {
         return variant;
     }
 
-    public void setVariant(String variant) {
-        this.variant = variant;
+    public String getItem_category() {
+        return item_category;
+    }
+
+    public void setItem_category(String item_category) {
+        this.item_category = item_category;
     }
 
     @Override
@@ -124,6 +131,7 @@ public class ProductModel implements Parcelable {
         dest.writeString(brand);
         dest.writeString(variant);
         dest.writeInt(totalInCart);
+        dest.writeString(item_category);
     }
 }
 

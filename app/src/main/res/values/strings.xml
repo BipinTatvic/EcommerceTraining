@@ -20,4 +20,8 @@
         \n <li>Care Instructions: Wipe clean with a damp cloth</li>
         \n <li>Weight: 2 lb.</li>
     </string>
+    <string name="go_to_cart">GO TO CART</string>
+    <string name="express_delivery">EXPRESS Delivery <small>(within 3 hours)</small></string>
+    <string name="pick_at_store">Pick at Store: <small>At your convenience | Search Nearby Store</small></string>
+    <string name="standard_delivery">Standard Delivery: <small>6 - 8 working days</small></string>
 </resources>

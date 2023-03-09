@@ -22,18 +22,18 @@
         android:id="@+id/rv_PLP"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonCheckout"
+        app:layout_constraintBottom_toTopOf="@+id/GoToCart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonCheckout"
+        android:id="@+id/GoToCart"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:background="@drawable/bkg_shape"
         android:gravity="center"
-        android:text="Go To CART"
+        android:text="@string/go_to_cart"
         android:layout_margin="10dp"
         android:textColor="#FFFF"
         android:textSize="18sp"

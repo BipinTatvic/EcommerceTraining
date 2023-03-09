@@ -33,7 +33,6 @@ import java.util.Locale;
 public class PLPListAdapter extends RecyclerView.Adapter<PLPListAdapter.MyViewHolder> {
 
     private List<ProductModel> menuList;
-    private MainActivity mainActivity;
     private List<CategoryModel> categoryList = new ArrayList<>();
     private List<ProductModel> customMenuList = new ArrayList<>();
     private final MenuListClickListener clickListener;
@@ -93,6 +92,7 @@ public class PLPListAdapter extends RecyclerView.Adapter<PLPListAdapter.MyViewHo
                 intent.putExtra("item_id", menuList.get(position).getItem_id());
                 intent.putExtra("item_brand", menuList.get(position).getBrand());
                 intent.putExtra("item_variant", menuList.get(position).getVariant());
+                intent.putExtra("item_category", menuList.get(position).getItem_category());
                 context.startActivity(intent);
             }
         });
