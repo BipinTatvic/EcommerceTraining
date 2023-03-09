@@ -33,21 +33,18 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class ProductListing extends AppCompatActivity implements PLPListAdapter.MenuListClickListener,
-        com.tatvic.ecommercetraining.adapters.PLPListAdapter.ProductClickListener,
-        com.tatvic.ecommercetraining.adapters.PLPListAdapter.AddToCartListener,
-        com.tatvic.ecommercetraining.adapters.PLPListAdapter.RemoveFromCartListener {
+public class ProductListing extends AppCompatActivity implements PLPListAdapter.MenuListClickListener, com.tatvic.ecommercetraining.adapters.PLPListAdapter.ProductClickListener, com.tatvic.ecommercetraining.adapters.PLPListAdapter.AddToCartListener, com.tatvic.ecommercetraining.adapters.PLPListAdapter.RemoveFromCartListener {
 
     private static final String screen_name = "Product Listing Screen";
     private RecyclerView rv_PLP;
-    private Button GoToCart;
+    private Button buttonCheckout;
     private List<ProductModel> menuList = null;
     private PLPListAdapter PLPListAdapter;
     static List<ProductModel> itemsInCartList;
     private int totalItemInCart = 0;
     private FirebaseAnalytics mFirebaseAnalytics;
     CategoryModel categoryModel;
-    Bundle product;
+    Bundle product, itemAddToCart;
 
     static
     {
@@ -65,8 +62,8 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
         menuList = categoryModel.getMenus();
 
         initRecyclerView();
-        GoToCart = findViewById(R.id.GoToCart);
-        GoToCart.setOnClickListener(new View.OnClickListener() {
+        buttonCheckout = findViewById(R.id.buttonCheckout);
+        buttonCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(itemsInCartList == null && itemsInCartList.size() <= 0) {
@@ -82,11 +79,6 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
                 Intent i = new Intent(ProductListing.this, Cart.class);
                 i.putExtra("RestaurantModel", categoryModel);
                 startActivityForResult(i, 1000);
-
-                Bundle params = new Bundle();
-                params.putInt("total_items_in_cart", totalItemInCart);
-                params.putString("screen_name", screen_name);
-                mFirebaseAnalytics.logEvent("go_to_cart_click", params);
             }
         });
 
@@ -178,7 +170,7 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
 
         product.putString(FirebaseAnalytics.Param.ITEM_ID, menuList.get(position).getItem_id());
         product.putString(FirebaseAnalytics.Param.ITEM_NAME, menuList.get(position).getName());
-        product.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, menuList.get(position).getItem_category());
+        product.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, categoryModel.getName());
         product.putString(FirebaseAnalytics.Param.ITEM_VARIANT, menuList.get(position).getVariant());
         product.putString(FirebaseAnalytics.Param.ITEM_BRAND, menuList.get(position).getBrand());
         product.putDouble(FirebaseAnalytics.Param.PRICE, menuList.get(position).getPrice());
@@ -202,7 +194,7 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
     public void onAddToCartProduct(Integer position) {
         product.putString(FirebaseAnalytics.Param.ITEM_ID, menuList.get(position).getItem_id());
         product.putString(FirebaseAnalytics.Param.ITEM_NAME, menuList.get(position).getName());
-        product.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, menuList.get(position).getItem_category());
+        product.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, categoryModel.getName());
         product.putString(FirebaseAnalytics.Param.ITEM_VARIANT, menuList.get(position).getVariant());
         product.putString(FirebaseAnalytics.Param.ITEM_BRAND, menuList.get(position).getBrand());
         product.putDouble(FirebaseAnalytics.Param.PRICE, menuList.get(position).getPrice());
@@ -223,7 +215,7 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
     public void onRemoveFromProduct(Integer position) {
         product.putString(FirebaseAnalytics.Param.ITEM_ID, menuList.get(position).getItem_id());
         product.putString(FirebaseAnalytics.Param.ITEM_NAME, menuList.get(position).getName());
-        product.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, menuList.get(position).getItem_category());
+        product.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, categoryModel.getName());
         product.putString(FirebaseAnalytics.Param.ITEM_VARIANT, menuList.get(position).getVariant());
         product.putString(FirebaseAnalytics.Param.ITEM_BRAND, menuList.get(position).getBrand());
         product.putDouble(FirebaseAnalytics.Param.PRICE, menuList.get(position).getPrice());
