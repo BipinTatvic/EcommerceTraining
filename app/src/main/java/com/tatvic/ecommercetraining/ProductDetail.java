@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.analytics.FirebaseAnalytics;
 import com.tatvic.ecommercetraining.adapters.PLPListAdapter;
 import com.tatvic.ecommercetraining.model.CategoryModel;
 import com.tatvic.ecommercetraining.model.ProductModel;
@@ -38,7 +37,6 @@ public class ProductDetail extends AppCompatActivity {
     private PLPListAdapter.MenuListClickListener clickListener;
     private int totalItemInCart = 0;
     CategoryModel categoryModel;
-    private FirebaseAnalytics mFirebaseAnalytics;
     private ProductModel productModel;
     Intent intent;
 
@@ -48,7 +46,6 @@ public class ProductDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdp);
         findViewById();
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
 //        productModel = new ProductModel();
 
@@ -143,10 +140,7 @@ public class ProductDetail extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Bundle screen_view = new Bundle();
-        screen_view.putString(FirebaseAnalytics.Param.SCREEN_NAME, screen_name); //e.g. Screen Name
-        screen_view.putString(FirebaseAnalytics.Param.SCREEN_CLASS, this.getLocalClassName()); // You can pass the value as specific activity name over here and if not then you can ignore this line and it will take the value automtically
-        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, screen_view);
+
     }
 
 }

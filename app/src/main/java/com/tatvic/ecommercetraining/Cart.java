@@ -18,7 +18,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.gson.Gson;
 import com.tatvic.ecommercetraining.adapters.CartListAdapter;
 import com.tatvic.ecommercetraining.model.ProductModel;
@@ -40,7 +39,6 @@ public class Cart extends AppCompatActivity {
     SharedPreferences.Editor myEdit;
 //    SharedPreferences.Editor editor;
     CategoryModel categoryModel;
-    private FirebaseAnalytics mFirebaseAnalytics;
     private ProductModel productModel;
 //    SharedPreferences sh;
 
@@ -55,7 +53,6 @@ public class Cart extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
         sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         plist = new ArrayList<>();
 
         categoryModel = new CategoryModel();
@@ -194,9 +191,6 @@ public class Cart extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Bundle screen_view = new Bundle();
-        screen_view.putString(FirebaseAnalytics.Param.SCREEN_NAME, screen_name); //e.g. Screen Name
-        screen_view.putString(FirebaseAnalytics.Param.SCREEN_CLASS, this.getLocalClassName()); // You can pass the value as specific activity name over here and if not then you can ignore this line and it will take the value automtically
-        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, screen_view);
+
     }
 }

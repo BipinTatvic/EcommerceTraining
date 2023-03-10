@@ -18,7 +18,6 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.google.firebase.analytics.FirebaseAnalytics;
 import com.tatvic.ecommercetraining.MainActivity;
 import com.tatvic.ecommercetraining.ProductDetail;
 import com.tatvic.ecommercetraining.R;
@@ -42,7 +41,6 @@ public class PLPListAdapter extends RecyclerView.Adapter<PLPListAdapter.MyViewHo
     private final RemoveFromCartListener removeFromCartListener;
     private Context context;
     static ProductModel menu;
-    private FirebaseAnalytics mFirebaseAnalytics;
     CategoryModel categoryModel;
 
 
@@ -72,7 +70,6 @@ public class PLPListAdapter extends RecyclerView.Adapter<PLPListAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull PLPListAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
 //        categoryList = mainActivity.getRestaurantData();
 //        Log.d("kHWAFKUHB", String.valueOf(categoryList));
 //        Log.d("ILJFLIHF", String.valueOf(mainActivity.getRestaurantData()));

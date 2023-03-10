@@ -9,10 +9,8 @@ import android.os.Handler;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 
-import com.google.firebase.analytics.FirebaseAnalytics;
 
 public class Splash extends AppCompatActivity {
-    private FirebaseAnalytics mFirebaseAnalytics;
     private static final String screen_name = "Splash Screen";
 
     @Override
@@ -22,8 +20,6 @@ public class Splash extends AppCompatActivity {
 //                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         super.onCreate(savedInstanceState);
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-        Analytics();
         setContentView(R.layout.activity_splash);
 
         ProgressBar progressBar = findViewById(R.id.progressBar);
@@ -40,16 +36,10 @@ public class Splash extends AppCompatActivity {
 
     }
 
-    private void Analytics() {
-
-    }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Bundle screen_view = new Bundle();
-        screen_view.putString(FirebaseAnalytics.Param.SCREEN_NAME, screen_name); //e.g. Screen Name
-        screen_view.putString(FirebaseAnalytics.Param.SCREEN_CLASS, this.getLocalClassName()); // You can pass the value as specific activity name over here and if not then you can ignore this line and it will take the value automtically
-        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, screen_view);
+
     }
 }

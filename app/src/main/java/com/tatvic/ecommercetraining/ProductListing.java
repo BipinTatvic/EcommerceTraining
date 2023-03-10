@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.analytics.FirebaseAnalytics;
 import com.tatvic.ecommercetraining.adapters.PLPListAdapter;
 import com.tatvic.ecommercetraining.model.CategoryModel;
 import com.tatvic.ecommercetraining.model.ProductModel;
@@ -32,7 +31,6 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
     private PLPListAdapter PLPListAdapter;
     static List<ProductModel> itemsInCartList;
     private int totalItemInCart = 0;
-    private FirebaseAnalytics mFirebaseAnalytics;
     CategoryModel categoryModel;
     Bundle product, itemAddToCart;
     private LinearLayoutManager linearLayoutManager;
@@ -54,7 +52,6 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
         setContentView(R.layout.activity_product_listing);
         categoryModel = getIntent().getParcelableExtra("RestaurantModel");
         rv_PLP = findViewById(R.id.rv_PLP);
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         product = new Bundle();
         menuList = categoryModel.getMenus();
 
@@ -126,21 +123,11 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
                     if (lastItem >= 0 && flag >= lastItem) {
 
                         for (int i = 0; i <= lastItem; i++) {
-                            Bundle bundle = new Bundle();
-                            bundle.putString(FirebaseAnalytics.Param.ITEM_ID, menuList.get(i).getName());
-                            bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, menuList.get(i).getName());
-                            arrayBundle.add(i, bundle);
+
                         }
 
                         Log.d("CREATED_ARRAY", "array data::" + arrayBundle);
 
-                        Bundle viewItemListBundle = new Bundle();
-
-                        viewItemListBundle.putString(FirebaseAnalytics.Param.ITEM_LIST_ID, "list_1");
-                        viewItemListBundle.putString(FirebaseAnalytics.Param.ITEM_LIST_NAME, "FirstExecuteItem");
-                        viewItemListBundle.putParcelableArrayList(FirebaseAnalytics.Param.ITEMS, (ArrayList<? extends Parcelable>) arrayBundle);
-
-                        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.VIEW_ITEM_LIST, viewItemListBundle);
 
                         Log.d(
                                 "GA_FIRED_COUNT",
@@ -166,21 +153,11 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
 
                         Log.d("I_AM_WATCHING_U", "onScrolled: "+i);
 
-                        Bundle bundle = new Bundle();
-                        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, menuList.get(i).getName());
-                        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, menuList.get(i).getName());
-                        arrayBundle.add( bundle);
+
 
                     }
                     Log.d("CREATED_ARRAY", "array data::" + arrayBundle);
 
-                    Bundle viewItemListBundle = new Bundle();
-
-                    viewItemListBundle.putString(FirebaseAnalytics.Param.ITEM_LIST_ID, "list_1");
-                    viewItemListBundle.putString(FirebaseAnalytics.Param.ITEM_LIST_NAME, "SecondScrollItem");
-                    viewItemListBundle.putParcelableArrayList(FirebaseAnalytics.Param.ITEMS, (ArrayList<? extends Parcelable>) arrayBundle);
-
-                    mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.VIEW_ITEM_LIST, viewItemListBundle);
 
                     Log.d(
                             "GA_FIRED_COUNT",
@@ -201,21 +178,10 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
                         indexLastLog = false;
                         arrayBundle.clear();
 
-                        Bundle bundle = new Bundle();
-                        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, menuList.get(menuList.size()-1).getName());
-                        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, menuList.get(menuList.size()-1).getName());
-                        arrayBundle.add( bundle);
+
 
                         Log.d("CREATED_ARRAY", "array data::" + arrayBundle);
 
-
-                        Bundle viewItemListBundle = new Bundle();
-
-                        viewItemListBundle.putString(FirebaseAnalytics.Param.ITEM_LIST_ID, "last_index");
-                        viewItemListBundle.putString(FirebaseAnalytics.Param.ITEM_LIST_NAME, "lastItem");
-                        viewItemListBundle.putParcelableArrayList(FirebaseAnalytics.Param.ITEMS, (ArrayList<? extends Parcelable>) arrayBundle);
-
-                        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.VIEW_ITEM_LIST, viewItemListBundle);
 
                     }
                 }
@@ -293,74 +259,22 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
     @Override
     protected void onResume() {
         super.onResume();
-        Bundle screen_view = new Bundle();
-        screen_view.putString(FirebaseAnalytics.Param.SCREEN_NAME, screen_name); //e.g. Screen Name
-        screen_view.putString(FirebaseAnalytics.Param.SCREEN_CLASS, this.getLocalClassName()); // You can pass the value as specific activity name over here and if not then you can ignore this line and it will take the value automtically
-        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, screen_view);
+
     }
 
     @Override
     public void onProClick(Integer position) {
 
-        product.putString(FirebaseAnalytics.Param.ITEM_ID, menuList.get(position).getItem_id());
-        product.putString(FirebaseAnalytics.Param.ITEM_NAME, menuList.get(position).getName());
-        product.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, categoryModel.getName());
-        product.putString(FirebaseAnalytics.Param.ITEM_VARIANT, menuList.get(position).getVariant());
-        product.putString(FirebaseAnalytics.Param.ITEM_BRAND, menuList.get(position).getBrand());
-        product.putDouble(FirebaseAnalytics.Param.PRICE, menuList.get(position).getPrice());
-
-        Bundle selectItemParams = new Bundle();
-        selectItemParams.putString(FirebaseAnalytics.Param.ITEM_LIST_ID, categoryModel.getAddress());
-        selectItemParams.putString(FirebaseAnalytics.Param.ITEM_LIST_NAME, categoryModel.getName());
-        selectItemParams.putParcelableArray(FirebaseAnalytics.Param.ITEMS,
-                new Parcelable[]{product});
-        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_ITEM, selectItemParams);
-
-        Bundle viewItemParams = new Bundle();
-        viewItemParams.putString(FirebaseAnalytics.Param.CURRENCY, "INR");
-        viewItemParams.putDouble(FirebaseAnalytics.Param.VALUE, menuList.get(position).getPrice());
-        viewItemParams.putParcelableArray(FirebaseAnalytics.Param.ITEMS,
-                new Parcelable[]{product});
-        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.VIEW_ITEM, viewItemParams);
     }
 
     @Override
     public void onAddToCartProduct(Integer position) {
-        product.putString(FirebaseAnalytics.Param.ITEM_ID, menuList.get(position).getItem_id());
-        product.putString(FirebaseAnalytics.Param.ITEM_NAME, menuList.get(position).getName());
-        product.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, categoryModel.getName());
-        product.putString(FirebaseAnalytics.Param.ITEM_VARIANT, menuList.get(position).getVariant());
-        product.putString(FirebaseAnalytics.Param.ITEM_BRAND, menuList.get(position).getBrand());
-        product.putDouble(FirebaseAnalytics.Param.PRICE, menuList.get(position).getPrice());
 
-        Bundle itemJeggingsWishlist = new Bundle(product);
-        itemJeggingsWishlist.putLong(FirebaseAnalytics.Param.QUANTITY, 1);
-
-        Bundle addToWishlistParams = new Bundle();
-        addToWishlistParams.putString(FirebaseAnalytics.Param.CURRENCY, "INR");
-        addToWishlistParams.putDouble(FirebaseAnalytics.Param.VALUE, menuList.get(position).getPrice());
-        addToWishlistParams.putParcelableArray(FirebaseAnalytics.Param.ITEMS,
-                new Parcelable[]{itemJeggingsWishlist});
-
-        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.ADD_TO_CART, addToWishlistParams);
     }
 
     @Override
     public void onRemoveFromProduct(Integer position) {
-        product.putString(FirebaseAnalytics.Param.ITEM_ID, menuList.get(position).getItem_id());
-        product.putString(FirebaseAnalytics.Param.ITEM_NAME, menuList.get(position).getName());
-        product.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, categoryModel.getName());
-        product.putString(FirebaseAnalytics.Param.ITEM_VARIANT, menuList.get(position).getVariant());
-        product.putString(FirebaseAnalytics.Param.ITEM_BRAND, menuList.get(position).getBrand());
-        product.putDouble(FirebaseAnalytics.Param.PRICE, menuList.get(position).getPrice());
 
-        Bundle removeCartParams = new Bundle();
-        removeCartParams.putString(FirebaseAnalytics.Param.CURRENCY, "INR");
-        removeCartParams.putDouble(FirebaseAnalytics.Param.VALUE, menuList.get(position).getPrice());
-        removeCartParams.putParcelableArray(FirebaseAnalytics.Param.ITEMS,
-                new Parcelable[]{product});
-
-        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.REMOVE_FROM_CART, removeCartParams);
     }
 
 

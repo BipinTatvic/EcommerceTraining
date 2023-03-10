@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.analytics.FirebaseAnalytics;
 import com.tatvic.ecommercetraining.model.CategoryModel;
 
 public class ShippingAddress extends AppCompatActivity {
@@ -27,7 +26,6 @@ public class ShippingAddress extends AppCompatActivity {
     String isCart;
     CategoryModel categoryModel;
     Float cartValue;
-    private FirebaseAnalytics mFirebaseAnalytics;
 
 
     @Override
@@ -35,7 +33,6 @@ public class ShippingAddress extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shipping_address);
         findViewById();
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         i = getIntent();
         isCart = i.getStringExtra("from_cart");
@@ -171,9 +168,6 @@ public class ShippingAddress extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Bundle screen_view = new Bundle();
-        screen_view.putString(FirebaseAnalytics.Param.SCREEN_NAME, screen_name); //e.g. Screen Name
-        screen_view.putString(FirebaseAnalytics.Param.SCREEN_CLASS, this.getLocalClassName()); // You can pass the value as specific activity name over here and if not then you can ignore this line and it will take the value automtically
-        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, screen_view);
+
     }
 }
