@@ -195,8 +195,6 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
                 }
                 else if(menuList.size()-1 == lastIndexItem){
 
-                    Log.d("CREATED_ARRAY", "last ITEM: ");
-
                     if (indexLastLog == true) {
                         indexLastLog = false;
                         arrayBundle.clear();
