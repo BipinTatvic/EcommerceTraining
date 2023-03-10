@@ -92,7 +92,8 @@ public class ProductDetail extends AppCompatActivity {
                         1, intent.getStringExtra("item_img_url"),
                         intent.getStringExtra("item_id"),
                         intent.getStringExtra("item_brand"),
-                        intent.getStringExtra("item_variant"));
+                        intent.getStringExtra("item_variant"),
+                        intent.getStringExtra("item_category"));
 
                 itemsInCartList.add(productModel);
 

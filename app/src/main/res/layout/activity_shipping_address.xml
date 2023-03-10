@@ -28,16 +28,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvCustomerDetails"
+        android:maxLength="20"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginTop="05dp"
         android:layout_marginBottom="05dp"
-        android:hint="Enter your name"/>
+        android:hint="First name + Last name"/>
 
     <EditText
         android:id="@+id/inputAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:maxLength="95"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/inputName"
@@ -87,6 +89,50 @@
         android:hint="Enter your zip"
         android:inputType="number"
         android:maxLength="6"/>
+
+    <TextView
+        android:id="@+id/txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Delivery Type:"
+        android:textSize="18sp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inputZip"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="05dp"
+        android:layout_marginBottom="05dp"/>
+
+    <RadioGroup
+        android:id="@+id/radioGroupDelivery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="05dp"
+        android:layout_marginBottom="05dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt">
+
+        <RadioButton
+            android:id="@+id/rb_express_delivery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/express_delivery"/>
+        <RadioButton
+            android:id="@+id/rb_pick_at_store"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pick_at_store"/>
+        <RadioButton
+            android:id="@+id/rb_standard_delivery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/standard_delivery"/>
+    </RadioGroup>
 
     <Button
         android:id="@+id/buttonPlaceYourOrder"

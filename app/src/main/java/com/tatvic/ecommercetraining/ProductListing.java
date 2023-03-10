@@ -1,12 +1,7 @@
 package com.tatvic.ecommercetraining;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+import static java.lang.reflect.Array.set;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,14 +9,31 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.os.Parcelable;
+import android.preference.PreferenceManager;
+import android.util.Log;
+import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.gson.Gson;
 import com.tatvic.ecommercetraining.adapters.PLPListAdapter;
-import com.tatvic.ecommercetraining.model.CategoryModel;
 import com.tatvic.ecommercetraining.model.ProductModel;
+import com.tatvic.ecommercetraining.model.CategoryModel;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ProductListing extends AppCompatActivity implements PLPListAdapter.MenuListClickListener, com.tatvic.ecommercetraining.adapters.PLPListAdapter.ProductClickListener, com.tatvic.ecommercetraining.adapters.PLPListAdapter.AddToCartListener, com.tatvic.ecommercetraining.adapters.PLPListAdapter.RemoveFromCartListener {
 
@@ -64,8 +76,6 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
         linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
         initRecyclerView();
-
-
         buttonCheckout = findViewById(R.id.buttonCheckout);
         buttonCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -221,6 +231,8 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
         });
 
 
+        RecyclerView recyclerView =  findViewById(R.id.rv_PLP);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         MainActivity mainActivity = new MainActivity();
         PLPListAdapter = new PLPListAdapter(this, menuList,
                 this, this, this, this);
@@ -235,9 +247,10 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
 //    }
 
 
+
     @Override
     public void onAddToCartClick(ProductModel productModel) {
-        if (itemsInCartList == null) {
+        if(itemsInCartList == null) {
 //            itemsInCartList = new ArrayList<>();
         }
         itemsInCartList.add(productModel);
@@ -267,11 +280,11 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
 
     @Override
     public void onRemoveFromCartClick(ProductModel productModel) {
-        if (itemsInCartList.contains(productModel)) {
+        if(itemsInCartList.contains(productModel)) {
             itemsInCartList.remove(productModel);
             totalItemInCart = 0;
 
-            for (ProductModel m : itemsInCartList) {
+            for(ProductModel m : itemsInCartList) {
                 totalItemInCart = totalItemInCart + m.getTotalInCart();
             }
             //buttonCheckout.setText("Checkout (" +totalItemInCart +") items");
@@ -282,7 +295,7 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 1000 && resultCode == Activity.RESULT_OK) {
+        if(requestCode == 1000 && resultCode == Activity.RESULT_OK) {
             //
             finish();
         }
@@ -360,6 +373,4 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
 
         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.REMOVE_FROM_CART, removeCartParams);
     }
-
-
 }
