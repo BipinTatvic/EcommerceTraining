@@ -76,7 +76,7 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
         linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
         initRecyclerView();
-        buttonCheckout = findViewById(R.id.buttonCheckout);
+        buttonCheckout = findViewById(R.id.GoToCart);
         buttonCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -231,7 +231,7 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
         });
 
 
-        RecyclerView recyclerView =  findViewById(R.id.rv_PLP);
+        recyclerView =  findViewById(R.id.rv_PLP);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         MainActivity mainActivity = new MainActivity();
         PLPListAdapter = new PLPListAdapter(this, menuList,
