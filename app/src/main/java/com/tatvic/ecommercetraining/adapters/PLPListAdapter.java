@@ -3,6 +3,9 @@ package com.tatvic.ecommercetraining.adapters;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,24 +18,43 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.tatvic.ecommercetraining.MainActivity;
 import com.tatvic.ecommercetraining.ProductDetail;
 import com.tatvic.ecommercetraining.R;
+import com.tatvic.ecommercetraining.model.CategoryModel;
 import com.tatvic.ecommercetraining.model.ProductModel;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 public class PLPListAdapter extends RecyclerView.Adapter<PLPListAdapter.MyViewHolder> {
 
     private List<ProductModel> menuList;
+    private MainActivity mainActivity;
+    private List<CategoryModel> categoryList = new ArrayList<>();
+    private List<ProductModel> customMenuList = new ArrayList<>();
     private final MenuListClickListener clickListener;
+    private final ProductClickListener productClickListener;
+    private final AddToCartListener addtoCartListener;
+    private final RemoveFromCartListener removeFromCartListener;
     private Context context;
+    static ProductModel menu;
+    CategoryModel categoryModel;
 
-    public PLPListAdapter(Context context, List<ProductModel> menuList, MenuListClickListener clickListener) {
+
+
+    public PLPListAdapter(Context context, List<ProductModel> menuList, MenuListClickListener clickListener,
+                          ProductClickListener productClickListener,
+                          AddToCartListener addtoCartListener,
+                          RemoveFromCartListener removeFromCartListener) {
         this.menuList = menuList;
         this.clickListener = clickListener;
         this.context = context;
+        this.productClickListener = productClickListener;
+        this.addtoCartListener = addtoCartListener;
+        this.removeFromCartListener = removeFromCartListener;
     }
     public void updateData(List<ProductModel> menuList) {
         this.menuList = menuList;
@@ -48,27 +70,43 @@ public class PLPListAdapter extends RecyclerView.Adapter<PLPListAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull PLPListAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
+//        categoryList = mainActivity.getRestaurantData();
+//        Log.d("kHWAFKUHB", String.valueOf(categoryList));
+//        Log.d("ILJFLIHF", String.valueOf(mainActivity.getRestaurantData()));
+
         holder.menuName.setText(menuList.get(position).getName());
         holder.menuPrice.setText("Price: "+String.valueOf(NumberFormat.getCurrencyInstance(new Locale("en", "IN")).format(menuList.get(position).getPrice())));
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Log.d("categoryModel", categoryModel.getName());
+
+                productClickListener.onProClick(position);
+
                 Intent intent = new Intent(view.getContext(), ProductDetail.class);
                 intent.putExtra("item_name", menuList.get(position).getName());
-                intent.putExtra("item_price", String.valueOf(NumberFormat.getCurrencyInstance(new Locale("en", "IN")).format(menuList.get(position).getPrice())));
+                intent.putExtra("item_price", Float.valueOf(menuList.get(position).getPrice()));
                 intent.putExtra("item_img_url", menuList.get(position).getUrl());
+                intent.putExtra("item_id", menuList.get(position).getItem_id());
+                intent.putExtra("item_brand", menuList.get(position).getBrand());
+                intent.putExtra("item_variant", menuList.get(position).getVariant());
                 context.startActivity(intent);
             }
         });
         holder.addToCartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProductModel menu  = menuList.get(position);
+                menu  = menuList.get(position);
+                customMenuList.add(menu);
+                addtoCartListener.onAddToCartProduct(position);
+//              categoryModel.setMenus(customMenuList);
+
                 menu.setTotalInCart(1);
                 clickListener.onAddToCartClick(menu);
                 holder.addMoreLayout.setVisibility(View.VISIBLE);
                 holder.addToCartButton.setVisibility(View.GONE);
                 holder.tvCount.setText(menu.getTotalInCart()+"");
+
             }
         });
         holder.imageMinus.setOnClickListener(new View.OnClickListener() {
@@ -81,11 +119,15 @@ public class PLPListAdapter extends RecyclerView.Adapter<PLPListAdapter.MyViewHo
                     menu.setTotalInCart(total);
                     clickListener.onUpdateCartClick(menu);
                     holder.tvCount.setText(total +"");
+                    removeFromCartListener.onRemoveFromProduct(position);
+
                 } else {
                     holder.addMoreLayout.setVisibility(View.GONE);
                     holder.addToCartButton.setVisibility(View.VISIBLE);
                     menu.setTotalInCart(total);
                     clickListener.onRemoveFromCartClick(menu);
+                    removeFromCartListener.onRemoveFromProduct(position);
+
                 }
             }
         });
@@ -96,10 +138,12 @@ public class PLPListAdapter extends RecyclerView.Adapter<PLPListAdapter.MyViewHo
                 ProductModel menu  = menuList.get(position);
                 int total = menu.getTotalInCart();
                 total++;
+
                 if(total <= 10 ) {
                     menu.setTotalInCart(total);
                     clickListener.onUpdateCartClick(menu);
                     holder.tvCount.setText(total +"");
+                    addtoCartListener.onAddToCartProduct(position);
                 }
             }
         });
@@ -147,6 +191,19 @@ public class PLPListAdapter extends RecyclerView.Adapter<PLPListAdapter.MyViewHo
         public void onAddToCartClick(ProductModel menu);
         public void onUpdateCartClick(ProductModel menu);
         public void onRemoveFromCartClick(ProductModel menu);
+    }
+
+    public interface ProductClickListener
+    {
+        public void onProClick(Integer position);
+    }
+
+    public interface AddToCartListener{
+        public void onAddToCartProduct(Integer position);
+    }
+
+    public interface RemoveFromCartListener{
+        public void onRemoveFromProduct(Integer position);
     }
 }
 

@@ -23,6 +23,8 @@ import com.tatvic.ecommercetraining.model.CategoryModel;
 
 public class PaymentMethod extends AppCompatActivity {
 
+    private static final String screen_name = "Payment Method Screen";
+    private static final String screen_name_popup = "Payment Creds Popup";
     private RadioGroup radioGroup;
     private LinearLayout consentLL;
     private Button btn_pay;
@@ -32,6 +34,7 @@ public class PaymentMethod extends AppCompatActivity {
     private String cred_email, cred_password, user_entered_email, user_entered_pass;
 
 
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,7 @@ public class PaymentMethod extends AppCompatActivity {
         setContentView(R.layout.activity_payment_method);
 
         CategoryModel categoryModel = getIntent().getParcelableExtra("RestaurantModel");
+
         radioGroup = findViewById(R.id.radioGroup);
         consentLL = findViewById(R.id.consentLL);
         btn_pay = findViewById(R.id.btn_pay);
@@ -138,6 +142,7 @@ public class PaymentMethod extends AppCompatActivity {
                         }
                     });
                     dialog.show();
+
                 }
                 else if(!(radioGroup.getCheckedRadioButtonId() == -1) && !checkBox.isChecked()){
                     Snackbar.make(view, "Please check the T & C", Snackbar.LENGTH_LONG)
@@ -156,5 +161,12 @@ public class PaymentMethod extends AppCompatActivity {
         super.onBackPressed();
         finish();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
+
 }
 

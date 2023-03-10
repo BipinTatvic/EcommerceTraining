@@ -11,36 +11,71 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.tatvic.ecommercetraining.adapters.CartListAdapter;
 import com.tatvic.ecommercetraining.model.ProductModel;
 import com.tatvic.ecommercetraining.model.CategoryModel;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class Cart extends AppCompatActivity {
+    private static final String screen_name = "Cart Screen";
     private RecyclerView recyclerView_cart;
     private CartListAdapter cartListAdapter;
     private TextView tvSubtotalAmount, tvDeliveryChargeAmount, tvTotalAmount, tvTotalItems;
     private Button begin_checkout;
     float subTotalAmount = 0f;
     SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
+    SharedPreferences.Editor myEdit;
+//    SharedPreferences.Editor editor;
+    CategoryModel categoryModel;
+    private ProductModel productModel;
+//    SharedPreferences sh;
 
+    private String name;
+    private float price;
+    private int totalInCart;
+    private String url;
+    private List<ProductModel> plist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
+        sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+        plist = new ArrayList<>();
 
-        CategoryModel categoryModel = getIntent().getParcelableExtra("RestaurantModel");
+        categoryModel = new CategoryModel();
+
+
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("YOUR_MODEL", "");
+//        CategoryModel cm= gson.fromJson(json, CategoryModel.class);
+//
+//        name = cm.getName();
+////        price = cm.get
+////        totalInCart = cm.get
+//        url = cm.getImage();
+
+      /*  ProductModel p = new ProductModel(name,0,1,url);
+        plist.add(p);
+
+        categoryModel.setMenus(plist);*/
+
+
+        //Log.d("HEYFLDJF", "onCreate: "+cm);
+
+//        categoryModel = getIntent().getParcelableExtra("RestaurantModel");
         recyclerView_cart = findViewById(R.id.cartItemsRecyclerView);
         begin_checkout = findViewById(R.id.begin_checkout);
         tvSubtotalAmount = findViewById(R.id.tvSubtotalAmount);
@@ -61,17 +96,45 @@ public class Cart extends AppCompatActivity {
 //                LinearLayoutManager.VERTICAL, false));
 //        recyclerView_cart.setAdapter(cartAdapter);
 
-        sharedPreferences = getSharedPreferences("TotalPrice", Context.MODE_PRIVATE);
-        editor = sharedPreferences.edit();
-        initRecyclerView(categoryModel);
-        calculateTotalAmount(categoryModel);
+
+
+//        if (categoryModel == null ) {
+//            ProductModel p = new ProductModel(name,0,1,url);
+//            plist.add(p);
+//
+//            categoryModel.setMenus(plist);
+//        } else {
+//           /* ProductModel p = new ProductModel(name,0,1,url);
+//            plist.add(p);
+//
+//            categoryModel.setMenus(plist);*/
+//
+
+
+            categoryModel.setMenus(ProductListing.itemsInCartList);
+
+            initRecyclerView(categoryModel);
+            calculateTotalAmount(categoryModel);
+//
+//        }
+
 
         begin_checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Cart.this, ShippingAddress.class);
                 i.putExtra("RestaurantModel", categoryModel);
+                myEdit = sharedPreferences.edit();
+                Gson gson = new Gson();
+                String json = gson.toJson(categoryModel);
+
+                Log.d("okjhbvcfgh", "onClick: "+json);
+
+                myEdit.putString("YOUR_MODEL",json);
+                myEdit.apply();
+//                editor.put
                 i.putExtra("Total", subTotalAmount);
+                i.putExtra("from_cart", "yes");
                 startActivityForResult(i, 1000);
             }
         });
@@ -79,12 +142,13 @@ public class Cart extends AppCompatActivity {
     }
 
     private void initRecyclerView(CategoryModel categoryModel) {
-        if(categoryModel.getMenus() == null){
+        /*if(categoryModel.getMenus() == null){
             tvTotalItems.setText("Please add some items in cart");
-        }
+        }*/
         recyclerView_cart.setLayoutManager(new LinearLayoutManager(this));
         cartListAdapter = new CartListAdapter(categoryModel.getMenus());
         recyclerView_cart.setAdapter(cartListAdapter);
+
     }
 
     private void calculateTotalAmount(CategoryModel categoryModel) {
@@ -98,19 +162,20 @@ public class Cart extends AppCompatActivity {
         tvDeliveryChargeAmount.setText("₹" + String.format("%.2f", categoryModel.getDelivery_charge()));
         subTotalAmount += categoryModel.getDelivery_charge();
         tvTotalAmount.setText(String.valueOf(NumberFormat.getCurrencyInstance(new Locale("en", "IN")).format(subTotalAmount)));
-        editor.putString("TotalPrice", String.valueOf(NumberFormat.getCurrencyInstance(new Locale("en", "IN")).format(subTotalAmount)));
-        editor.commit();
+//        editor.putString("TotalPrice", String.valueOf(NumberFormat.getCurrencyInstance(new Locale("en", "IN")).format(subTotalAmount)));
+//        editor.commit();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 
-        if(requestCode == 1000) {
+        if (requestCode == 1000) {
             setResult(Activity.RESULT_OK);
             finish();
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
@@ -124,9 +189,8 @@ public class Cart extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
-    }
+    protected void onResume() {
+        super.onResume();
 
+    }
 }

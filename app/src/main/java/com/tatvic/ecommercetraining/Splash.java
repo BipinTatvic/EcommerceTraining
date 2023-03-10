@@ -9,7 +9,9 @@ import android.os.Handler;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 
+
 public class Splash extends AppCompatActivity {
+    private static final String screen_name = "Splash Screen";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,8 +20,6 @@ public class Splash extends AppCompatActivity {
 //                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         super.onCreate(savedInstanceState);
-
-
         setContentView(R.layout.activity_splash);
 
         ProgressBar progressBar = findViewById(R.id.progressBar);
@@ -33,6 +33,13 @@ public class Splash extends AppCompatActivity {
                 finish();
             }
         }, 1000);
+
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
     }
 }

@@ -33,7 +33,7 @@
         android:layout_height="50dp"
         android:background="@drawable/bkg_shape"
         android:gravity="center"
-        android:text="Add Items"
+        android:text="Go To CART"
         android:layout_margin="10dp"
         android:textColor="#FFFF"
         android:textSize="18sp"

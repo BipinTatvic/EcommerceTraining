@@ -15,6 +15,7 @@
         app:cardCornerRadius="2dp">
 
         <ImageView
+            android:id="@+id/ac_banner_list_promo"
             android:layout_width="wrap_content"
             android:layout_height="120dp"
             android:src="@drawable/banner2" />

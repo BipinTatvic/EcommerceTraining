@@ -35,6 +35,7 @@ import java.util.List;
 
 public class Search extends AppCompatActivity {
 
+    private static final String screen_name = "Search Screen";
     private SearchAdapter searchAdapter;
     private List<CategoryModel> menuList;
 
@@ -42,6 +43,7 @@ public class Search extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
 //        CategoryModel categoryModel = getIntent().getParcelableExtra("RestaurantModel");
 //        menuList = categoryModel.getMenus();
         menuList = getProductData();
@@ -97,6 +99,7 @@ public class Search extends AppCompatActivity {
             public boolean onQueryTextSubmit(String query) {
                 return false;
             }
+
             @Override
             public boolean onQueryTextChange(String newText) {
                 searchAdapter.getFilter().filter(newText);
@@ -105,10 +108,9 @@ public class Search extends AppCompatActivity {
         });
         return true;
     }
-
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
+    protected void onResume() {
+        super.onResume();
+
     }
 }
