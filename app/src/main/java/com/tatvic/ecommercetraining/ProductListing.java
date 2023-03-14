@@ -27,7 +27,7 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
 
     private static final String screen_name = "Product Listing Screen";
     private RecyclerView rv_PLP;
-    private Button buttonCheckout;
+    private Button GoToCart;
     private List<ProductModel> menuList = null;
     private PLPListAdapter PLPListAdapter;
     static List<ProductModel> itemsInCartList;
@@ -66,8 +66,8 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
         initRecyclerView();
 
 
-        buttonCheckout = findViewById(R.id.buttonCheckout);
-        buttonCheckout.setOnClickListener(new View.OnClickListener() {
+        GoToCart = findViewById(R.id.GoToCart);
+        GoToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (itemsInCartList == null && itemsInCartList.size() <= 0) {
@@ -127,8 +127,13 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
 
                         for (int i = 0; i <= lastItem; i++) {
                             Bundle bundle = new Bundle();
-                            bundle.putString(FirebaseAnalytics.Param.ITEM_ID, menuList.get(i).getName());
+                            bundle.putString(FirebaseAnalytics.Param.ITEM_ID, menuList.get(i).getItem_id());
                             bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, menuList.get(i).getName());
+                            bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, menuList.get(i).getItem_category());
+                            bundle.putString(FirebaseAnalytics.Param.ITEM_VARIANT,  menuList.get(i).getVariant());
+                            bundle.putString(FirebaseAnalytics.Param.ITEM_BRAND, menuList.get(i).getBrand());
+                            bundle.putDouble(FirebaseAnalytics.Param.PRICE, menuList.get(i).getPrice());
+                            bundle.putLong(FirebaseAnalytics.Param.INDEX, i+1);
                             arrayBundle.add(i, bundle);
                         }
 
@@ -136,8 +141,8 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
 
                         Bundle viewItemListBundle = new Bundle();
 
-                        viewItemListBundle.putString(FirebaseAnalytics.Param.ITEM_LIST_ID, "list_1");
-                        viewItemListBundle.putString(FirebaseAnalytics.Param.ITEM_LIST_NAME, "FirstExecuteItem");
+                        viewItemListBundle.putString(FirebaseAnalytics.Param.ITEM_LIST_ID, categoryModel.getAddress());
+                        viewItemListBundle.putString(FirebaseAnalytics.Param.ITEM_LIST_NAME, categoryModel.getName());
                         viewItemListBundle.putParcelableArrayList(FirebaseAnalytics.Param.ITEMS, (ArrayList<? extends Parcelable>) arrayBundle);
 
                         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.VIEW_ITEM_LIST, viewItemListBundle);
@@ -167,8 +172,13 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
                         Log.d("I_AM_WATCHING_U", "onScrolled: "+i);
 
                         Bundle bundle = new Bundle();
-                        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, menuList.get(i).getName());
+                        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, menuList.get(i).getItem_id());
                         bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, menuList.get(i).getName());
+                        bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, menuList.get(i).getItem_category());
+                        bundle.putString(FirebaseAnalytics.Param.ITEM_VARIANT,  menuList.get(i).getVariant());
+                        bundle.putString(FirebaseAnalytics.Param.ITEM_BRAND, menuList.get(i).getBrand());
+                        bundle.putDouble(FirebaseAnalytics.Param.PRICE, menuList.get(i).getPrice());
+                        bundle.putLong(FirebaseAnalytics.Param.INDEX, i+1);
                         arrayBundle.add( bundle);
 
                     }
@@ -176,8 +186,8 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
 
                     Bundle viewItemListBundle = new Bundle();
 
-                    viewItemListBundle.putString(FirebaseAnalytics.Param.ITEM_LIST_ID, "list_1");
-                    viewItemListBundle.putString(FirebaseAnalytics.Param.ITEM_LIST_NAME, "SecondScrollItem");
+                    viewItemListBundle.putString(FirebaseAnalytics.Param.ITEM_LIST_ID, categoryModel.getAddress());
+                    viewItemListBundle.putString(FirebaseAnalytics.Param.ITEM_LIST_NAME, categoryModel.getName());
                     viewItemListBundle.putParcelableArrayList(FirebaseAnalytics.Param.ITEMS, (ArrayList<? extends Parcelable>) arrayBundle);
 
                     mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.VIEW_ITEM_LIST, viewItemListBundle);
@@ -202,17 +212,24 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
                         arrayBundle.clear();
 
                         Bundle bundle = new Bundle();
-                        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, menuList.get(menuList.size()-1).getName());
+
+                        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, menuList.get(menuList.size()-1).getItem_id());
                         bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, menuList.get(menuList.size()-1).getName());
-                        arrayBundle.add( bundle);
+                        bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, menuList.get(menuList.size()-1).getItem_category());
+                        bundle.putString(FirebaseAnalytics.Param.ITEM_VARIANT, menuList.get(menuList.size()-1).getVariant());
+                        bundle.putString(FirebaseAnalytics.Param.ITEM_BRAND, menuList.get(menuList.size()-1).getBrand());
+                        bundle.putString(FirebaseAnalytics.Param.PRICE, String.valueOf(menuList.get(menuList.size()-1).getPrice()));
+                        bundle.putLong(FirebaseAnalytics.Param.INDEX, menuList.size());
+
+                        arrayBundle.add(bundle);
 
                         Log.d("CREATED_ARRAY", "array data::" + arrayBundle);
 
 
                         Bundle viewItemListBundle = new Bundle();
 
-                        viewItemListBundle.putString(FirebaseAnalytics.Param.ITEM_LIST_ID, "last_index");
-                        viewItemListBundle.putString(FirebaseAnalytics.Param.ITEM_LIST_NAME, "lastItem");
+                        viewItemListBundle.putString(FirebaseAnalytics.Param.ITEM_LIST_ID, categoryModel.getAddress());
+                        viewItemListBundle.putString(FirebaseAnalytics.Param.ITEM_LIST_NAME, categoryModel.getName());
                         viewItemListBundle.putParcelableArrayList(FirebaseAnalytics.Param.ITEMS, (ArrayList<? extends Parcelable>) arrayBundle);
 
                         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.VIEW_ITEM_LIST, viewItemListBundle);
@@ -223,7 +240,7 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
         });
 
 
-        MainActivity mainActivity = new MainActivity();
+        //MainActivity mainActivity = new MainActivity();
         PLPListAdapter = new PLPListAdapter(this, menuList,
                 this, this, this, this);
         recyclerView.setAdapter(PLPListAdapter);
@@ -365,3 +382,4 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
 
 
 }
+

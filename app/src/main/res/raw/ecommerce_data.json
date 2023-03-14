@@ -18,6 +18,7 @@
       {
         "name": "Iphone 14 128 GB",
         "item_id":"iphone_14_128",
+        "item_category":"Mobiles",
         "brand": "Apple",
         "variant": "Blue",
         "price": 74000,
@@ -26,6 +27,7 @@
       {
         "name": "Iphone 13 128 GB",
         "item_id":"iphone_13_128",
+        "item_category":"Mobiles",
         "brand": "Apple",
         "variant": "Green",
         "price": 68000,
@@ -34,6 +36,7 @@
       {
         "name": "Apple iPhone 14 Pro Max (256 GB, Gold)",
         "item_id":"iphone_14_pro_max_256",
+        "item_category":"Mobiles",
         "brand": "Apple",
         "variant": "Gold",
         "price": 149900,
@@ -42,6 +45,7 @@
       {
         "name": "Apple iPhone 14 Pro (128 GB Storage, Space Black)",
         "item_id":"iphone_14_pro_128",
+        "item_category":"Mobiles",
         "brand": "Apple",
         "variant": "Space Black",
         "price": 129000,
@@ -50,6 +54,7 @@
       {
         "name": "Apple iPhone 12 (128 GB, White)",
         "item_id":"iphone_12_128",
+        "item_category":"Mobiles",
         "brand": "Apple",
         "variant": "White",
         "price": 59000,
@@ -58,6 +63,7 @@
       {
         "name": "Apple iPhone 13 (128GB, Pink)",
         "item_id":"iphone_13_128",
+        "item_category":"Mobiles",
         "brand": "Apple",
         "variant": "Pink",
         "price": 65000,
@@ -66,6 +72,7 @@
       {
         "name": "Apple iPhone 14 Pro (256 GB, Silver)",
         "item_id":"iphone_14_pro_256",
+        "item_category":"Mobiles",
         "brand": "Apple",
         "variant": "Silver",
         "price": 139000,
@@ -74,6 +81,7 @@
       {
         "name": "Apple iPhone 13 (256 GB Storage, (Product) Red)",
         "item_id":"iphone_13_256",
+        "item_category":"Mobiles",
         "brand": "Apple",
         "variant": "Red",
         "price": 74900,
@@ -82,6 +90,7 @@
       {
         "name": "Apple iPhone SE (64GB, Red) ",
         "item_id":"iphone_SE_64",
+        "item_category":"Mobiles",
         "brand": "Apple",
         "variant": "Red",
         "price": 43000,
@@ -90,6 +99,7 @@
       {
         "name": "Apple iPhone 14 Pro (128 GB Storage, Space)",
         "item_id":"iphone_14_pro_128",
+        "item_category":"Mobiles",
         "brand": "Apple",
         "variant": "Space Black",
         "price": 124000,
@@ -116,6 +126,7 @@
       {
         "name": "Acer I Series 108 cm (43 inch) 4K Ultra HD LED Android TV with Google Assistant (2022 model)",
         "item_id":"acer_tv_4k",
+        "item_category":"Televisions",
         "brand": "Acer",
         "variant": "43 inch",
         "price": 34000,
@@ -124,6 +135,7 @@
       {
         "name": "Mi 5X 108 cm (43 inch) 4K Ultra HD LED Android TV with Alexa Compatibility (2021 model)",
         "item_id":"mi_tv_4k",
+        "item_category":"Televisions",
         "brand": "Xiaomi",
         "variant": "43 inch",
         "price": 32000,
@@ -132,6 +144,7 @@
       {
         "name": "OnePlus Y Series 80 cm (32 inch) HD Ready LED Smart Android TV with Built-in Google Assistant",
         "item_id":"oneplus_tv_hd",
+        "item_category":"Televisions",
         "brand": "OnePlus",
         "variant": "32 inch",
         "price": 19000,
@@ -140,6 +153,7 @@
       {
         "name": "SONY Bravia XR 163.9 cm (65 inch) 4K Ultra HD OLED Android TVk)",
         "item_id":"sony_bravia_tv_4k",
+        "item_category":"Televisions",
         "brand": "SONY",
         "variant": "65 inch",
         "price": 29000,
@@ -148,6 +162,7 @@
       {
         "name": "LG C2X 164 cm (65 inch) 4K Ultra HD OLED WebOS TV ",
         "item_id":"lg_c2x_tv_4k",
+        "item_category":"Televisions",
         "brand": "LG",
         "variant": "65 inch",
         "price": 21000,
@@ -156,6 +171,7 @@
       {
         "name": "LG LX1 139 cm (55 inch) OLED 4K Ultra HD WebOS TV with Dolby Vision & Dolby Atmos ",
         "item_id":"lg_lx1_tv_4k",
+        "item_category":"Televisions",
         "brand": "LG",
         "variant": "55 inch",
         "price": 20500,
@@ -164,6 +180,7 @@
       {
         "name": "SAMSUNG Series 9 163 cm (65 inch) QLED 4K Ultra HD Tizen TV with Alexa Compatibility",
         "item_id":"samsung_tizen_alexa_tv_4k",
+        "item_category":"Televisions",
         "brand": "SAMSUNG",
         "variant": "65 inch",
         "price": 23000,
@@ -172,6 +189,7 @@
       {
         "name": "SONY X80K Series 189 cm (75 inch) 4K Ultra HD LED Google Android TV",
         "item_id":"sony_x80k_tv_4k",
+        "item_category":"Televisions",
         "brand": "SONY",
         "variant": "75 inch",
         "price": 74900,
@@ -180,6 +198,7 @@
       {
         "name": "SAMSUNG 7 189 cm (75 inch) 4K Ultra HD LED Tizen TV  ",
         "item_id":"samsung_tizen_tv_4k",
+        "item_category":"Televisions",
         "brand": "SAMSUNG",
         "variant": "75 inch",
         "price": 114300,
@@ -188,6 +207,7 @@
       {
         "name": "TCL C835 Series 165 cm (65 inch) 4K Ultra HD QLED Android TV",
         "item_id":"tcl_tv_4k",
+        "item_category":"Televisions",
         "brand": "TCL",
         "variant": "65 inch",
         "price": 124000,
@@ -213,6 +233,7 @@
       {
         "name": "Logitech G335 981-000979 Wired Headphone with Mic",
         "item_id":"logitech_headphone_wired",
+        "item_category":"Audios",
         "brand": "Logitech",
         "variant": "G335",
         "price": 6000,
@@ -221,6 +242,7 @@
       {
         "name": "JBL Quantum 300 JBLQUANTUM300BLK Wired Gaming Headset with Active Noise Cancellation",
         "item_id":"jbl_headset_wired",
+        "item_category":"Audios",
         "brand": "JBL",
         "variant": "Quantum 300",
         "price": 8000,
@@ -229,6 +251,7 @@
       {
         "name": "Logitech G331 Gaming Headset (Black)",
         "item_id":"logitech_headset_wired",
+        "item_category":"Audios",
         "brand": "Logitech",
         "variant": "G331 Black",
         "price": 7900,
@@ -237,6 +260,7 @@
       {
         "name": "Sony WH-1000XM5 Bluetooth Headset with Mic",
         "item_id":"sony_headset_bluetooth",
+        "item_category":"Audios",
         "brand": "Sony",
         "variant": "WH-1000XM5",
         "price": 29000,
@@ -245,6 +269,7 @@
       {
         "name": "Bose QuietComfort 45 Bluetooth Headset with Mic",
         "item_id":"bose_headset_bluetooth",
+        "item_category":"Audios",
         "brand": "Bose",
         "variant": "QuietComfort 45",
         "price": 19000,
@@ -253,6 +278,7 @@
       {
         "name": "Apple AirPods Pro (2nd Generation)",
         "item_id":"apple_headset_bluetooth",
+        "item_category":"Audios",
         "brand": "Apple",
         "variant": "AirPods Pro (2nd Gen)",
         "price": 25000,
@@ -261,6 +287,7 @@
       {
         "name": "SONY WH1000XM4/SMIN Bluetooth Headset with Mic ",
         "item_id":"sony_headset_bluetooth",
+        "item_category":"Audios",
         "brand": "SONY",
         "variant": "WH1000XM4/SMIN",
         "price": 39000,
@@ -269,6 +296,7 @@
       {
         "name": "Apple AirPods Pro (1st Generation)",
         "item_id":"apple_headset_bluetooth",
+        "item_category":"Audios",
         "brand": "Apple",
         "variant": "AirPods Pro (1st Gen)",
         "price": 21000,
@@ -277,6 +305,7 @@
       {
         "name": "Sony LinkBuds S WF-LS900N/WCIN TWS Earbuds",
         "item_id":"sony_tws_earbuds",
+        "item_category":"Audios",
         "brand": "SONY",
         "variant": "WF-LS900N/WCIN",
         "price": 19000,
@@ -285,6 +314,7 @@
       {
         "name": "Sony LinkBuds S WF-LS900N/CCIN TWS Earbuds",
         "item_id":"sony_tws_earbuds",
+        "item_category":"Audios",
         "brand": "SONY",
         "variant": "F-LS900N/CCIN",
         "price": 16000,
@@ -310,6 +340,7 @@
       {
         "name": "SAMSUNG 865 Litres Frost Free French Door Smart Wi-Fi Enabled Refrigerator with Door-in-Door",
         "item_id":"samsung_fridge_door-in-door",
+        "item_category":"Refrigerators",
         "brand": "SAMSUNG",
         "variant": "865 Litres",
         "price": 239000,
@@ -318,14 +349,16 @@
       {
         "name": "SAMSUNG 934 Litres Frost Free French Door Smart Wi-Fi Enabled Refrigerator with Family Hub",
         "item_id":"samsung_fridge_family_hub",
+        "item_category":"Refrigerators",
         "brand": "SAMSUNG",
         "variant": "934 Litres",
         "price": 139000,
         "url": "https://d2d22nphq0yz8t.cloudfront.net/88e6cc4b-eaa1-4053-af65-563d88ba8b26/https://media.croma.com/image/upload/v1673268766/Croma%20Assets/Large%20Appliances/Refrigerator/Images/245192_0_brl2h5.png/mxw_1440,f_auto"
       },
       {
-        "name": "LG 889 Litres 2 Star Frost Free French Door Smart Wi-Fi Enabled Refrigerator with InstaView Door-in-Door",
+        "name": "LG 889 Litres 2 Star French Door Smart Wi-Fi Enabled Refrigerator with InstaView Door-in-Door",
         "item_id":"lg_fridge_door-in-door",
+        "item_category":"Refrigerators",
         "brand": "LG",
         "variant": "889 Litres",
         "price": 199000,
@@ -334,6 +367,7 @@
       {
         "name": "LG 674 Litres Frost Free Side by Side Door Smart Wi-Fi Enabled Refrigerator",
         "item_id":"lg_fridge_side-by-side_door",
+        "item_category":"Refrigerators",
         "brand": "LG",
         "variant": "674 Litres",
         "price": 109000,
@@ -342,6 +376,7 @@
       {
         "name": "SAMSUNG 681 Litres Frost Free Side by Side Door Smart Wi-Fi Enabled Refrigerator",
         "item_id":"samsung_fridge_side-by-side_door",
+        "item_category":"Refrigerators",
         "brand": "SAMSUNG",
         "variant": "681 Litres",
         "price": 100000,
@@ -350,6 +385,7 @@
       {
         "name": "LG 708 Litres Frost Free Side by Side Door Smart Wi-Fi Enabled Refrigerator",
         "item_id":"lg_fridge_side-by-side_door",
+        "item_category":"Refrigerators",
         "brand": "LG",
         "variant": "708 Litres",
         "price": 99000,
@@ -358,6 +394,7 @@
       {
         "name": "Haier 712 Litres A++ Frost Free French Door Refrigerator",
         "item_id":"haier_fridge_french_door",
+        "item_category":"Refrigerators",
         "brand": "Haier",
         "variant": "712 Litres",
         "price": 139000,
@@ -366,6 +403,7 @@
       {
         "name": "SAMSUNG 845 Litres Frost Free Side by Side Refrigerator",
         "item_id":"samsung_fridge_side-by-side_door",
+        "item_category":"Refrigerators",
         "brand": "SAMSUNG",
         "variant": "845 Litres",
         "price": 139000,
@@ -374,6 +412,7 @@
       {
         "name": "Electrolux UltimateTaste 700 Litres French Door Refrigerator",
         "item_id":"electrolux_fridge_french_door",
+        "item_category":"Refrigerators",
         "brand": "Electrolux",
         "variant": "700 Litres",
         "price": 75000,
@@ -399,6 +438,7 @@
       {
         "name": "Voltas Executive 5 in 1 Convertible 1.5 Ton 5 Star Split AC(Copper Condenser, 185V EAZQ)",
         "item_id":"voltas_ac_EAZQ",
+        "item_category":"Air Conditioners",
         "brand": "Voltas",
         "variant": "1.5 Ton 5 Star Split AC",
         "price": 40990,
@@ -407,6 +447,7 @@
       {
         "name": "Carrier Ester CXI 4 in 1 Convertible 1.5 Ton 3 Star Split AC (Copper Condenser, CAI18ES3R30F1)",
         "item_id":"carrier_ac_CAI18ES3R30F1",
+        "item_category":"Air Conditioners",
         "brand": "Carrier",
         "variant": "1.5 Ton 3 Star Split AC",
         "price": 34990,
@@ -415,6 +456,7 @@
       {
         "name": "Lloyd 1.5 Ton 4 Star Inverter Split AC with 4-Way Swing (Copper Condenser, GLS18I4FWCXT)",
         "item_id":"lloyd_ac_GLS18I4FWCXT",
+        "item_category":"Air Conditioners",
         "brand": "Lloyd",
         "variant": "1.5 Ton 4 Star Split AC",
         "price": 37990,
@@ -423,6 +465,7 @@
       {
         "name": "Croma 4 in 1 Convertible 1.2 Ton 3 Star AC (Copper Condenser, CRLAIN0143T0253)",
         "item_id":"croma_ac_CRLAIN0143T0253",
+        "item_category":"Air Conditioners",
         "brand": "Croma",
         "variant": "1.2 Ton 3 Star AC",
         "price": 28990,
@@ -431,6 +474,7 @@
       {
         "name": "LG 6 in 1 Convertible 1 Ton 5 Star AI Dual AC (Copper Condenser, RS-Q14ANZE.ANLG)",
         "item_id":"lg_ac_RS-Q14ANZE.ANLG",
+        "item_category":"Air Conditioners",
         "brand": "LG",
         "variant": "1 Ton 5 Star AI Dual AC",
         "price": 40990,
@@ -439,6 +483,7 @@
       {
         "name": "Daikin Standard Plus 1 Ton 3 Star Inverter Split AC (Copper Condenser, ATKL35UV)",
         "item_id":"daikin_ac_ATKL35UV",
+        "item_category":"Air Conditioners",
         "brand": "Daikin",
         "variant": "1 Ton 3 Star Split AC",
         "price": 33290,
@@ -447,6 +492,7 @@
       {
         "name": "Carrier Ester CXI 6 in 1 Convertible 1.5 Ton 5 Star Split AC (Copper Condenser, CAI18ES5R30F1)",
         "item_id":"carrier_ac_CAI18ES5R30F1",
+        "item_category":"Air Conditioners",
         "brand": "Carrier",
         "variant": "1.5 Ton 5 Star Split AC",
         "price": 40990,

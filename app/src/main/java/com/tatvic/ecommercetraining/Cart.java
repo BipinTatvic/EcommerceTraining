@@ -7,15 +7,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -26,6 +25,7 @@ import com.tatvic.ecommercetraining.model.CategoryModel;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -34,32 +34,29 @@ public class Cart extends AppCompatActivity {
     private RecyclerView recyclerView_cart;
     private CartListAdapter cartListAdapter;
     private TextView tvSubtotalAmount, tvDeliveryChargeAmount, tvTotalAmount, tvTotalItems;
+    HashMap<String, ProductModel> hashMap = new HashMap<String, ProductModel>();
     private Button begin_checkout;
     float subTotalAmount = 0f;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor myEdit;
-//    SharedPreferences.Editor editor;
     CategoryModel categoryModel;
+    Bundle item_bundle;
     private FirebaseAnalytics mFirebaseAnalytics;
     private ProductModel productModel;
-//    SharedPreferences sh;
-
-    private String name;
-    private float price;
-    private int totalInCart;
-    private String url;
     private List<ProductModel> plist;
+    private List<Bundle> arrayBundle = new ArrayList<Bundle>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
-        sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-        plist = new ArrayList<>();
-
+        plist = new ArrayList<ProductModel>();
+        sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+        myEdit = sharedPreferences.edit();
         categoryModel = new CategoryModel();
-
+        Bundle viewCartParams = new Bundle();
 
         Gson gson = new Gson();
         String json = sharedPreferences.getString("YOUR_MODEL", "");
@@ -100,7 +97,6 @@ public class Cart extends AppCompatActivity {
 //        recyclerView_cart.setAdapter(cartAdapter);
 
 
-
 //        if (categoryModel == null ) {
 //            ProductModel p = new ProductModel(name,0,1,url);
 //            plist.add(p);
@@ -114,35 +110,85 @@ public class Cart extends AppCompatActivity {
 //
 
 
-            categoryModel.setMenus(ProductListing.itemsInCartList);
+        categoryModel.setMenus(ProductListing.itemsInCartList);
 
-            initRecyclerView(categoryModel);
-            calculateTotalAmount(categoryModel);
+        initRecyclerView(categoryModel);
+        calculateTotalAmount(categoryModel);
 //
 //        }
 
 
+
+
+        arrayBundle.clear();
+        //Bundle itemJeggingsCart = new Bundle(item_bundle);
+        for (int i = 0; i < ProductListing.itemsInCartList.size(); i++) {
+            plist.add(ProductListing.itemsInCartList.get(i));
+            Bundle item_bundle = new Bundle();
+
+            item_bundle.putString(FirebaseAnalytics.Param.ITEM_ID, plist.get(i).getItem_id());
+            item_bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, plist.get(i).getName());
+            item_bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, plist.get(i).getItem_category());
+            item_bundle.putString(FirebaseAnalytics.Param.ITEM_VARIANT, plist.get(i).getVariant());
+            item_bundle.putString(FirebaseAnalytics.Param.ITEM_BRAND, plist.get(i).getBrand());
+            item_bundle.putDouble(FirebaseAnalytics.Param.PRICE, plist.get(i).getPrice());
+            item_bundle.putDouble(FirebaseAnalytics.Param.QUANTITY, plist.get(i).getTotalInCart());
+
+//            Log.d("HERE_IS_YOUR_QT", "onCreate: "+ plist.get(i).getTotalInCart());
+
+
+            String[] items = {plist.get(i).getName()};
+
+            arrayBundle.add(item_bundle);
+            //viewCartParams.putLong(FirebaseAnalytics.Param.QUANTITY, plist.get(i).getTotalInCart());
+
+        }
+
+        Log.d("order_details", arrayBundle.toString());
+
+        viewCartParams.putString(FirebaseAnalytics.Param.CURRENCY, "INR");
+        viewCartParams.putDouble(FirebaseAnalytics.Param.VALUE, subTotalAmount);
+        viewCartParams.putParcelableArrayList(FirebaseAnalytics.Param.ITEMS,
+                (ArrayList<? extends Parcelable>) arrayBundle);
+
+        if(ProductListing.itemsInCartList.size() == 0){
+
+        }else {
+            mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.VIEW_CART, viewCartParams);
+        }
+
         begin_checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Cart.this, ShippingAddress.class);
-                i.putExtra("RestaurantModel", categoryModel);
-                myEdit = sharedPreferences.edit();
-                Gson gson = new Gson();
-                String json = gson.toJson(categoryModel);
+                Intent intent = new Intent(Cart.this, ShippingAddress.class);
+                intent.putExtra("RestaurantModel", categoryModel);
 
-                Log.d("okjhbvcfgh", "onClick: "+json);
+//                Gson gson = new Gson();
+//                String json = gson.toJson(categoryModel);
+//
+//                Log.d("okjhbvcfgh", "onClick: " + json);
+//
+//                myEdit.putString("YOUR_MODEL", json);
+//                myEdit.apply();
+                intent.putExtra("Total", subTotalAmount);
+                intent.putExtra("from_cart", "yes");
+                startActivityForResult(intent, 1000);
 
-                myEdit.putString("YOUR_MODEL",json);
-                myEdit.apply();
-//                editor.put
-                i.putExtra("Total", subTotalAmount);
-                i.putExtra("from_cart", "yes");
-                startActivityForResult(i, 1000);
+                Bundle beginCheckoutParams = new Bundle();
+
+                beginCheckoutParams.putString(FirebaseAnalytics.Param.CURRENCY, "INR");
+                beginCheckoutParams.putDouble(FirebaseAnalytics.Param.VALUE, subTotalAmount);
+                beginCheckoutParams.putString(FirebaseAnalytics.Param.COUPON, "SUMMER_FUN");
+
+                beginCheckoutParams.putParcelableArrayList(FirebaseAnalytics.Param.ITEMS,
+                        (ArrayList<? extends Parcelable>) arrayBundle);
+                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.BEGIN_CHECKOUT, beginCheckoutParams);
             }
         });
 
+
     }
+
 
     private void initRecyclerView(CategoryModel categoryModel) {
         /*if(categoryModel.getMenus() == null){
@@ -151,7 +197,6 @@ public class Cart extends AppCompatActivity {
         recyclerView_cart.setLayoutManager(new LinearLayoutManager(this));
         cartListAdapter = new CartListAdapter(categoryModel.getMenus());
         recyclerView_cart.setAdapter(cartListAdapter);
-
     }
 
     private void calculateTotalAmount(CategoryModel categoryModel) {
@@ -165,8 +210,9 @@ public class Cart extends AppCompatActivity {
         tvDeliveryChargeAmount.setText("₹" + String.format("%.2f", categoryModel.getDelivery_charge()));
         subTotalAmount += categoryModel.getDelivery_charge();
         tvTotalAmount.setText(String.valueOf(NumberFormat.getCurrencyInstance(new Locale("en", "IN")).format(subTotalAmount)));
-//        editor.putString("TotalPrice", String.valueOf(NumberFormat.getCurrencyInstance(new Locale("en", "IN")).format(subTotalAmount)));
-//        editor.commit();
+        //myEdit.putString("TotalPrice", String.valueOf(NumberFormat.getCurrencyInstance(new Locale("en", "IN")).format(subTotalAmount)));
+        myEdit.putFloat("Value", subTotalAmount);
+        myEdit.apply();
     }
 
     @Override
@@ -179,17 +225,17 @@ public class Cart extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-            default:
-                //do nothing
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//
+//        switch (item.getItemId()) {
+//            case android.R.id.home:
+//                finish();
+//            default:
+//                //do nothing
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
     @Override
     protected void onResume() {
