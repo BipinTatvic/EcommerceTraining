@@ -24,4 +24,5 @@
     <string name="express_delivery">EXPRESS Delivery <small>(within 3 hours)</small></string>
     <string name="pick_at_store">Pick at Store: <small>At your convenience | Search Nearby Store</small></string>
     <string name="standard_delivery">Standard Delivery: <small>6 - 8 working days</small></string>
+    <string name="use_test_credentials">Use test credentials</string>
 </resources>

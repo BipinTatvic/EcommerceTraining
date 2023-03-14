@@ -117,6 +117,9 @@ public class Cart extends AppCompatActivity {
 //
 //        }
 
+
+
+
         arrayBundle.clear();
         //Bundle itemJeggingsCart = new Bundle(item_bundle);
         for (int i = 0; i < ProductListing.itemsInCartList.size(); i++) {
@@ -129,11 +132,20 @@ public class Cart extends AppCompatActivity {
             item_bundle.putString(FirebaseAnalytics.Param.ITEM_VARIANT, plist.get(i).getVariant());
             item_bundle.putString(FirebaseAnalytics.Param.ITEM_BRAND, plist.get(i).getBrand());
             item_bundle.putDouble(FirebaseAnalytics.Param.PRICE, plist.get(i).getPrice());
+            item_bundle.putDouble(FirebaseAnalytics.Param.QUANTITY, plist.get(i).getTotalInCart());
+
+//            Log.d("HERE_IS_YOUR_QT", "onCreate: "+ plist.get(i).getTotalInCart());
+
+
+            String[] items = {plist.get(i).getName()};
 
             arrayBundle.add(item_bundle);
-            viewCartParams.putLong(FirebaseAnalytics.Param.QUANTITY, plist.get(i).getTotalInCart());
+            //viewCartParams.putLong(FirebaseAnalytics.Param.QUANTITY, plist.get(i).getTotalInCart());
 
         }
+
+        Log.d("order_details", arrayBundle.toString());
+
         viewCartParams.putString(FirebaseAnalytics.Param.CURRENCY, "INR");
         viewCartParams.putDouble(FirebaseAnalytics.Param.VALUE, subTotalAmount);
         viewCartParams.putParcelableArrayList(FirebaseAnalytics.Param.ITEMS,

@@ -128,8 +128,16 @@ public class ProductDetail extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(ProductDetail.this, ShippingAddress.class));
+                Intent intent = new Intent(ProductDetail.this, ShippingAddress.class);
+                intent.putExtra("from_detail", "yes");
+                startActivityForResult(intent, 1000);
 
+                Bundle params = new Bundle();
+                params.putString(FirebaseAnalytics.Param.ITEM_ID, intent.getStringExtra("item_id"));
+                params.putString(FirebaseAnalytics.Param.ITEM_NAME, intent.getStringExtra("item_name"));
+                params.putDouble(FirebaseAnalytics.Param.PRICE, intent.getFloatExtra("item_price", 0));
+                params.putString("screen_name",screen_name);
+                mFirebaseAnalytics.logEvent("buy_now_click", params);
             }
         });
 
@@ -137,6 +145,11 @@ public class ProductDetail extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(ProductDetail.this, Cart.class));
+
+                Bundle custom_event1 = new Bundle();
+                custom_event1.putString("menu_name", "Cart");
+                custom_event1.putString("screen_name", screen_name);
+                mFirebaseAnalytics.logEvent("top_action_bar_click", custom_event1);
             }
         });
     }

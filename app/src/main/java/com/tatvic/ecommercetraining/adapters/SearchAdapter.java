@@ -74,7 +74,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ExampleVie
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), ProductDetail.class);
                 intent.putExtra("item_name", exampleList.get(position).getName());
-                intent.putExtra("item_price", String.valueOf(NumberFormat.getCurrencyInstance(new Locale("en", "IN")).format(exampleList.get(position).getDelivery_charge())));
+                intent.putExtra("item_price", Float.valueOf(exampleList.get(position).getDelivery_charge()));
                 intent.putExtra("item_img_url", exampleList.get(position).getImage());
                 context.startActivity(intent);
             }

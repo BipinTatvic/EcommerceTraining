@@ -1,7 +1,12 @@
 package com.tatvic.ecommercetraining;
 
-import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
-import static java.lang.reflect.Array.set;
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Parcelable;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -9,37 +14,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.os.Parcelable;
-import android.preference.PreferenceManager;
-import android.util.Log;
-import android.view.Menu;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
-
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.analytics.FirebaseAnalytics;
-import com.google.gson.Gson;
 import com.tatvic.ecommercetraining.adapters.PLPListAdapter;
-import com.tatvic.ecommercetraining.model.ProductModel;
 import com.tatvic.ecommercetraining.model.CategoryModel;
+import com.tatvic.ecommercetraining.model.ProductModel;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ProductListing extends AppCompatActivity implements PLPListAdapter.MenuListClickListener, com.tatvic.ecommercetraining.adapters.PLPListAdapter.ProductClickListener, com.tatvic.ecommercetraining.adapters.PLPListAdapter.AddToCartListener, com.tatvic.ecommercetraining.adapters.PLPListAdapter.RemoveFromCartListener {
 
     private static final String screen_name = "Product Listing Screen";
     private RecyclerView rv_PLP;
-    private Button buttonCheckout;
+    private Button GoToCart;
     private List<ProductModel> menuList = null;
     private PLPListAdapter PLPListAdapter;
     static List<ProductModel> itemsInCartList;
@@ -76,8 +64,10 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
         linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
         initRecyclerView();
-        buttonCheckout = findViewById(R.id.GoToCart);
-        buttonCheckout.setOnClickListener(new View.OnClickListener() {
+
+
+        GoToCart = findViewById(R.id.GoToCart);
+        GoToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (itemsInCartList == null && itemsInCartList.size() <= 0) {
@@ -137,8 +127,13 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
 
                         for (int i = 0; i <= lastItem; i++) {
                             Bundle bundle = new Bundle();
-                            bundle.putString(FirebaseAnalytics.Param.ITEM_ID, menuList.get(i).getName());
+                            bundle.putString(FirebaseAnalytics.Param.ITEM_ID, menuList.get(i).getItem_id());
                             bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, menuList.get(i).getName());
+                            bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, menuList.get(i).getItem_category());
+                            bundle.putString(FirebaseAnalytics.Param.ITEM_VARIANT,  menuList.get(i).getVariant());
+                            bundle.putString(FirebaseAnalytics.Param.ITEM_BRAND, menuList.get(i).getBrand());
+                            bundle.putDouble(FirebaseAnalytics.Param.PRICE, menuList.get(i).getPrice());
+                            bundle.putLong(FirebaseAnalytics.Param.INDEX, i+1);
                             arrayBundle.add(i, bundle);
                         }
 
@@ -146,8 +141,8 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
 
                         Bundle viewItemListBundle = new Bundle();
 
-                        viewItemListBundle.putString(FirebaseAnalytics.Param.ITEM_LIST_ID, "list_1");
-                        viewItemListBundle.putString(FirebaseAnalytics.Param.ITEM_LIST_NAME, "FirstExecuteItem");
+                        viewItemListBundle.putString(FirebaseAnalytics.Param.ITEM_LIST_ID, categoryModel.getAddress());
+                        viewItemListBundle.putString(FirebaseAnalytics.Param.ITEM_LIST_NAME, categoryModel.getName());
                         viewItemListBundle.putParcelableArrayList(FirebaseAnalytics.Param.ITEMS, (ArrayList<? extends Parcelable>) arrayBundle);
 
                         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.VIEW_ITEM_LIST, viewItemListBundle);
@@ -177,8 +172,13 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
                         Log.d("I_AM_WATCHING_U", "onScrolled: "+i);
 
                         Bundle bundle = new Bundle();
-                        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, menuList.get(i).getName());
+                        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, menuList.get(i).getItem_id());
                         bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, menuList.get(i).getName());
+                        bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, menuList.get(i).getItem_category());
+                        bundle.putString(FirebaseAnalytics.Param.ITEM_VARIANT,  menuList.get(i).getVariant());
+                        bundle.putString(FirebaseAnalytics.Param.ITEM_BRAND, menuList.get(i).getBrand());
+                        bundle.putDouble(FirebaseAnalytics.Param.PRICE, menuList.get(i).getPrice());
+                        bundle.putLong(FirebaseAnalytics.Param.INDEX, i+1);
                         arrayBundle.add( bundle);
 
                     }
@@ -186,8 +186,8 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
 
                     Bundle viewItemListBundle = new Bundle();
 
-                    viewItemListBundle.putString(FirebaseAnalytics.Param.ITEM_LIST_ID, "list_1");
-                    viewItemListBundle.putString(FirebaseAnalytics.Param.ITEM_LIST_NAME, "SecondScrollItem");
+                    viewItemListBundle.putString(FirebaseAnalytics.Param.ITEM_LIST_ID, categoryModel.getAddress());
+                    viewItemListBundle.putString(FirebaseAnalytics.Param.ITEM_LIST_NAME, categoryModel.getName());
                     viewItemListBundle.putParcelableArrayList(FirebaseAnalytics.Param.ITEMS, (ArrayList<? extends Parcelable>) arrayBundle);
 
                     mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.VIEW_ITEM_LIST, viewItemListBundle);
@@ -205,22 +205,31 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
                 }
                 else if(menuList.size()-1 == lastIndexItem){
 
+                    Log.d("CREATED_ARRAY", "last ITEM: ");
+
                     if (indexLastLog == true) {
                         indexLastLog = false;
                         arrayBundle.clear();
 
                         Bundle bundle = new Bundle();
-                        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, menuList.get(menuList.size()-1).getName());
+
+                        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, menuList.get(menuList.size()-1).getItem_id());
                         bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, menuList.get(menuList.size()-1).getName());
-                        arrayBundle.add( bundle);
+                        bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, menuList.get(menuList.size()-1).getItem_category());
+                        bundle.putString(FirebaseAnalytics.Param.ITEM_VARIANT, menuList.get(menuList.size()-1).getVariant());
+                        bundle.putString(FirebaseAnalytics.Param.ITEM_BRAND, menuList.get(menuList.size()-1).getBrand());
+                        bundle.putString(FirebaseAnalytics.Param.PRICE, String.valueOf(menuList.get(menuList.size()-1).getPrice()));
+                        bundle.putLong(FirebaseAnalytics.Param.INDEX, menuList.size());
+
+                        arrayBundle.add(bundle);
 
                         Log.d("CREATED_ARRAY", "array data::" + arrayBundle);
 
 
                         Bundle viewItemListBundle = new Bundle();
 
-                        viewItemListBundle.putString(FirebaseAnalytics.Param.ITEM_LIST_ID, "last_index");
-                        viewItemListBundle.putString(FirebaseAnalytics.Param.ITEM_LIST_NAME, "lastItem");
+                        viewItemListBundle.putString(FirebaseAnalytics.Param.ITEM_LIST_ID, categoryModel.getAddress());
+                        viewItemListBundle.putString(FirebaseAnalytics.Param.ITEM_LIST_NAME, categoryModel.getName());
                         viewItemListBundle.putParcelableArrayList(FirebaseAnalytics.Param.ITEMS, (ArrayList<? extends Parcelable>) arrayBundle);
 
                         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.VIEW_ITEM_LIST, viewItemListBundle);
@@ -231,9 +240,7 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
         });
 
 
-        recyclerView =  findViewById(R.id.rv_PLP);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        MainActivity mainActivity = new MainActivity();
+        //MainActivity mainActivity = new MainActivity();
         PLPListAdapter = new PLPListAdapter(this, menuList,
                 this, this, this, this);
         recyclerView.setAdapter(PLPListAdapter);
@@ -247,10 +254,9 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
 //    }
 
 
-
     @Override
     public void onAddToCartClick(ProductModel productModel) {
-        if(itemsInCartList == null) {
+        if (itemsInCartList == null) {
 //            itemsInCartList = new ArrayList<>();
         }
         itemsInCartList.add(productModel);
@@ -280,11 +286,11 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
 
     @Override
     public void onRemoveFromCartClick(ProductModel productModel) {
-        if(itemsInCartList.contains(productModel)) {
+        if (itemsInCartList.contains(productModel)) {
             itemsInCartList.remove(productModel);
             totalItemInCart = 0;
 
-            for(ProductModel m : itemsInCartList) {
+            for (ProductModel m : itemsInCartList) {
                 totalItemInCart = totalItemInCart + m.getTotalInCart();
             }
             //buttonCheckout.setText("Checkout (" +totalItemInCart +") items");
@@ -295,7 +301,7 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == 1000 && resultCode == Activity.RESULT_OK) {
+        if (requestCode == 1000 && resultCode == Activity.RESULT_OK) {
             //
             finish();
         }
@@ -373,4 +379,7 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
 
         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.REMOVE_FROM_CART, removeCartParams);
     }
+
+
 }
+

@@ -33,7 +33,7 @@ public class ShippingAddress extends AppCompatActivity {
     private EditText inputName, inputAddress, inputCity, inputState, inputZip;
     Intent i;
     private List<ProductModel> plist;
-    String isCart, selectedDeliveryMethod, item_bundle;
+    String isCart, selectedDeliveryMethod, item_bundle, isDetail;
     CategoryModel categoryModel;
     Float cartValue;
     private FirebaseAnalytics mFirebaseAnalytics;
@@ -51,9 +51,10 @@ public class ShippingAddress extends AppCompatActivity {
         plist = new ArrayList<ProductModel>();
         i = getIntent();
         isCart = i.getStringExtra("from_cart");
+        isDetail = i.getStringExtra("from_detail");
         categoryModel = i.getParcelableExtra("RestaurantModel");
         cartValue = i.getFloatExtra("Total",0);
-        Log.d("JBKADF", "onCreate: "+isCart);
+        Log.d("JBKADF", "onCreate: "+isDetail);
 
         buttonPlaceYourOrder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,7 +133,10 @@ public class ShippingAddress extends AppCompatActivity {
 
         Bundle addShippingParams = new Bundle();
         addShippingParams.putString(FirebaseAnalytics.Param.CURRENCY, "INR");
-        addShippingParams.putString("User_Address", inputAddress.getText().toString());
+        addShippingParams.putString("User_Address", inputAddress.getText().toString() + ", "
+                + inputCity.getText().toString()+ ", "
+                + inputState.getText().toString() +", "
+                + inputZip.getText().toString());
         addShippingParams.putDouble(FirebaseAnalytics.Param.VALUE, cartValue);
         addShippingParams.putString(FirebaseAnalytics.Param.COUPON, "SUMMER_FUN");
         addShippingParams.putString(FirebaseAnalytics.Param.SHIPPING_TIER, selectedDeliveryMethod);
@@ -182,6 +186,10 @@ public class ShippingAddress extends AppCompatActivity {
             i.putExtra("RestaurantModel", categoryModel);
             i.putExtra("Total", cartValue);
             i.putExtra("from_cart","yes");
+            i.putExtra("from_detail","yes");
+            startActivity(i);
+        }else if(isDetail.equals("yes")){
+            Intent i = new Intent(this, ProductDetail.class);
             startActivity(i);
         }
 

@@ -18,15 +18,28 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
-        android:hint="  Enter Email"
+        android:padding="10dp"
+        android:hint="Enter Email"
         android:textSize="16sp" />
     <EditText
         android:id="@+id/cred_pass"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
-        android:hint="  Enter Password"
+        android:padding="10dp"
+        android:inputType="textPassword"
+        android:hint="Enter Password"
         android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/test_creds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:drawableLeft="@drawable/ic_baseline_lock_24"
+        android:layout_gravity="end"
+        android:text="@string/use_test_credentials"/>
 
     <Button
         android:id="@+id/btn_pay_now"
