@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -121,6 +122,25 @@ public class ProductDetail extends AppCompatActivity {
               /*  Intent i = new Intent(ProductDetail.this, Cart.class);
 //                i.putExtra("RestaurantModel", categoryModel);
                 startActivityForResult(i, 1000);;*/
+
+                Bundle product = new Bundle();
+                product.putString(FirebaseAnalytics.Param.ITEM_ID, intent.getStringExtra("item_id"));
+                product.putString(FirebaseAnalytics.Param.ITEM_NAME, intent.getStringExtra("item_name"));
+                product.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, intent.getStringExtra("item_category"));
+                product.putString(FirebaseAnalytics.Param.ITEM_VARIANT, intent.getStringExtra("item_variant"));
+                product.putString(FirebaseAnalytics.Param.ITEM_BRAND, intent.getStringExtra("item_brand"));
+                product.putDouble(FirebaseAnalytics.Param.PRICE, price);
+
+                Bundle itemJeggingsWishlist = new Bundle(product);
+                itemJeggingsWishlist.putLong(FirebaseAnalytics.Param.QUANTITY, 1);
+
+                Bundle addToWishlistParams = new Bundle();
+                addToWishlistParams.putString(FirebaseAnalytics.Param.CURRENCY, "INR");
+                addToWishlistParams.putDouble(FirebaseAnalytics.Param.VALUE, price);
+                addToWishlistParams.putParcelableArray(FirebaseAnalytics.Param.ITEMS,
+                        new Parcelable[]{itemJeggingsWishlist});
+
+                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.ADD_TO_CART, addToWishlistParams);
             }
         });
 
@@ -161,6 +181,11 @@ public class ProductDetail extends AppCompatActivity {
         screen_view.putString(FirebaseAnalytics.Param.SCREEN_NAME, screen_name); //e.g. Screen Name
         screen_view.putString(FirebaseAnalytics.Param.SCREEN_CLASS, this.getLocalClassName()); // You can pass the value as specific activity name over here and if not then you can ignore this line and it will take the value automtically
         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, screen_view);
+
+        //--------GA3 Screen view---------
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.SCREEN_NAME, screen_name);// Pass the Screen name
+        mFirebaseAnalytics.logEvent("screenview_manual", bundle);
     }
 
 }

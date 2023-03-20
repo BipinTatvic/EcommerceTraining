@@ -287,6 +287,11 @@ public class PaymentMethod extends AppCompatActivity {
                     screen_view.putString(FirebaseAnalytics.Param.SCREEN_NAME, screen_name_popup); //e.g. Screen Name
                     screen_view.putString(FirebaseAnalytics.Param.SCREEN_CLASS, "Payment Popup"); // You can pass the value as specific activity name over here and if not then you can ignore this line and it will take the value automtically
                     mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, screen_view);
+
+                    //--------GA3 Screen view---------
+                    Bundle bundle = new Bundle();
+                    bundle.putString(FirebaseAnalytics.Param.SCREEN_NAME, screen_name_popup);// Pass the Screen name
+                    mFirebaseAnalytics.logEvent("screenview_manual", bundle);
                 }
                 else if(!(radioGroup.getCheckedRadioButtonId() == -1) && !checkBox.isChecked()){
                     Snackbar.make(view, "Please check the T & C", Snackbar.LENGTH_LONG)
@@ -313,6 +318,11 @@ public class PaymentMethod extends AppCompatActivity {
         screen_view.putString(FirebaseAnalytics.Param.SCREEN_NAME, screen_name); //e.g. Screen Name
         screen_view.putString(FirebaseAnalytics.Param.SCREEN_CLASS, this.getLocalClassName()); // You can pass the value as specific activity name over here and if not then you can ignore this line and it will take the value automtically
         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, screen_view);
+
+        //--------GA3 Screen view---------
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.SCREEN_NAME, screen_name);// Pass the Screen name
+        mFirebaseAnalytics.logEvent("screenview_manual", bundle);
     }
 
 }
