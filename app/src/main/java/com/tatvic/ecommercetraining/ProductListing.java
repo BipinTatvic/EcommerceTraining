@@ -335,7 +335,8 @@ public class ProductListing extends AppCompatActivity implements PLPListAdapter.
 
         Bundle viewItemParams = new Bundle();
         viewItemParams.putString(FirebaseAnalytics.Param.CURRENCY, "INR");
-        viewItemParams.putDouble(FirebaseAnalytics.Param.VALUE, menuList.get(position).getPrice());
+//        Missing Value in view_item in PLP
+//        viewItemParams.putDouble(FirebaseAnalytics.Param.VALUE, menuList.get(position).getPrice());
         viewItemParams.putParcelableArray(FirebaseAnalytics.Param.ITEMS,
                 new Parcelable[]{product});
         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.VIEW_ITEM, viewItemParams);

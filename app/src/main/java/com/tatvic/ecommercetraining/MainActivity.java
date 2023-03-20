@@ -114,11 +114,13 @@ public class MainActivity extends AppCompatActivity implements HomeCategoryListA
                         break;
                     case 1:
                         // Promotion selected
-                        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_PROMOTION, promo1);
+//                            Missing select_promotion for 2nd banner
+//                        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_PROMOTION, promo1);
                         break;
                     case 2:
                         // Promotion selected
-                        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_PROMOTION, promo2);
+//                Missing select_promotion for 3rd banner
+//                        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_PROMOTION, promo2);
                         break;
                     case 3:
                         // Promotion selected
@@ -143,8 +145,9 @@ public class MainActivity extends AppCompatActivity implements HomeCategoryListA
         promoParams = new Bundle();
         promoParams.putString(FirebaseAnalytics.Param.PROMOTION_ID, "MEGA_SALE_50%");
         promoParams.putString(FirebaseAnalytics.Param.PROMOTION_NAME, "Mega Sale Up to 50% OFF");
-        promoParams.putString(FirebaseAnalytics.Param.CREATIVE_NAME, "banner2.jpg");
-        promoParams.putString(FirebaseAnalytics.Param.CREATIVE_SLOT, "featured_promo_1");
+//        Missing Creative Name and Creative Slot from main banner
+//        promoParams.putString(FirebaseAnalytics.Param.CREATIVE_NAME, "banner2.jpg");
+//        promoParams.putString(FirebaseAnalytics.Param.CREATIVE_SLOT, "featured_promo_1");
         promoParams.putString(FirebaseAnalytics.Param.LOCATION_ID, "AIR_CONDITIONER_LIST_BANNER");
 
         // Promotion displayed
@@ -172,7 +175,8 @@ public class MainActivity extends AppCompatActivity implements HomeCategoryListA
 
         audio_bundle = new Bundle();
         audio_bundle.putString(FirebaseAnalytics.Param.PROMOTION_ID, "AUDIO_CATEGORY");
-        audio_bundle.putString(FirebaseAnalytics.Param.PROMOTION_NAME, "Audios");
+//        Missing promotion name
+//        audio_bundle.putString(FirebaseAnalytics.Param.PROMOTION_NAME, "Audios");
         audio_bundle.putString(FirebaseAnalytics.Param.CREATIVE_NAME, "Audio_rd8pkk.png");
         audio_bundle.putString(FirebaseAnalytics.Param.CREATIVE_SLOT, "category_3");
         audio_bundle.putString(FirebaseAnalytics.Param.LOCATION_ID, "AUDIO_PROMO");
@@ -182,7 +186,8 @@ public class MainActivity extends AppCompatActivity implements HomeCategoryListA
 
         fridge_bundle = new Bundle();
         fridge_bundle.putString(FirebaseAnalytics.Param.PROMOTION_ID, "FRIDGE_CATEGORY");
-        fridge_bundle.putString(FirebaseAnalytics.Param.PROMOTION_NAME, "Refrigerators");
+        //        Missing promotion name
+//        fridge_bundle.putString(FirebaseAnalytics.Param.PROMOTION_NAME, "Refrigerators");
         fridge_bundle.putString(FirebaseAnalytics.Param.CREATIVE_NAME, "Ref_jmphdw.png");
         fridge_bundle.putString(FirebaseAnalytics.Param.CREATIVE_SLOT, "category_4");
         fridge_bundle.putString(FirebaseAnalytics.Param.LOCATION_ID, "FRIDGE_PROMO");
@@ -192,13 +197,15 @@ public class MainActivity extends AppCompatActivity implements HomeCategoryListA
 
         ac_bundle = new Bundle();
         ac_bundle.putString(FirebaseAnalytics.Param.PROMOTION_ID, "AC_CATEGORY");
-        ac_bundle.putString(FirebaseAnalytics.Param.PROMOTION_NAME, "Air Conditioners");
+//        Missing promotion name
+//        ac_bundle.putString(FirebaseAnalytics.Param.PROMOTION_NAME, "Air Conditioners");
         ac_bundle.putString(FirebaseAnalytics.Param.CREATIVE_NAME, "AC_gw4ktn.png");
         ac_bundle.putString(FirebaseAnalytics.Param.CREATIVE_SLOT, "category_5");
         ac_bundle.putString(FirebaseAnalytics.Param.LOCATION_ID, "AC_PROMO");
 
         // Promotion displayed
-        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.VIEW_PROMOTION, ac_bundle);
+//        View Promotion for AC is not triggering
+//        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.VIEW_PROMOTION, ac_bundle);
 
 
 
@@ -207,9 +214,14 @@ public class MainActivity extends AppCompatActivity implements HomeCategoryListA
             public void onComplete(@NonNull Task<String> task) {
                 if (task.isSuccessful()) {
                     String app_instance_id = task.getResult();
-                    mFirebaseAnalytics.setUserProperty("app_instance_id", app_instance_id);
+
+//                    STATIC APP INSTANCE ID AND DEVICE NAME
+
+//                    mFirebaseAnalytics.setUserProperty("app_instance_id", app_instance_id);
+                    mFirebaseAnalytics.setUserProperty("app_instance_id", "502e6200-b115-11ed-9b25-6b88fdb7e8da");
                     mFirebaseAnalytics.setUserProperty("os_version", "Android "+ platformName);
-                    mFirebaseAnalytics.setUserProperty("device_name", deviceName);
+//                    mFirebaseAnalytics.setUserProperty("device_name", deviceName);
+                    mFirebaseAnalytics.setUserProperty("device_name", "Mobile");
                 }
             }
         });
@@ -295,11 +307,13 @@ public class MainActivity extends AppCompatActivity implements HomeCategoryListA
                 break;
             case "Televisions":
                 // Promotion selected
-                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_PROMOTION, tv_bundle);
+//                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_PROMOTION, tv_bundle);
+                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_PROMOTION, iphone_bundle);
                 break;
             case "Audios":
                 // Promotion selected
-                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_PROMOTION, audio_bundle);
+//                Select Promototion for Auido is not working
+//                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_PROMOTION, audio_bundle);
                 break;
             case "Refrigerators":
                 // Promotion selected
@@ -307,6 +321,8 @@ public class MainActivity extends AppCompatActivity implements HomeCategoryListA
                 break;
             case "Air Conditioners":
                 // Promotion selected
+//                Select Promotion for AC is triggering twice
+                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_PROMOTION, ac_bundle);
                 mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_PROMOTION, ac_bundle);
                 break;
         }
@@ -352,8 +368,9 @@ public class MainActivity extends AppCompatActivity implements HomeCategoryListA
                         promo1 = new Bundle();
                         promo1.putString(FirebaseAnalytics.Param.PROMOTION_ID, "MEGA_SALE");
                         promo1.putString(FirebaseAnalytics.Param.PROMOTION_NAME, "Mega Sale Up to 80% OFF");
-                        promo1.putString(FirebaseAnalytics.Param.CREATIVE_NAME, "banner.jpeg");
-                        promo1.putString(FirebaseAnalytics.Param.CREATIVE_SLOT, "featured_promo_3");
+//                        Missing Creative name and ID in view_promotion of 2nd banner
+//                        promo1.putString(FirebaseAnalytics.Param.CREATIVE_NAME, "banner.jpeg");
+//                        promo1.putString(FirebaseAnalytics.Param.CREATIVE_SLOT, "featured_promo_3");
                         promo1.putString(FirebaseAnalytics.Param.LOCATION_ID, "TELEVISION_LIST_BANNER");
 
                         // Promotion displayed
@@ -368,18 +385,22 @@ public class MainActivity extends AppCompatActivity implements HomeCategoryListA
                         promo2.putString(FirebaseAnalytics.Param.LOCATION_ID, "AUDIO_LIST_BANNER");
 
                         // Promotion displayed
-                        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.VIEW_PROMOTION, promo2);
+//                        Missing view promotion for 3rd banner
+//                        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.VIEW_PROMOTION, promo2);
                         break;
                     case 3:
                         promo3 = new Bundle();
-                        promo3.putString(FirebaseAnalytics.Param.PROMOTION_ID, "SPECIAL_OFFER");
-                        promo3.putString(FirebaseAnalytics.Param.PROMOTION_NAME, "This Weekend Special Offer");
+//                        Missing Promotion name and ID in view_promotion of 4th banner
+//                        promo3.putString(FirebaseAnalytics.Param.PROMOTION_ID, "SPECIAL_OFFER");
+//                        promo3.putString(FirebaseAnalytics.Param.PROMOTION_NAME, "This Weekend Special Offer");
                         promo3.putString(FirebaseAnalytics.Param.CREATIVE_NAME, "banner5.jpg");
                         promo3.putString(FirebaseAnalytics.Param.CREATIVE_SLOT, "featured_promo_5");
                         promo3.putString(FirebaseAnalytics.Param.LOCATION_ID, "REFRIGERATOR_LIST_BANNER");
 
                         // Promotion displayed
+//                        View Promotion of 3rd banner is triggering on viewing 4th banner
                         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.VIEW_PROMOTION, promo3);
+                        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.VIEW_PROMOTION, promo2);
                         break;
                 }
             }
