@@ -137,8 +137,15 @@ public class ShippingAddress extends AppCompatActivity {
                 + inputCity.getText().toString()+ ", "
                 + inputState.getText().toString() +", "
                 + inputZip.getText().toString());
-        addShippingParams.putDouble(FirebaseAnalytics.Param.VALUE, cartValue);
+        //addShippingParams.putDouble(FirebaseAnalytics.Param.VALUE, cartValue);
+
+        addShippingParams.putDouble(FirebaseAnalytics.Param.VALUE, 0.00);
+
         addShippingParams.putString(FirebaseAnalytics.Param.COUPON, "SUMMER_FUN");
+        addShippingParams.putString(FirebaseAnalytics.Param.COUPON, "SUMMER_FUN");
+        addShippingParams.putString(FirebaseAnalytics.Param.COUPON, "SUMMER_FUN");
+
+
         addShippingParams.putString(FirebaseAnalytics.Param.SHIPPING_TIER, selectedDeliveryMethod);
 
         arrayBundle.clear();
@@ -147,11 +154,20 @@ public class ShippingAddress extends AppCompatActivity {
             plist.add(ProductListing.itemsInCartList.get(i));
             Bundle item_bundle = new Bundle();
 
-            item_bundle.putString(FirebaseAnalytics.Param.ITEM_ID, plist.get(i).getItem_id());
+          //  item_bundle.putString(FirebaseAnalytics.Param.ITEM_ID, plist.get(i).getItem_id());
+
+            item_bundle.putString(FirebaseAnalytics.Param.ITEM_ID, plist.get(i).getBrand());
+
             item_bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, plist.get(i).getName());
-            item_bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, plist.get(i).getItem_category());
-            item_bundle.putString(FirebaseAnalytics.Param.ITEM_VARIANT, plist.get(i).getVariant());
-            item_bundle.putString(FirebaseAnalytics.Param.ITEM_BRAND, plist.get(i).getBrand());
+            item_bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, plist.get(i).getName());
+            item_bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, plist.get(i).getName());
+
+          //  item_bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, plist.get(i).getItem_category());
+
+            item_bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY4, plist.get(i).getItem_category());
+
+          //  item_bundle.putString(FirebaseAnalytics.Param.ITEM_VARIANT, plist.get(i).getVariant());
+          //  item_bundle.putString(FirebaseAnalytics.Param.ITEM_BRAND, plist.get(i).getBrand());
             item_bundle.putDouble(FirebaseAnalytics.Param.PRICE, plist.get(i).getPrice());
 
             arrayBundle.add(item_bundle);

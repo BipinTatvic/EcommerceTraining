@@ -239,16 +239,22 @@ public class PaymentMethod extends AppCompatActivity {
 
                                 arrayBundle.clear();
 
+                            //After code changes for version 3
                                 for (int i = 0; i < ProductListing.itemsInCartList.size(); i++) {
                                     plist.add(ProductListing.itemsInCartList.get(i));
                                     Bundle item_bundle = new Bundle();
 
-                                    item_bundle.putString(FirebaseAnalytics.Param.ITEM_ID, plist.get(i).getItem_id());
-                                    item_bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, plist.get(i).getName());
-                                    item_bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, plist.get(i).getItem_category());
+                                    item_bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "Laptop");
+                                    //item_bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, plist.get(i).getName());
+                                    //item_bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, plist.get(i).getItem_category());
+                                    item_bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, "appliancesappliancesappliancesappliancesappliancesappliancesappliancesappliancesappliancesappliancescesappliancesv");
+                                    item_bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY2, plist.get(i).getItem_category());
+                                    item_bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY3, plist.get(i).getItem_id());
+                                    item_bundle.putString(FirebaseAnalytics.Param.ITEM_VARIANT, plist.get(i).getVariant());
                                     item_bundle.putString(FirebaseAnalytics.Param.ITEM_VARIANT, plist.get(i).getVariant());
                                     item_bundle.putString(FirebaseAnalytics.Param.ITEM_BRAND, plist.get(i).getBrand());
-                                    item_bundle.putDouble(FirebaseAnalytics.Param.PRICE, plist.get(i).getPrice());
+                                    item_bundle.putString(FirebaseAnalytics.Param.ITEM_BRAND, "");
+                                    item_bundle.putDouble(FirebaseAnalytics.Param.PRICE, 0.00);
 
                                     arrayBundle.add(item_bundle);
 
