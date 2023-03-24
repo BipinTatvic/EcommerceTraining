@@ -239,16 +239,22 @@ public class PaymentMethod extends AppCompatActivity {
 
                                 arrayBundle.clear();
 
+                            //After code changes for version 3
                                 for (int i = 0; i < ProductListing.itemsInCartList.size(); i++) {
                                     plist.add(ProductListing.itemsInCartList.get(i));
                                     Bundle item_bundle = new Bundle();
 
-                                    item_bundle.putString(FirebaseAnalytics.Param.ITEM_ID, plist.get(i).getItem_id());
-                                    item_bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, plist.get(i).getName());
-                                    item_bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, plist.get(i).getItem_category());
+                                    item_bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "Laptop");
+                                    //item_bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, plist.get(i).getName());
+                                    //item_bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, plist.get(i).getItem_category());
+                                    item_bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, "appliancesappliancesappliancesappliancesappliancesappliancesappliancesappliancesappliancesappliancescesappliancesv");
+                                    item_bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY2, plist.get(i).getItem_category());
+                                    item_bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY3, plist.get(i).getItem_id());
+                                    item_bundle.putString(FirebaseAnalytics.Param.ITEM_VARIANT, plist.get(i).getVariant());
                                     item_bundle.putString(FirebaseAnalytics.Param.ITEM_VARIANT, plist.get(i).getVariant());
                                     item_bundle.putString(FirebaseAnalytics.Param.ITEM_BRAND, plist.get(i).getBrand());
-                                    item_bundle.putDouble(FirebaseAnalytics.Param.PRICE, plist.get(i).getPrice());
+                                    item_bundle.putString(FirebaseAnalytics.Param.ITEM_BRAND, "");
+                                    item_bundle.putDouble(FirebaseAnalytics.Param.PRICE, 0.00);
 
                                     arrayBundle.add(item_bundle);
 
@@ -287,6 +293,11 @@ public class PaymentMethod extends AppCompatActivity {
                     screen_view.putString(FirebaseAnalytics.Param.SCREEN_NAME, screen_name_popup); //e.g. Screen Name
                     screen_view.putString(FirebaseAnalytics.Param.SCREEN_CLASS, "Payment Popup"); // You can pass the value as specific activity name over here and if not then you can ignore this line and it will take the value automtically
                     mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, screen_view);
+
+                    //--------GA3 Screen view---------
+                    Bundle bundle = new Bundle();
+                    bundle.putString(FirebaseAnalytics.Param.SCREEN_NAME, screen_name_popup);// Pass the Screen name
+                    mFirebaseAnalytics.logEvent("screenview_manual", bundle);
                 }
                 else if(!(radioGroup.getCheckedRadioButtonId() == -1) && !checkBox.isChecked()){
                     Snackbar.make(view, "Please check the T & C", Snackbar.LENGTH_LONG)
@@ -313,6 +324,11 @@ public class PaymentMethod extends AppCompatActivity {
         screen_view.putString(FirebaseAnalytics.Param.SCREEN_NAME, screen_name); //e.g. Screen Name
         screen_view.putString(FirebaseAnalytics.Param.SCREEN_CLASS, this.getLocalClassName()); // You can pass the value as specific activity name over here and if not then you can ignore this line and it will take the value automtically
         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, screen_view);
+
+        //--------GA3 Screen view---------
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.SCREEN_NAME, screen_name);// Pass the Screen name
+        mFirebaseAnalytics.logEvent("screenview_manual", bundle);
     }
 
 }

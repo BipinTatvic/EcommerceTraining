@@ -349,6 +349,11 @@ public class MainActivity extends AppCompatActivity implements HomeCategoryListA
         screen_view.putString(FirebaseAnalytics.Param.SCREEN_CLASS, this.getLocalClassName()); // You can pass the value as specific activity name over here and if not then you can ignore this line and it will take the value automtically
         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, screen_view);
 
+        //--------GA3 Screen view---------
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.SCREEN_NAME, screen_name);// Pass the Screen name
+        mFirebaseAnalytics.logEvent("screenview_manual", bundle);
+
         imageSlider.setItemChangeListener(new ItemChangeListener() {
             @Override
             public void onItemChanged(int i) {

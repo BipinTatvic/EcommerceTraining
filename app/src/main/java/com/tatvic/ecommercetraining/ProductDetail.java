@@ -122,6 +122,10 @@ public class ProductDetail extends AppCompatActivity {
               /*  Intent i = new Intent(ProductDetail.this, Cart.class);
 //                i.putExtra("RestaurantModel", categoryModel);
                 startActivityForResult(i, 1000);;*/
+//<<<<<<< Code_With_Error_Analytics
+
+
+//>>>>>>> codee_with_error_analytics
                 Bundle product = new Bundle();
                 product.putString(FirebaseAnalytics.Param.ITEM_ID, intent.getStringExtra("item_id"));
                 product.putString(FirebaseAnalytics.Param.ITEM_NAME, intent.getStringExtra("item_name"));
@@ -136,8 +140,12 @@ public class ProductDetail extends AppCompatActivity {
                 Bundle addToWishlistParams = new Bundle();
                 addToWishlistParams.putString(FirebaseAnalytics.Param.CURRENCY, "INR");
                 addToWishlistParams.putDouble(FirebaseAnalytics.Param.VALUE, price);
-//                addToWishlistParams.putParcelableArray(FirebaseAnalytics.Param.ITEMS,
-//                        new Parcelable[]{itemJeggingsWishlist});
+//<<<<<<< Code_With_Error_Analytics//                
+            addToWishlistParams.putParcelableArray(FirebaseAnalytics.Param.ITEMS,
+                        new Parcelable[]{itemJeggingsWishlist});
+                addToWishlistParams.putParcelableArray(FirebaseAnalytics.Param.ITEMS,
+                        new Parcelable[]{itemJeggingsWishlist});
+//>>>>>>> codee_with_error_analytics
 
                 mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.ADD_TO_CART, addToWishlistParams);
             }
@@ -186,6 +194,11 @@ public class ProductDetail extends AppCompatActivity {
         screen_view.putString(FirebaseAnalytics.Param.SCREEN_NAME, screen_name); //e.g. Screen Name
         screen_view.putString(FirebaseAnalytics.Param.SCREEN_CLASS, this.getLocalClassName()); // You can pass the value as specific activity name over here and if not then you can ignore this line and it will take the value automtically
         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, screen_view);
+
+        //--------GA3 Screen view---------
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.SCREEN_NAME, screen_name);// Pass the Screen name
+        mFirebaseAnalytics.logEvent("screenview_manual", bundle);
     }
 
 }

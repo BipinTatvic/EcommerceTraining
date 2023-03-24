@@ -42,6 +42,14 @@
             android:layout_height="wrap_content"
             android:text="Thank You!"/>
 
+        <Button
+            android:id="@+id/refund"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:text="Refund"
+            android:background="@drawable/bkg_shape"
+            />
 
 
 </LinearLayout>
