@@ -122,7 +122,10 @@ public class ProductDetail extends AppCompatActivity {
               /*  Intent i = new Intent(ProductDetail.this, Cart.class);
 //                i.putExtra("RestaurantModel", categoryModel);
                 startActivityForResult(i, 1000);;*/
+//<<<<<<< Code_With_Error_Analytics
 
+
+//>>>>>>> codee_with_error_analytics
                 Bundle product = new Bundle();
                 product.putString(FirebaseAnalytics.Param.ITEM_ID, intent.getStringExtra("item_id"));
                 product.putString(FirebaseAnalytics.Param.ITEM_NAME, intent.getStringExtra("item_name"));
@@ -137,8 +140,12 @@ public class ProductDetail extends AppCompatActivity {
                 Bundle addToWishlistParams = new Bundle();
                 addToWishlistParams.putString(FirebaseAnalytics.Param.CURRENCY, "INR");
                 addToWishlistParams.putDouble(FirebaseAnalytics.Param.VALUE, price);
+//<<<<<<< Code_With_Error_Analytics//                
+            addToWishlistParams.putParcelableArray(FirebaseAnalytics.Param.ITEMS,
+                        new Parcelable[]{itemJeggingsWishlist});
                 addToWishlistParams.putParcelableArray(FirebaseAnalytics.Param.ITEMS,
                         new Parcelable[]{itemJeggingsWishlist});
+//>>>>>>> codee_with_error_analytics
 
                 mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.ADD_TO_CART, addToWishlistParams);
             }
@@ -153,9 +160,15 @@ public class ProductDetail extends AppCompatActivity {
                 startActivityForResult(intent, 1000);
 
                 Bundle params = new Bundle();
-                params.putString(FirebaseAnalytics.Param.ITEM_ID, intent.getStringExtra("item_id"));
-                params.putString(FirebaseAnalytics.Param.ITEM_NAME, intent.getStringExtra("item_name"));
-                params.putDouble(FirebaseAnalytics.Param.PRICE, intent.getFloatExtra("item_price", 0));
+//                params.putString(FirebaseAnalytics.Param.ITEM_ID, intent.getStringExtra("item_id"));
+//                params.putString(FirebaseAnalytics.Param.ITEM_NAME, intent.getStringExtra("item_name"));
+//                params.putDouble(FirebaseAnalytics.Param.PRICE, intent.getFloatExtra("item_price", 0));
+
+//                Incorrect values in buy_now_click click event
+                params.putString(FirebaseAnalytics.Param.ITEM_ID, "Iphone");
+                params.putString(FirebaseAnalytics.Param.ITEM_NAME, "Iphone 14 pro");
+                params.putDouble(FirebaseAnalytics.Param.PRICE, 999);
+
                 params.putString("screen_name",screen_name);
                 mFirebaseAnalytics.logEvent("buy_now_click", params);
             }

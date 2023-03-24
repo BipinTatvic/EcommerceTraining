@@ -122,7 +122,8 @@ public class Cart extends AppCompatActivity {
 
         arrayBundle.clear();
         //Bundle itemJeggingsCart = new Bundle(item_bundle);
-        for (int i = 0; i < ProductListing.itemsInCartList.size(); i++) {
+//        for (int i = 0; i < ProductListing.itemsInCartList.size(); i++) {
+        for (int i = 0; i < 1; i++) {
             plist.add(ProductListing.itemsInCartList.get(i));
             Bundle item_bundle = new Bundle();
 
@@ -131,7 +132,7 @@ public class Cart extends AppCompatActivity {
             item_bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, plist.get(i).getItem_category());
             item_bundle.putString(FirebaseAnalytics.Param.ITEM_VARIANT, plist.get(i).getVariant());
             item_bundle.putString(FirebaseAnalytics.Param.ITEM_BRAND, plist.get(i).getBrand());
-            item_bundle.putDouble(FirebaseAnalytics.Param.PRICE, plist.get(i).getPrice());
+            item_bundle.putDouble("Prise", plist.get(i).getPrice());
             item_bundle.putDouble(FirebaseAnalytics.Param.QUANTITY, plist.get(i).getTotalInCart());
 
 //            Log.d("HERE_IS_YOUR_QT", "onCreate: "+ plist.get(i).getTotalInCart());
@@ -146,7 +147,7 @@ public class Cart extends AppCompatActivity {
 
         Log.d("order_details", arrayBundle.toString());
 
-        viewCartParams.putString(FirebaseAnalytics.Param.CURRENCY, "INR");
+//        viewCartParams.putString(FirebaseAnalytics.Param.CURRENCY, "INR");
         viewCartParams.putDouble(FirebaseAnalytics.Param.VALUE, subTotalAmount);
         viewCartParams.putParcelableArrayList(FirebaseAnalytics.Param.ITEMS,
                 (ArrayList<? extends Parcelable>) arrayBundle);
@@ -176,9 +177,10 @@ public class Cart extends AppCompatActivity {
 
                 Bundle beginCheckoutParams = new Bundle();
 
-                beginCheckoutParams.putString(FirebaseAnalytics.Param.CURRENCY, "INR");
+                beginCheckoutParams.putString(FirebaseAnalytics.Param.CURRENCY, "USD");
                 beginCheckoutParams.putDouble(FirebaseAnalytics.Param.VALUE, subTotalAmount);
-                beginCheckoutParams.putString(FirebaseAnalytics.Param.COUPON, "SUMMER_FUN");
+//                beginCheckoutParams.putString(FirebaseAnalytics.Param.COUPON, "SUMMER_FUN");
+                beginCheckoutParams.putString("cuopon", "SUMMER_FUN");
 
                 beginCheckoutParams.putParcelableArrayList(FirebaseAnalytics.Param.ITEMS,
                         (ArrayList<? extends Parcelable>) arrayBundle);
