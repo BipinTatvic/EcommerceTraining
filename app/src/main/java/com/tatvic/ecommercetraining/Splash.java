@@ -53,7 +53,6 @@ public class Splash extends AppCompatActivity {
 //<<<<<<< Code_With_Error_Analytics
 //      Missing Screen view for Splash screen
 //        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, screen_view);
-=======
         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, screen_view);
 
         //--------GA3 Screen view---------

@@ -4,8 +4,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -136,9 +134,11 @@ public class PaymentMethod extends AppCompatActivity {
 
 
                     Bundle addPaymentParams = new Bundle();
-                    addPaymentParams.putString(FirebaseAnalytics.Param.CURRENCY, "INR");
+                    // addPaymentParams.putString(FirebaseAnalytics.Param.CURRENCY, "INR");
+                    addPaymentParams.putString(FirebaseAnalytics.Param.CURRENCY, "INRR");
                     addPaymentParams.putDouble(FirebaseAnalytics.Param.VALUE, value);
-                    addPaymentParams.putString(FirebaseAnalytics.Param.COUPON, "SUMMER_FUN");
+                    addPaymentParams.putDouble(FirebaseAnalytics.Param.VALUE, value);
+                    //addPaymentParams.putString(FirebaseAnalytics.Param.COUPON, "SUMMER_FUN");
                     addPaymentParams.putString(FirebaseAnalytics.Param.PAYMENT_TYPE, selectedPaymentMethod);
 
                     arrayBundle.clear();
@@ -148,11 +148,15 @@ public class PaymentMethod extends AppCompatActivity {
                         Bundle item_bundle = new Bundle();
 
                         item_bundle.putString(FirebaseAnalytics.Param.ITEM_ID, plist.get(i).getItem_id());
+                        item_bundle.putString(FirebaseAnalytics.Param.ITEM_ID, plist.get(i).getBrand());
+
                         item_bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, plist.get(i).getName());
                         item_bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, plist.get(i).getItem_category());
+                        item_bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY3, plist.get(i).getItem_category());
                         item_bundle.putString(FirebaseAnalytics.Param.ITEM_VARIANT, plist.get(i).getVariant());
                         item_bundle.putString(FirebaseAnalytics.Param.ITEM_BRAND, plist.get(i).getBrand());
-                        item_bundle.putDouble(FirebaseAnalytics.Param.PRICE, plist.get(i).getPrice());
+                        item_bundle.putDouble(FirebaseAnalytics.Param.PRICE, 0.00);
+
 
                         arrayBundle.add(item_bundle);
 
@@ -197,13 +201,13 @@ public class PaymentMethod extends AppCompatActivity {
                     final AlertDialog alertDialog = dialog.create();
                     alertDialog.setCanceledOnTouchOutside(false);
 
-                   /* test_creds.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            cred_et_email.setText(cred_email);
-                            cred_et_pass.setText(cred_password);
-                        }
-                    });*/
+                  /* test_creds.setOnClickListener(new View.OnClickListener() {
+                       @Override
+                       public void onClick(View view) {
+                           cred_et_email.setText(cred_email);
+                           cred_et_pass.setText(cred_password);
+                       }
+                   });*/
 
                     btn_pay_now.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -239,7 +243,7 @@ public class PaymentMethod extends AppCompatActivity {
 
                                 arrayBundle.clear();
 
-                            //After code changes for version 3
+                                //After code changes for version 3
                                 for (int i = 0; i < ProductListing.itemsInCartList.size(); i++) {
                                     plist.add(ProductListing.itemsInCartList.get(i));
                                     Bundle item_bundle = new Bundle();
@@ -247,10 +251,10 @@ public class PaymentMethod extends AppCompatActivity {
                                     item_bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "Laptop");
                                     //item_bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, plist.get(i).getName());
                                     //item_bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, plist.get(i).getItem_category());
-                                    item_bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, "appliancesappliancesappliancesappliancesappliancesappliancesappliancesappliancesappliancesappliancescesappliancesv");
+                                    item_bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, "Acer I Series 108 cm (43 inch) 4K Ultra HD LED Android TV with Google Assistant (2022 model)Acer I Series 108 cm (43 inch) 4K Ultra HD LED Android TV with Google Assistant (2022 model)");
                                     item_bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY2, plist.get(i).getItem_category());
                                     item_bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY3, plist.get(i).getItem_id());
-                                    item_bundle.putString(FirebaseAnalytics.Param.ITEM_VARIANT, plist.get(i).getVariant());
+                                    item_bundle.putString(FirebaseAnalytics.Param.ITEM_VARIANT, "");
                                     item_bundle.putString(FirebaseAnalytics.Param.ITEM_VARIANT, plist.get(i).getVariant());
                                     item_bundle.putString(FirebaseAnalytics.Param.ITEM_BRAND, plist.get(i).getBrand());
                                     item_bundle.putString(FirebaseAnalytics.Param.ITEM_BRAND, "");
@@ -332,4 +336,5 @@ public class PaymentMethod extends AppCompatActivity {
     }
 
 }
+
 

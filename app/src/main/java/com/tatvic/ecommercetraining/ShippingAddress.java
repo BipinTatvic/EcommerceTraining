@@ -158,13 +158,13 @@ public class ShippingAddress extends AppCompatActivity {
 
             item_bundle.putString(FirebaseAnalytics.Param.ITEM_ID, plist.get(i).getBrand());
 
-            item_bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, plist.get(i).getName());
-            item_bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, plist.get(i).getName());
-            item_bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, plist.get(i).getName());
+//            item_bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, plist.get(i).getName());
+//            item_bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, plist.get(i).getName());
+//            item_bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, plist.get(i).getName());
 
           //  item_bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, plist.get(i).getItem_category());
 
-            item_bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY4, plist.get(i).getItem_category());
+            item_bundle.putString("category", plist.get(i).getItem_category());
 
           //  item_bundle.putString(FirebaseAnalytics.Param.ITEM_VARIANT, plist.get(i).getVariant());
           //  item_bundle.putString(FirebaseAnalytics.Param.ITEM_BRAND, plist.get(i).getBrand());
