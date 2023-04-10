@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.tatvic.ecommercetraining.ProductDetail;
 import com.tatvic.ecommercetraining.R;
+import com.tatvic.ecommercetraining.Search;
 import com.tatvic.ecommercetraining.model.CategoryModel;
 import com.tatvic.ecommercetraining.model.ProductModel;
 
@@ -30,7 +31,9 @@ import java.util.Locale;
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ExampleViewHolder> implements Filterable {
     private List<CategoryModel> exampleList;
     private List<CategoryModel> exampleListFull;
+    private RestaurantListClickListener clickListener;
     private Context context;
+
 
     static class ExampleViewHolder extends RecyclerView.ViewHolder {
         ImageView product_image;
@@ -47,10 +50,9 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ExampleVie
         }
     }
 
-    public SearchAdapter(Context context, List<CategoryModel> exampleList) {
-        this.context = context;
+    public SearchAdapter(List<CategoryModel> exampleList, RestaurantListClickListener clickListener) {
         this.exampleList = exampleList;
-        exampleListFull = new ArrayList<>(exampleList);
+        this.clickListener = clickListener;
     }
 
 
@@ -69,16 +71,22 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ExampleVie
                 .into(holder.product_image);
         holder.item_name.setText(currentItem.getName());
         holder.item_price.setText("Delivery Charge: " + String.valueOf(NumberFormat.getCurrencyInstance(new Locale("en", "IN")).format(exampleList.get(position).getDelivery_charge())));
-        holder.ItemLayout.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickListener.onItemClick(exampleList.get(position));
+            }
+        });
+/*        holder.ItemLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), ProductDetail.class);
-                intent.putExtra("item_name", exampleList.get(position).getName());
-                intent.putExtra("item_price", Float.valueOf(exampleList.get(position).getDelivery_charge()));
-                intent.putExtra("item_img_url", exampleList.get(position).getImage());
+//                intent.putExtra("item_name", exampleList.get(position).getName());
+//                intent.putExtra("item_price", Float.valueOf(exampleList.get(position).getDelivery_charge()));
+//                intent.putExtra("item_img_url", exampleList.get(position).getImage());
                 context.startActivity(intent);
             }
-        });
+        });*/
     }
 
     @Override
@@ -122,5 +130,9 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ExampleVie
             notifyDataSetChanged();
         }
     };
+
+    public interface RestaurantListClickListener {
+        public void onItemClick(CategoryModel categoryModel);
+    }
 }
 

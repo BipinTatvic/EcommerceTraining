@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.gson.Gson;
 import com.tatvic.ecommercetraining.adapters.CartListAdapter;
@@ -160,8 +161,17 @@ public class Cart extends AppCompatActivity {
         begin_checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Cart.this, ShippingAddress.class);
-                intent.putExtra("RestaurantModel", categoryModel);
+
+                if(ProductListing.itemsInCartList.size() == 0){
+                    Snackbar.make(v, "Please add some products in cart", Snackbar.LENGTH_LONG)
+                            .setAction("OK", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                }
+                            }).show();
+                }else {
+                    Intent intent = new Intent(Cart.this, ShippingAddress.class);
+                    intent.putExtra("RestaurantModel", categoryModel);
 
 //                Gson gson = new Gson();
 //                String json = gson.toJson(categoryModel);
@@ -170,19 +180,20 @@ public class Cart extends AppCompatActivity {
 //
 //                myEdit.putString("YOUR_MODEL", json);
 //                myEdit.apply();
-                intent.putExtra("Total", subTotalAmount);
-                intent.putExtra("from_cart", "yes");
-                startActivityForResult(intent, 1000);
+                    intent.putExtra("Total", subTotalAmount);
+                    intent.putExtra("from_cart", "yes");
+                    startActivityForResult(intent, 1000);
 
-                Bundle beginCheckoutParams = new Bundle();
+                    Bundle beginCheckoutParams = new Bundle();
 
-                beginCheckoutParams.putString(FirebaseAnalytics.Param.CURRENCY, "INR");
-                beginCheckoutParams.putDouble(FirebaseAnalytics.Param.VALUE, subTotalAmount);
-                beginCheckoutParams.putString(FirebaseAnalytics.Param.COUPON, "SUMMER_FUN");
+                    beginCheckoutParams.putString(FirebaseAnalytics.Param.CURRENCY, "INR");
+                    beginCheckoutParams.putDouble(FirebaseAnalytics.Param.VALUE, subTotalAmount);
+                    beginCheckoutParams.putString(FirebaseAnalytics.Param.COUPON, "SUMMER_FUN");
 
-                beginCheckoutParams.putParcelableArrayList(FirebaseAnalytics.Param.ITEMS,
-                        (ArrayList<? extends Parcelable>) arrayBundle);
-                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.BEGIN_CHECKOUT, beginCheckoutParams);
+                    beginCheckoutParams.putParcelableArrayList(FirebaseAnalytics.Param.ITEMS,
+                            (ArrayList<? extends Parcelable>) arrayBundle);
+                    mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.BEGIN_CHECKOUT, beginCheckoutParams);
+                }
             }
         });
 
