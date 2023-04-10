@@ -142,9 +142,9 @@ public class ProductDetail extends AppCompatActivity {
                 addToWishlistParams.putDouble(FirebaseAnalytics.Param.VALUE, price);
 //<<<<<<< Code_With_Error_Analytics//                
             addToWishlistParams.putParcelableArray(FirebaseAnalytics.Param.ITEMS,
-                        new Parcelable[]{itemJeggingsWishlist});
-                addToWishlistParams.putParcelableArray(FirebaseAnalytics.Param.ITEMS,
-                        new Parcelable[]{itemJeggingsWishlist});
+                        new Parcelable[]{});
+//                addToWishlistParams.putParcelableArray(FirebaseAnalytics.Param.ITEMS,
+//                        new Parcelable[]{itemJeggingsWishlist});
 //>>>>>>> codee_with_error_analytics
 
                 mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.ADD_TO_CART, addToWishlistParams);
